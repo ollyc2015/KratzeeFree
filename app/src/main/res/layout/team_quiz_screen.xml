@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:attrs="http://schemas.android.com/tools"
+    android:id="@+id/myQuestionScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background"
+            android:alpha="0.9"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <include
+                android:id="@+id/quiz_app_bar"
+                layout="@layout/quiz_questions_app_bar"></include>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+
+                <TextView
+                    android:id="@+id/tv_question_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:hint="@string/question_number_hint"
+                    android:textColor="@android:color/background_light"
+                    android:textColorHint="@color/white"
+                    android:textColorLink="@android:color/background_light"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_current_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/regular"
+                    android:text="0"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/points"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="24sp" />
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/question_background"
+                android:ems="10"
+                android:fontFamily="@font/regular"
+                android:hint="@string/questionRequired"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="2000"
+                android:maxLines="8"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:scrollHorizontally="false"
+                android:textColor="@android:color/background_dark"
+                android:textSize="25sp" /><!-- Maximum Lines -->
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/tv_answer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="120dp"
+                    android:background="@drawable/question_background"
+                    android:elevation="24dp"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/answer1"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/scratch_view_behind1"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end">
+
+                        <ImageView
+                            android:id="@+id/star1"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="bottom|end"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/star_1"
+                            android:src="@drawable/star"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+
+                    <com.jackpocket.scratchoff.views.ScratchableLinearLayout
+                        android:id="@+id/scratch_view1"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end"
+                        android:background="@color/scratch_start_gradient">
+
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="20dp"
+                            android:contentDescription="@string/scratch_pattern"
+                            android:src="@drawable/ic_scratch_pattern" />
+                    </com.jackpocket.scratchoff.views.ScratchableLinearLayout>
+                </RelativeLayout>
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/tv_answer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="120dp"
+                    android:background="@drawable/question_background"
+                    android:elevation="0dp"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/answer2"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/scratch_view_behind2"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end">
+
+                        <ImageView
+                            android:id="@+id/star2"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="bottom|end"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/star_2"
+                            android:src="@drawable/star"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+
+                    <com.jackpocket.scratchoff.views.ScratchableLinearLayout
+                        android:id="@+id/scratch_view2"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end"
+                        android:background="@color/scratch_start_gradient">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="20dp"
+                            android:contentDescription="@string/scratch_pattern"
+                            android:src="@drawable/ic_scratch_pattern" />
+                    </com.jackpocket.scratchoff.views.ScratchableLinearLayout>
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/tv_answer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="120dp"
+                    android:background="@drawable/question_background"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/answer3"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/scratch_view_behind3"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end">
+
+                        <ImageView
+                            android:id="@+id/star3"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="bottom|end"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/star_3"
+                            android:src="@drawable/star"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+
+                    <com.jackpocket.scratchoff.views.ScratchableLinearLayout
+                        android:id="@+id/scratch_view3"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end"
+                        android:background="@color/scratch_start_gradient">
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="20dp"
+                            android:contentDescription="@string/scratch_pattern"
+                            android:src="@drawable/ic_scratch_pattern" />
+                    </com.jackpocket.scratchoff.views.ScratchableLinearLayout>
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+
+                <TextView
+                    android:id="@+id/tv_answer4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="120dp"
+                    android:background="@drawable/question_background"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/answer4"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:layout_width="75dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/scratch_view_behind4"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end">
+
+                        <ImageView
+                            android:id="@+id/star4"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="bottom|end"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/star_4"
+                            android:src="@drawable/star"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+
+                    <com.jackpocket.scratchoff.views.ScratchableLinearLayout
+                        android:id="@+id/scratch_view4"
+                        android:layout_width="75dp"
+                        android:layout_height="55dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom|end"
+                        android:background="@color/scratch_start_gradient">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="20dp"
+                            android:contentDescription="@string/scratch_pattern"
+                            android:src="@drawable/ic_scratch_pattern" />
+                    </com.jackpocket.scratchoff.views.ScratchableLinearLayout>
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TextView01"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:paddingLeft="4.0dip"
+                android:paddingTop="5.0dip"
+                android:paddingRight="4.0dip"
+                android:paddingBottom="1.0dip">
+
+                <Button
+                    android:id="@+id/btn_previous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/mybutton"
+                    android:text="@string/previous_button"
+                    android:textColor="@android:color/background_light" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/mybutton"
+                    android:text="@string/next_button"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pageIndicatorView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.40"
+                attrs:piv_viewPager="@id/pager" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_submit_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/mybutton"
+                android:elevation="0dp"
+                android:text="@string/finshedQuiz"
+                android:textColor="@android:color/white" />
+
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminateDrawable="@drawable/progress"
+                android:layout_marginTop="26dp"
+                android:indeterminate="true"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+</ScrollView>
+
+
+
+
+

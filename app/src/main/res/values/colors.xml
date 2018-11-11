@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00cecb</color>
+    <color name="colorPrimaryDark">#FF9800</color>
+    <color name="colorAccent">#c9c9c9</color>
+
+    <color name="scratch_end_gradient">#d0e9e9</color>
+    <color name="scratch_start_gradient">#e5e5e5</color>
+
+    <color name="secondaryGreen">#4DCBBF</color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="blue_background">#4A5899</color>
+
+    <color name="black">#b6cb3f</color>
+    <color name="orange">#F8774D</color>
+</resources>

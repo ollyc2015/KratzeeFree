@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/mScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/scratch_end_gradient">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/quiz_type_team_background"
+            tools:context=".ui.common.BaseActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_heading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/mikado_ultra"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="105dp" />
+
+    <TextView
+        android:id="@+id/tv_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_above="@+id/et_team"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="@string/teamMode"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="169dp" />
+
+
+    <EditText
+        android:id="@+id/et_team"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="125dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="@string/team_name"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
+        android:inputType="text|textCapSentences"
+        android:maxLength="20"
+        android:maxLines="1"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_submit_team"
+        android:layout_width="239dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/et_team"
+        android:layout_alignStart="@+id/et_team"
+        android:layout_alignLeft="@+id/et_team"
+        android:layout_alignEnd="@+id/et_team"
+        android:layout_alignRight="@+id/et_team"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/mybutton"
+        android:elevation="23dp"
+        android:fontFamily="@font/mikado_ultra"
+        android:text="@string/ok_go"
+        android:textColor="@android:color/background_light"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="325dp" />
+    <!--
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="23dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginStart="27dp"
+            android:text="Admin? Click Here"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="475dp" />
+
+        -->
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_teamSelection"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp"
+        android:indeterminate="true"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_teamSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_submit_team"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:fontFamily="@font/regular"
+        android:text="@string/teamCompleted"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
+
+    </FrameLayout>
+</ScrollView>

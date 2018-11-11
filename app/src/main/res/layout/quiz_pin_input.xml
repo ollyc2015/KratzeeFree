@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/scratch_end_gradient">
+
+    <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/btn_pin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/main_background"
+        tools:context=".ui.common.BaseActivity">
+
+        <include
+            android:id="@+id/quiz_pin"
+            layout="@layout/quiz_pin_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></include>
+
+        <TextView
+            android:id="@+id/tv_logo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_heading"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/mikado_ultra"
+            android:gravity="center"
+            android:text="@string/kratzee"
+            android:textColor="@android:color/background_light"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quiz_pin" />
+
+
+        <TextView
+            android:id="@+id/tv_heading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/et_pin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:text="@string/pinIntro"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_logo" />
+
+        <EditText
+            android:id="@+id/et_pin"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/question_background"
+            android:ems="10"
+            android:fontFamily="@font/regular"
+            android:hint="@string/question_pin"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="8"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="@+id/tv_heading"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_submit_pin"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_below="@+id/et_pin"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/mybutton"
+            android:elevation="23dp"
+            android:fontFamily="@font/mikado_ultra"
+            android:text="@string/ok_go"
+            android:textColor="@android:color/background_light"
+            app:layout_constraintEnd_toEndOf="@+id/et_pin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_pin" />
+
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_submit_pin"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/btn_submit_pin" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Kratzee!</string>
+
+    <string name="startScreen">Kratzee!</string>
+
+    <string name="triviaMode">Trivia Mode</string>
+    <string name="assessmentMode">Assessment Mode</string>
+
+    <string name="indiQuiz">Individual Quiz</string>
+    <string name="teamQuiz">Team Quiz</string>
+
+    <string name="pinIntro">Please Enter Your Lecturer\'s Question PIN</string>
+    <string name="back">Back</string>
+    <string name="question_pin">Question PIN</string>
+
+    <string name="individual">Individual Quiz</string>
+    <string name="individualTriviaAlreadyRegistered">Already Registered? Click Here</string>
+    <string name="indi_trivia_full_name">Full Name</string>
+    <string name="indi_trivia_student_number">Student Number</string>
+
+    <string name="questionRequired">Question (Required)</string>
+    <string name="answer1">Answer 1 (required)</string>
+    <string name="answer2">Answer 2 (required)</string>
+    <string name="answer3">Answer 3 (required)</string>
+    <string name="answer4">Answer 4 (required)</string>
+    <string name="finshedQuiz">Click To Finish!</string>
+    <string name="submitQuestion">Submit Question</string>
+    <string name="star_1">Star 1</string>
+    <string name="star_2">Star 2</string>
+    <string name="star_3">Star 3</string>
+    <string name="star_4">Star 4</string>
+    <string name="scratch_pattern">scratch pattern</string>
+    <string name="next_button">Next</string>
+    <string name="previous_button">Previous</string>
+    <string name="question_number_hint">Question Number</string>
+    <string name="kratzee">Kratzee!</string>
+    <string name="points">Points</string>
+
+    <string name="selectIndiName">Please Select Your Name</string>
+    <string name="search_hint">Search Here</string>
+
+    <string name="teamMode">Team Quiz</string>
+    <string name="teamCompleted">Already Have a Team? Click Here</string>
+    <string name="team_name">Team Name</string>
+    <string name="ok_go">OK, go!</string>
+    <string name="add_team_members">Add Team Members</string>
+    <string name="add_name">+ Add Name</string>
+    <string name="ready_to_join">Ready to join!</string>
+    <string name="studentNumber">Student Number</string>
+    <string name="PlayerName">Full Name</string>
+    <string name="teamName">Team Name</string>
+
+    <string name="findTeamName">Please Search For Your Team Name</string>
+    <string name="add_team_member">Add Team Member</string>
+
+    <string name="pointsSummary">This Sessions Points: 20 Points. \nThese Points Will Be Added To Your Existing Points (If Applicable). Students Marked as Absent will Not Benefit From This Sessions Points.</string>
+    <string name="points_summary">Points Summary</string>
+    <string name="select_team_members">Please Select Present Team-Members</string>
+    <string name="assessment_login">Assessment Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login!</string>
+    <string name="start_quiz">Start Quiz</string>
+
+    <string name="scratch_registered">Scratch Registered</string>
+</resources>

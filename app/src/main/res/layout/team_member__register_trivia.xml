@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/add_team_member_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/scratch_end_gradient">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/create_questions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_indi"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <include
+                android:id="@+id/add_team_member"
+                layout="@layout/team_member_app_bar" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_teamNames"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/mikado_ultra"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:text="@string/teamName"
+                    android:textColor="@android:color/background_light"
+                    android:textColorLink="@android:color/background_light"
+                    android:textSize="30sp" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:weightSum="2">
+
+                <EditText
+
+                    android:id="@+id/et_team_student_number1"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/question_background"
+                    android:ellipsize="end"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/studentNumber"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textCapSentences"
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="76dp"
+                    tools:layout_editor_absoluteY="188dp"
+                    tools:targetApi="o" />
+
+                <EditText
+
+                    android:id="@+id/et_team_name1"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/question_background"
+                    android:ellipsize="end"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/PlayerName"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textCapSentences"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textAlignment="inherit"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="76dp"
+                    tools:layout_editor_absoluteY="188dp"
+                    tools:targetApi="o" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:weightSum="2">
+
+                <EditText
+
+                    android:id="@+id/et_team_student_number2"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/question_background"
+                    android:ellipsize="end"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/studentNumber"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textCapSentences"
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="76dp"
+                    tools:layout_editor_absoluteY="188dp"
+                    tools:targetApi="o" />
+
+                <EditText
+
+                    android:id="@+id/et_team_name2"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/question_background"
+                    android:ellipsize="end"
+                    android:ems="10"
+                    android:fontFamily="@font/regular"
+                    android:hint="@string/PlayerName"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textCapSentences"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textAlignment="inherit"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="76dp"
+                    tools:layout_editor_absoluteY="188dp"
+                    tools:targetApi="o" />
+
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:id="@+id/editTextGroupLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"></LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/tv_add_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="@string/add_name"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btn_submit_names"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/mybutton"
+                    android:fontFamily="@font/mikado_ultra"
+                    android:gravity="center"
+                    android:text="@string/ready_to_join"
+                    android:textColor="@android:color/background_light" />
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminateDrawable="@drawable/progress"
+                android:layout_marginTop="26dp"
+                android:indeterminate="true"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</ScrollView>
