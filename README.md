@@ -16,7 +16,7 @@ During an independent quiz, the star and the points are not shown to force the u
 
 ![alt text](http://www.oliverbcurtis.co.uk/images/kratzee/kratzeeApp1.png) 
 
-An administrator can then review the collected data, as well as other administrative functions. UX (user experience) research discovered that adding a custom feature where team-members were tagged as the same colour as the team colour, created a better UX. This is displayed in the image below.
+I have created a paid version of the app (yet to be released) that integrates with a web-portal, allowing detailed assessment of the collected data. An administrator can review the collected data, as well as other administrative functions. UX (user experience) research discovered that adding a custom feature where team-members were tagged as the same colour as the team colour, created a better UX. This is displayed in the image below.
 
 ![alt text](http://www.oliverbcurtis.co.uk/images/kratzee/kratzeeAdmin.png) 
 
