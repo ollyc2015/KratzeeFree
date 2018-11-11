@@ -20,15 +20,23 @@ I have created a paid version of the app (yet to be released) that integrates wi
 
 ![alt text](http://www.oliverbcurtis.co.uk/images/kratzee/kratzeeAdmin.png) 
 
+# Features (Free version)
 
-# Features
+* Set your own Trivia based quizzes. 
+* Scratch-card based submissions.
+* Remove All Questions/Participant Data, Edit and Create Question Sets, via the app.
+* The ability to take individual and team-based quizzes.
+* Access to set questions are accessed through a PIN given by the owner of the question-set.
 
-* Trivia and Assessment based versions of the application
-* Scratch-card based submissions
-* Data from the application is used to power a website, displaying all collected information
-* The ability to take individual and team-based quizzes
-* Access to set questions are accessed through a PIN given by the owner of the question-set
-* Authorised users can access a website where adminstration activites can be carried out
+
+# Features (Paid version)
+
+* Trivia and Assessment based versions of the application. The main difference between a Trivia Quiz and an Assessment Quiz is that in the web-portal, an administrator can create the student profiles and create teams. The system will then assign a password which can be emailed to students through the web-portal.
+* Scratch-card based submissions.
+* Data from the application is used to power a website, displaying all collected information.
+* The ability to take individual and team-based quizzes.
+* Access to set questions are accessed through a PIN given by the owner of the question-set.
+* Authorised users can access a website where adminstration activites can be carried out.
 
 
 # Design
@@ -40,12 +48,9 @@ I have created a paid version of the app (yet to be released) that integrates wi
 
 # Use
 
-Feel free to download this lite version, access to the demo questions can be gained by using the PIN: fb761407 
-Access to the web-portal can be found at www.oliverbcurtis.co.uk/quizCharts 
-Login: demo@kratzee.co.uk
-Password: mypassword
+Feel free to download this lite version here
 
 # Download
 
-The version stored here is a lite version with access to the Trivia based version only. For access to the web portal, please request access - the app/web portal is not currently available on the app store.
+The version stored here is a lite version with access to the Trivia based version only.
 
