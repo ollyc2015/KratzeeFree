@@ -9,9 +9,6 @@ public class Constants {
     //Sets the PIN operation to get sent over to the server
     public static final String PIN_OPERATION = "check_question_pin";
 
-    //Below is the constant used to store the retured lecturer ID after the PIN submission has been made
-    public static final String LECTURER_ID = "lecturer_id";
-
     //Below is the used to store the PIN value entered by the student into shared pref for access later
     public static final String PIN_ENTERED = "pin_entered";
 
@@ -68,11 +65,19 @@ public class Constants {
     public static final String LECTURER_IS_LOGGED_IN = "lecturer_is_Logged_In";
     public static final String LECTURER_EMAIL = "lecturer_email";
     public static final String LECTURER_NAME = "lecturer_name";
-    public static final String LECTURER_UNIQUE_ID = "lecturer_unique_id";
+    //Below is the constant used to store the retured lecturer ID after the PIN submission has been or a lecturer logs in made
+    public static final String LECTURER_ID = "lecturer_id";
 
-    //Check if this is the first time the user has opened the app
-    public static final String FIRST_TIME_USER = "first_time_user";
+
+    //Check if this is the first time the user has opened the app and clicked to take a quiz
+    public static final String FIRST_TIME_PARTICIPANT = "first_time_participant";
+    //Check if this is the first time the user has opened the app set their own quiz
+    public static final String FIRST_TIME_LECTURER = "first_time_lecturer";
 
     //At the beginning of the app, the user will be asked if they wish to have a demo of the app features
     public static final String DEMO_REQUEST_MADE = "demo_has_request_made";
+
+    //When a lecturer loads their profile and clicks to add a question topic, first load all existing topics, below is the operation needed
+    public static final String LOAD_EXISTING_TOPICS = "load_existing_topics";
+    public static final String LOAD_SELECTED_TOPIC_QUESTIONS = "load_selected_topic_questions";
 }

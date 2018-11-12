@@ -15,12 +15,14 @@ import android.widget.TextView;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerCreateQuestionSets.CreateQuestionSetView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.EditQuestionSetView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class LecturerProfileView extends BaseActivity implements LecturerProfileContract.View, View.OnClickListener {
 
     private TextView tv_name,tv_email, tv_message;
-    private AppCompatButton btn_chg_password,btn_logout,btn_create_questions,btn_remove_all_questions, btn_remove_student_data;
+    private AppCompatButton btn_chg_password,btn_logout,btn_create_questions,btn_remove_all_questions, btn_remove_student_data, btn_edit_topics;
     private EditText et_old_password,et_new_password;
     private AlertDialog dialog;
     private ProgressBar progress;
@@ -41,6 +43,9 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
 
         btn_create_questions = findViewById(R.id.btn_create_questions);
         btn_create_questions.setOnClickListener(this);
+
+        btn_edit_topics = findViewById(R.id.btn_edit_topics);
+        btn_edit_topics.setOnClickListener(this);
 
         btn_remove_student_data = findViewById(R.id.btn_remove_student_data);
         btn_remove_student_data.setOnClickListener(this);
@@ -72,7 +77,12 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
         switch (view.getId()) {
 
             case R.id.btn_create_questions:
-                goToQuestionSets();
+                goToCreateQuestionSets();
+                break;
+
+
+            case R.id.btn_edit_topics:
+                goToEditQuestionSets();
                 break;
 
             case R.id.btn_remove_student_data:
@@ -169,8 +179,15 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
     }
 
     @Override
-    public void goToQuestionSets(){
-        Intent intent = new Intent(getApplicationContext(), StartScreenView.class);
+    public void goToCreateQuestionSets(){
+        Intent intent = new Intent(getApplicationContext(), CreateQuestionSetView.class);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void goToEditQuestionSets(){
+        Intent intent = new Intent(getApplicationContext(), EditQuestionSetView.class);
         startActivity(intent);
     }
 

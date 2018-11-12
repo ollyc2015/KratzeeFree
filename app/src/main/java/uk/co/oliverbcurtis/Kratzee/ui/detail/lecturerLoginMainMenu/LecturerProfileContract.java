@@ -15,7 +15,8 @@ public interface LecturerProfileContract {
         void changePasswordDialog();
         void removeAllQuestionsDialog();
         void removeAllStudentDataDialog();
-        void goToQuestionSets();
+        void goToCreateQuestionSets();
+        void goToEditQuestionSets();
     }
 
 

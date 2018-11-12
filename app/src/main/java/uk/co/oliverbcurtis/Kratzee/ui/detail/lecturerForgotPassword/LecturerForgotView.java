@@ -1,8 +1,7 @@
-package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturer_forgot_password;
+package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerForgotPassword;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLoginMainMenu.LecturerProfileView;
 
 public class LecturerForgotView extends BaseActivity implements LecturerForgotContract.View,  View.OnClickListener {
 

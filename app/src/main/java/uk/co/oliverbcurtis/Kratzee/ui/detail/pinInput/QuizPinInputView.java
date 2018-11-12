@@ -59,7 +59,7 @@ public class QuizPinInputView extends BaseActivity implements QuizPinContract.Vi
 
                 String pin = et_pin.getText().toString().trim();
 
-                presenter.pinProcess(pin, progress);
+                presenter.pinProcess(pin, progress, pref);
                 break;
         }
 

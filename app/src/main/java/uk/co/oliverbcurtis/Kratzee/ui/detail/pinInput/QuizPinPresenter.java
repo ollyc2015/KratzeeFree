@@ -24,7 +24,7 @@ public class QuizPinPresenter implements QuizPinContract.Presenter {
     private OperationAPI apiService  = ApiUtils.getApiService();
 
     @Override
-    public void pinProcess(final String pin, final ProgressBar progress) {
+    public void pinProcess(final String pin, final ProgressBar progress, SharedPreferences pref) {
 
         if (!pin.isEmpty() && pin.length() == 8) {
 
@@ -49,8 +49,7 @@ public class QuizPinPresenter implements QuizPinContract.Presenter {
 
                         progress.setVisibility(View.INVISIBLE);
 
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences((Context) view);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        SharedPreferences.Editor editor = pref.edit();
                         editor.putString(Constants.LECTURER_ID, resp.getQuestion().getLecturerID());
                         editor.putString(Constants.PIN_ENTERED, pin);
                         editor.apply();

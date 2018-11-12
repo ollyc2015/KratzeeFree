@@ -1,4 +1,4 @@
-package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturer_forgot_password;
+package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerForgotPassword;
 
 public interface LecturerForgotContract {
 

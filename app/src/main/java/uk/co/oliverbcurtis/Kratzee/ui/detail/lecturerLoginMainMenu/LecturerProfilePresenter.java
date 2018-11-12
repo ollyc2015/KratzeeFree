@@ -74,7 +74,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
 
         //Creating a new User object
         Question question = new Question();
-        question.setLecturerID(pref.getString(Constants.LECTURER_UNIQUE_ID,""));
+        question.setLecturerID(pref.getString(Constants.LECTURER_ID,""));
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.DROP_QUESTIONS);
         //set the values entered for the new user
@@ -104,7 +104,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
 
         //Creating a new Lecturer object
         Lecturer lecturer = new Lecturer();
-        lecturer.setLecturerID(pref.getString(Constants.LECTURER_UNIQUE_ID,""));
+        lecturer.setLecturerID(pref.getString(Constants.LECTURER_ID,""));
         lecturer.setAssessment_profile("No");
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.DROP_TRIVIA_PROFILES);

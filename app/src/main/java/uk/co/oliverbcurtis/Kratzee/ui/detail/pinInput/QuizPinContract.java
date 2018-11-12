@@ -1,6 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.pinInput;
 
 
+import android.content.SharedPreferences;
 import android.widget.ProgressBar;
 
 public interface QuizPinContract {
@@ -18,7 +19,7 @@ public interface QuizPinContract {
     interface Presenter {
 
         void attachView(QuizPinContract.View view);
-        void pinProcess(String pin, ProgressBar progress);
+        void pinProcess(String pin, ProgressBar progress, SharedPreferences pref);
         void handlePinSuccess();
 
     }

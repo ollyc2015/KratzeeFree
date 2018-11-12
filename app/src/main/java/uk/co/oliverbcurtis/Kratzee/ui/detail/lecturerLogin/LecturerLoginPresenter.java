@@ -61,7 +61,7 @@ public class LecturerLoginPresenter implements LecturerLoginContract.Presenter {
                             SharedPreferences.Editor editor = pref.edit();
 
                             editor.putBoolean(Constants.LECTURER_IS_LOGGED_IN, true);
-                            editor.putString(Constants.LECTURER_UNIQUE_ID, resp.getLecturer().getLecturerID());
+                            editor.putString(Constants.LECTURER_ID, resp.getLecturer().getLecturerID());
                             editor.putString(Constants.LECTURER_EMAIL, resp.getLecturer().getEmail());
                             editor.putString(Constants.LECTURER_NAME, resp.getLecturer().getName());
                             editor.apply();

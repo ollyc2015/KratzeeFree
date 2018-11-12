@@ -15,8 +15,8 @@ import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Lecturer;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLoginMainMenu.LecturerProfileView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturer_forgot_password.LecturerForgotView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturer_register.LecturerRegisterView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerForgotPassword.LecturerForgotView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerRegister.LecturerRegisterView;
 
 public class LecturerLoginView extends BaseActivity implements LecturerLoginContract.View, View.OnClickListener {
 

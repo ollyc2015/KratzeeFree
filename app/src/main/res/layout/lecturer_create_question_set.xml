@@ -3,7 +3,11 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp">
 
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_container"
@@ -35,16 +39,75 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/mikado_ultra"
                     android:inputType="none"
-                    android:text="Question Sets"
+                    android:text="@string/setQuestions"
                     android:textColor="@android:color/background_light"
                     android:textColorLink="@android:color/background_light"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textSize="30sp" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/tv_pin_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="@string/addQuestion"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:id="@+id/et_question_topic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:hint="Enter a Question Topic"
+                        android:inputType="textCapSentences"
+                        android:maxLength="30"
+                        android:maxLines="2"
+                        android:textColor="@android:color/background_light"
+                        android:textColorHint="@android:color/background_light"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </FrameLayout>
 
 
                 <LinearLayout
-                    android:id="@+id/questionSetSelectionLayout"
+                    android:id="@+id/editTextGroupLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -53,82 +116,35 @@
 
                 </LinearLayout>
 
-                <!--
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
                     <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/btn_remove_all_teams"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginRight="40dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/removeAllTeams"
-                        android:textColor="@android:color/white" />
-
-                </FrameLayout>
-
-                -->
-                <!--
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:weightSum="1">
-
-                            <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/btn_remove_all_questions"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:layout_marginRight="40dp"
-                                android:layout_marginTop="20dp"
-                                android:background="@color/secondaryGreen"
-                                android:text="@string/removeAllQuestions"
-                                android:textColor="@android:color/white" />
-
-                        </FrameLayout>
-
-                        -->
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="1">
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/btn_add_question_set"
+                        android:id="@+id/btn_add_question"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="40dp"
                         android:background="@drawable/mybutton"
-                        android:text="Add Question Set"
+                        android:text="Add Question"
                         android:textColor="@android:color/white" />
 
                 </FrameLayout>
 
 
-                <FrameLayout
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_submit_all_questions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="1">
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/btn_back"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="40dp"
-                        android:background="@drawable/mybutton"
-                        android:text="Back"
-                        android:textColor="@android:color/white" />
-
-                </FrameLayout>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/mybutton"
+                    android:text="Submit All Questions"
+                    android:textColor="@android:color/white" />
 
 
                 <ProgressBar
@@ -136,8 +152,9 @@
                     style="@style/Base.Widget.AppCompat.ProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn_back"
+                    android:layout_below="@+id/btn_submit_team"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginTop="26dp"
                     android:indeterminate="true"
                     android:visibility="invisible" />

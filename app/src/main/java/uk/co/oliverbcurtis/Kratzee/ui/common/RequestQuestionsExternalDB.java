@@ -176,9 +176,14 @@ public class RequestQuestionsExternalDB extends BaseActivity {
 
                             goToIndiQuizScreen((Activity) context);
 
-                        }else{
+                        }else if (QuizTypeView.teamButtonPressed){
+
                             goToTeamQuizScreen((Activity) context);
 
+                        }else{
+
+                            progress.setVisibility(View.INVISIBLE);
+                            goToAdminEditTopic((Activity) context);
                         }
 
 

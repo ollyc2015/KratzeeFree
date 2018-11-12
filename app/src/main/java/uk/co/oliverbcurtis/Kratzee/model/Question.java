@@ -10,7 +10,7 @@ public class Question implements Serializable {
     private String studentPin, lecturerID, questionString;
     private int questionNumber;
     //Used for Lists sent/returned to/from the external DB
-    private List questionIDList, questionStringList;
+    private List questionIDList, questionStringList, questionTopicList, questionPinList;
 
     public void setStudentPin(String pin) {
 
@@ -65,5 +65,22 @@ public class Question implements Serializable {
 
     public String getQuestionString(){
         return questionString;
+    }
+
+    public void setQuestionTopicList(List questionTopicList) {
+        this.questionTopicList = questionTopicList;
+    }
+
+    public List getQuestionTopicList(){
+
+        return questionTopicList;
+    }
+
+    public void setQuestionPinList(List questionPinList) {
+        this.questionPinList = questionPinList;
+    }
+
+    public List getQuestionPinList(){
+        return questionPinList;
     }
 }

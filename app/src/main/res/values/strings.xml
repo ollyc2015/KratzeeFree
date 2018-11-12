@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Kratzee!</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <string name="startScreen">Kratzee!</string>
 
     <string name="triviaMode">Trivia Mode</string>
@@ -63,4 +66,7 @@
     <string name="start_quiz">Start Quiz</string>
 
     <string name="scratch_registered">Scratch Registered</string>
+
+    <string name="addQuestion">Allow Students Access to Your Questions With Your Quiz Pin. This Will Be Generated Once You Submit Your Questions</string>
+    <string name="setQuestions">Set Your Questions</string>
 </resources>

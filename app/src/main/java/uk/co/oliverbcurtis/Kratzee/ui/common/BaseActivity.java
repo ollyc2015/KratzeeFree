@@ -18,6 +18,7 @@ import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.dagger.DaggerApplication;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen.IndiQuizScreenView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectedTopicToEdit.SelectedTopicView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen.TeamQuizScreenView;
 
 
@@ -76,5 +77,9 @@ public class BaseActivity extends AppCompatActivity {
 
     public static void goToTeamQuizScreen(Activity activity){
         activity.startActivity(new Intent(activity, TeamQuizScreenView.class));
+    }
+
+    public static void goToAdminEditTopic(Activity activity){
+        activity.startActivity(new Intent(activity, SelectedTopicView.class));
     }
 }

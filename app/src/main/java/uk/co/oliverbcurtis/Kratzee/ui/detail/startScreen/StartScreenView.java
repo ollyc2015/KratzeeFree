@@ -9,7 +9,6 @@ import android.widget.Button;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
-import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
@@ -42,11 +41,11 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean(Constants.DEMO_REQUEST_MADE, false).apply();
 
-        if(pref.getBoolean(Constants.FIRST_TIME_USER,true)) {
+        if(pref.getBoolean(Constants.FIRST_TIME_PARTICIPANT,true)) {
 
             offerTutorial();
 
-            pref.edit().putBoolean(Constants.FIRST_TIME_USER, false).apply();
+            pref.edit().putBoolean(Constants.FIRST_TIME_PARTICIPANT, false).apply();
         }
 
         tutorialView = new TutorialView();
@@ -84,13 +83,14 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         }
     }
 
+    @Override
     public void offerTutorial(){
 
         new AlertDialog.Builder(this)
                 .setTitle("First Time?")
-                .setMessage("Welcome To Kratzee! Fancy a Tour? If so, Click 'Ok' and we will go Through the app Together!")
+                .setMessage("Welcome To Kratzee! Fancy a Tour? If so, Click 'Yes' and we will go Through the app Together!")
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, (dialog1, whichButton) -> {
+                .setPositiveButton(getString(R.string.yes), (dialog1, whichButton) -> {
 
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
@@ -98,7 +98,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                     tutorialView.startScreenTutorial1(this);
 
                 })
-                .setNegativeButton(android.R.string.no, null).show();
+                .setNegativeButton(getString(R.string.no), null).show();
     }
 
     @Override

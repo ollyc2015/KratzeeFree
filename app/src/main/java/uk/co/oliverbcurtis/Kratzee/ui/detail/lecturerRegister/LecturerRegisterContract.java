@@ -1,4 +1,4 @@
-package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturer_register;
+package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerRegister;
 
 import android.widget.ProgressBar;
 
