@@ -49,6 +49,8 @@ public class Constants {
     //The below is the operation set for when a new team-member is added to an existing team
     public static final String NEW_TEAM_MEMBERS = "new_team_members";
 
+    //Below is the operation set to edit an existing topic
+    public static final String EDIT_QUESTION = "edit_question";
 
     //Below is the operation set when a Lecturer (person creating the quiz) attempts to login/register/reset/change their password.
     //and removing questions
@@ -68,7 +70,6 @@ public class Constants {
     //Below is the constant used to store the retured lecturer ID after the PIN submission has been or a lecturer logs in made
     public static final String LECTURER_ID = "lecturer_id";
 
-
     //Check if this is the first time the user has opened the app and clicked to take a quiz
     public static final String FIRST_TIME_PARTICIPANT = "first_time_participant";
     //Check if this is the first time the user has opened the app set their own quiz
@@ -80,4 +81,9 @@ public class Constants {
     //When a lecturer loads their profile and clicks to add a question topic, first load all existing topics, below is the operation needed
     public static final String LOAD_EXISTING_TOPICS = "load_existing_topics";
     public static final String LOAD_SELECTED_TOPIC_QUESTIONS = "load_selected_topic_questions";
+
+    //Below is used when a lecturer edits one of their questions sets
+    public static final String QUESTION_EDIT = "question_edit";
+    public static final String ANSWER_EDIT = "answer_edit";
+
 }

@@ -10,6 +10,7 @@ public interface EditQuestionSetContract {
         void initView();
         void addTopicButtonToLayout(Button btn_question_topic, LinearLayout topicLayour);
         void getQuestions();
+        void showTopicSelectionDialog(String buttonText, String topicPin);
     }
 
     interface Presenter{

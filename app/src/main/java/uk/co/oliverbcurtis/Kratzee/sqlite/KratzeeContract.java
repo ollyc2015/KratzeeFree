@@ -16,6 +16,7 @@ public class KratzeeContract {
     public static final String CORRECT = "correct";
     public static final String ANSWER_LECTURER_ID = "lecturerID";
 
+
     //Defines EXISTING team
     public static final String EXISTING_TEAM_ID = "team_id";
     public static final String EXISTING_TEAM_NAME = "team_name";

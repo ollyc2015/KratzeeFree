@@ -6,15 +6,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
-
 import static android.content.ContentValues.TAG;
 import static com.rd.utils.DensityUtils.dpToPx;
 
@@ -32,7 +27,7 @@ public class DynamicQuestionTopicButton {
 
             try {
 
-                /*Dynamically create new Button which includes the names of the original team members
+                /*Dynamically create new Button which includes the names of each topic
                  */
                 final Button btn_question_topic = new Button(view);
 
@@ -58,6 +53,5 @@ public class DynamicQuestionTopicButton {
             } catch (Exception e) {
                 Log.d(TAG, "Failed to Create Topic button because "+e.toString());
             }
-
     }
 }

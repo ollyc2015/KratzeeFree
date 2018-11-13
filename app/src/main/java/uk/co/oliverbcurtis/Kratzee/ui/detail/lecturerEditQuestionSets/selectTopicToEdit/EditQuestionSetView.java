@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-
 import com.google.gson.Gson;
-
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
@@ -46,12 +44,13 @@ public class EditQuestionSetView extends BaseActivity implements EditQuestionSet
 
         existingTopicSelectionLayout = findViewById(R.id.existingTopicSelectionLayout);
 
+        progress = findViewById(R.id.progress);
+
         //Manuel swipe to refresh
         swipe_container = findViewById(R.id.swipe_container);
         swipe_container.setOnRefreshListener(() -> { existingTopicSelectionLayout.removeAllViews();
             presenter.getAllTopics(progress, pref, existingTopicSelectionLayout); });
 
-        progress = findViewById(R.id.progress);
 
         if (!allTopicsRequested){
 
@@ -87,6 +86,7 @@ public class EditQuestionSetView extends BaseActivity implements EditQuestionSet
 
     }
 
+    @Override
     public void showTopicSelectionDialog(String buttonText, String topicPin){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -107,7 +107,6 @@ public class EditQuestionSetView extends BaseActivity implements EditQuestionSet
             editor.apply();
 
             getQuestions();
-
 
         });
     }

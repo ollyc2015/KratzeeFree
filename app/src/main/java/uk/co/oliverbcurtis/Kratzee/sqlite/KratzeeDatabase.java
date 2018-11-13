@@ -47,7 +47,8 @@ public class KratzeeDatabase extends SQLiteOpenHelper {
                 + KratzeeContract.ANSWER_ID + " TEXT PRIMARY KEY,"
                 + KratzeeContract.ANSWER_STRING + " TEXT NOT NULL,"
                 + KratzeeContract.CORRECT + " TEXT NOT NULL,"
-                + KratzeeContract.ANSWER_LECTURER_ID + " TEXT NOT NULL)");
+                + KratzeeContract.ANSWER_LECTURER_ID + " TEXT NOT NULL,"
+                + KratzeeContract.QUESTION_ID + " TEXT NOT NULL)");
 
         //Defines table contents for an existing team
         db.execSQL("CREATE TABLE IF NOT EXISTS " + EXISTING_TEAM + " ("

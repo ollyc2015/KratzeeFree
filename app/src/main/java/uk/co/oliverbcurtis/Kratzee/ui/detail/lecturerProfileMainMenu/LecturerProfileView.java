@@ -1,4 +1,4 @@
-package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLoginMainMenu;
+package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class LecturerProfileView extends BaseActivity implements LecturerProfileContract.View, View.OnClickListener {
 
-    private TextView tv_name,tv_email, tv_message;
+    private TextView tv_name,tv_email;
     private AppCompatButton btn_chg_password,btn_logout,btn_create_questions,btn_remove_all_questions, btn_remove_student_data, btn_edit_topics;
     private EditText et_old_password,et_new_password;
     private AlertDialog dialog;
@@ -151,7 +151,7 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
         View view = inflater.inflate(R.layout.dialog_change_password, null);
         et_old_password = view.findViewById(R.id.et_old_password);
         et_new_password = view.findViewById(R.id.et_new_password);
-        tv_message = view.findViewById(R.id.tv_message);
+
         progress = view.findViewById(R.id.progress);
         builder.setView(view);
         builder.setTitle("Change Password");
@@ -168,12 +168,11 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
             if(!old_password.isEmpty() && !new_password.isEmpty()){
 
                 progress.setVisibility(View.VISIBLE);
-                presenter.changePasswordProcess(pref.getString(Constants.LECTURER_EMAIL,""),old_password,new_password, progress, tv_message, dialog);
+                presenter.changePasswordProcess(pref.getString(Constants.LECTURER_EMAIL,""),old_password,new_password, progress, dialog);
 
             }else {
 
-                tv_message.setVisibility(View.VISIBLE);
-                tv_message.setText("Fields are empty");
+                showToast(this, "Please Complete Both Fields before Submission");
             }
         });
     }

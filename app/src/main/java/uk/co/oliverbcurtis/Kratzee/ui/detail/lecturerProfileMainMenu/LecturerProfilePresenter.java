@@ -1,11 +1,11 @@
-package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLoginMainMenu;
+package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import uk.co.oliverbcurtis.Kratzee.async.ServerRequest;
@@ -29,7 +29,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
     }
 
     @Override
-    public void changePasswordProcess(String email, String old_password, String new_password, ProgressBar progress, TextView tv_message, AlertDialog dialog){
+    public void changePasswordProcess(String email, String old_password, String new_password, ProgressBar progress, AlertDialog dialog){
 
         Lecturer lecturer = new Lecturer();
         lecturer.setEmail(email);
@@ -46,14 +46,12 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
                 ServerResponse resp = response.body();
                 if(resp.getResult().equals(Constants.SUCCESS)){
                     progress.setVisibility(View.GONE);
-                    tv_message.setVisibility(View.GONE);
                     dialog.dismiss();
                     BaseActivity.showToast((Context) view, resp.getMessage());
 
                 }else {
                     progress.setVisibility(View.GONE);
-                    tv_message.setVisibility(View.VISIBLE);
-                    tv_message.setText(resp.getMessage());
+                    BaseActivity.showToast((Context) view, resp.getMessage());
 
                 }
             }
@@ -62,8 +60,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
                 progress.setVisibility(View.GONE);
-                tv_message.setVisibility(View.VISIBLE);
-                tv_message.setText(t.getLocalizedMessage());
+                BaseActivity.showToast((Context) view, t.toString());
             }
         });
     }

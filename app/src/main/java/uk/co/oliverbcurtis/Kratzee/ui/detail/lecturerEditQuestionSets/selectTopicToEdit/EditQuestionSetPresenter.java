@@ -24,7 +24,7 @@ public class EditQuestionSetPresenter implements EditQuestionSetContract.Present
     private EditQuestionSetContract.View view;
     private OperationAPI apiService  = ApiUtils.getApiService();
     private DynamicQuestionTopicButton dynamicQuestionTopicButton = new DynamicQuestionTopicButton();
-    private Question question;
+
 
     @Override
     public void attachView(EditQuestionSetContract.View view) {

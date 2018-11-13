@@ -9,11 +9,6 @@
     android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp">
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mScrollView"
             android:layout_width="match_parent"
@@ -39,12 +34,12 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/mikado_ultra"
                     android:inputType="none"
                     android:text="Selected Topic Questions"
                     android:textColor="@android:color/background_light"
                     android:textColorLink="@android:color/background_light"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:textSize="28sp" />
 
 
                 <LinearLayout
@@ -74,6 +69,5 @@
             </LinearLayout>
 
         </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

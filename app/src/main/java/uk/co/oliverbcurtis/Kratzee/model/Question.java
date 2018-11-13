@@ -7,10 +7,20 @@ import java.util.List;
 public class Question implements Serializable {
 
     //Used for single strings sent/returned to/from the external DB
-    private String studentPin, lecturerID, questionString;
+    private String studentPin, lecturerID, questionString, questionID;
     private int questionNumber;
     //Used for Lists sent/returned to/from the external DB
     private List questionIDList, questionStringList, questionTopicList, questionPinList;
+    private Answer answer;
+
+    public void setQuestionID(String questionID){
+        this.questionID = questionID;
+    }
+
+    public String getQuestionID(){
+
+        return questionID;
+    }
 
     public void setStudentPin(String pin) {
 
@@ -83,4 +93,6 @@ public class Question implements Serializable {
     public List getQuestionPinList(){
         return questionPinList;
     }
+
+
 }
