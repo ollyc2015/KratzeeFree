@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +25,6 @@ import uk.co.oliverbcurtis.Kratzee.model.Question;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeContract;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
-import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
 
 public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
 
@@ -310,7 +308,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             Log.e(getClass().getSimpleName(), "Could not create or Open the database");
         }
 
-        view.showEditQuestionLayout(question_array, answer_id_array, answer_array, isAnswerCorrectArray, questionID);
+        view.showEditQuestionLayout(question_array, answer_id_array, answer_array, isAnswerCorrectArray, questionID, progress);
 
     }
 
@@ -451,6 +449,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
 
                         if(finalI == answerObjectArray.size() -1) {
                             BaseActivity.showToast((Context) view, resp.getMessage());
+                            //This is called to refresh the questions and update the SQLite DB
                             view.getQuestions();
                         }
 
@@ -468,5 +467,44 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
                 }
             });
         }
+    }
+
+
+    @Override
+    public void deleteQuestion(String questionID, ProgressBar progress, SharedPreferences pref){
+
+        Question question = new Question();
+        question.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+        question.setQuestionID(questionID);
+
+        final ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.DELETE_QUESTION);
+        //set the values entered for the pin entered
+        request.setQuestion(question);
+
+        apiService.operation(request).enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+
+                if (resp.getResult().equals(Constants.SUCCESS)) {
+
+                    BaseActivity.showToast((Context) view, resp.getMessage());
+                    view.getQuestions();
+
+
+                } else {
+                    String messageFromServer = resp.getMessage();
+                    BaseActivity.showToast((Context) view, messageFromServer);
+                    progress.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                BaseActivity.showToast((Context) view, t.toString());
+            }
+        });
     }
 }

@@ -8,8 +8,6 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import uk.co.oliverbcurtis.Kratzee.model.Answer;
-import uk.co.oliverbcurtis.Kratzee.model.Question;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 
 public interface SelectedTopicContract {
@@ -20,7 +18,7 @@ public interface SelectedTopicContract {
         void loadAllQuestions(ProgressBar progress);
         void populateLayout(Button btn_question_topic);
         void showQuestionSelectionDialog(String buttonText, String questionID);
-        void showEditQuestionLayout(List<String> questionArray, List<String> question_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID);
+        void showEditQuestionLayout(List<String> questionArray, List<String> question_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID, ProgressBar progress);
         void getQuestions();
     }
 
@@ -33,6 +31,7 @@ public interface SelectedTopicContract {
         void updateQuestionExternalDB(String questionString, List<String> answer_id_array, String answerString1, String answerString2, String answerString3, String answerString4, CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit, String questionID, ProgressBar progress, AlertDialog dialog);
         void submitEditedQuestions(List questionObjectArray, List answerObjectArray, ProgressBar progress, AlertDialog dialog);
         void submitEditedAnswers(List answerObjectArray, ProgressBar progress, AlertDialog dialog);
+        void deleteQuestion(String questionID, ProgressBar progress, SharedPreferences pref);
 
     }
 }

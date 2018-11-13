@@ -1,6 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectedTopicQuestions;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -15,6 +16,7 @@ import java.util.List;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.EditQuestionSetView;
 
 public class SelectedTopicView extends BaseActivity implements SelectedTopicContract.View{
 
@@ -76,21 +78,41 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
 
         builder.setTitle("Selected Question");
         builder.setMessage("You have selected: "+buttonText);
-        builder.setPositiveButton("Select", (dialog, which) -> { });
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.setNeutralButton("Delete", (dialog, which) -> { });
+        builder.setPositiveButton("Edit", (dialog, which) -> { });
+        builder.setNegativeButton("Cancel", (dialog, which) -> {dialog.dismiss();});
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+
+            progress.setVisibility(View.VISIBLE);
 
             presenter.getSelectQuestion(pref, progress, questionID, kratzeeDatabase);
             dialog.dismiss();
 
 
         });
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v -> {
+
+            dialog.dismiss();
+
+            //If user clicks to delete the question, create another alert dialog to check they wish to delete the question
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setTitle("Delete Question");
+            builder1.setMessage("Delete Question?");
+            builder1.setPositiveButton("Yes", (dialog1, which) -> {
+
+                        progress.setVisibility(View.VISIBLE);
+                        presenter.deleteQuestion(questionID, progress, pref);
+                    });
+            builder1.setNegativeButton("Cancel", (dialog1, which) -> {dialog.dismiss();});
+            builder1.show();
+
+        });
     }
 
     @Override
-    public void showEditQuestionLayout(List<String> question_array, List<String> answer_id_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID){
+    public void showEditQuestionLayout(List<String> question_array, List<String> answer_id_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID, ProgressBar progress){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -139,13 +161,13 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
             cb_answer4_edit.setChecked(false);
         }
 
-        progress = view.findViewById(R.id.progress);
+
         builder.setView(view);
         builder.setTitle("Edit Question");
         builder.setPositiveButton("Update", (dialog, which) -> {
 
         });
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton("Cancel", (dialog, which) ->{dialog.dismiss(); progress.setVisibility(View.INVISIBLE);});
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
@@ -158,7 +180,7 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
 
             if(!question.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty()){
 
-                progress.setVisibility(View.VISIBLE);
+                this.progress.setVisibility(View.VISIBLE);
 
                 presenter.updateQuestionExternalDB(question, answer_id_array, answer1, answer2, answer3, answer4, cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit, questionID, progress, dialog);
 
@@ -174,5 +196,15 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
 
         RequestQuestionsExternalDB requestQuestionsExternalDB = new RequestQuestionsExternalDB();
         requestQuestionsExternalDB.getQuestions(progress, this, kratzeeDatabase);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        //On back pressed has been overridden because, if the user presses the back button after deleting a question,
+        //we don't want to make the deleted question button to reappear, we want to send the user to the previous activity
+        Intent intent = new Intent(getApplicationContext(), EditQuestionSetView.class);
+        startActivity(intent);
+
     }
 }

@@ -80,10 +80,15 @@ public class Constants {
 
     //When a lecturer loads their profile and clicks to add a question topic, first load all existing topics, below is the operation needed
     public static final String LOAD_EXISTING_TOPICS = "load_existing_topics";
-    public static final String LOAD_SELECTED_TOPIC_QUESTIONS = "load_selected_topic_questions";
+    public static final String CHECK_IF_TOPIC_ACTIVE = "check_if_topic_active";
+    public static final String UPDATE_TOPIC_ACTIVE_STATE = "update_topic_active_state";
 
     //Below is used when a lecturer edits one of their questions sets
     public static final String QUESTION_EDIT = "question_edit";
     public static final String ANSWER_EDIT = "answer_edit";
+
+    //If a Lecturer wishes to delete one question from a question set
+    public static final String DELETE_QUESTION = "delete_question";
+    public static final String DELETE_TOPIC = "delete_topic";
 
 }

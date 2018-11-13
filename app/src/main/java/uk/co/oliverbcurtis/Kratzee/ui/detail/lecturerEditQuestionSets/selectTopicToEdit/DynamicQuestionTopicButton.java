@@ -2,10 +2,14 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTop
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 import uk.co.oliverbcurtis.Kratzee.R;
@@ -15,7 +19,10 @@ import static com.rd.utils.DensityUtils.dpToPx;
 
 public class DynamicQuestionTopicButton {
 
-    public void createButton(EditQuestionSetView view, Question question, LinearLayout topicLayour){
+    public void createButton(EditQuestionSetView view, Question question, LinearLayout topicLayour, ProgressBar progress, SwipeRefreshLayout swipe_container){
+
+        progress.setVisibility(View.INVISIBLE);
+        swipe_container.setRefreshing(false);
 
         //delete duplicate quiz titles/PIN from array - below is used to preserve insertion order
         Set<String> questionTopicSet = new LinkedHashSet<>(question.getQuestionTopicList());
