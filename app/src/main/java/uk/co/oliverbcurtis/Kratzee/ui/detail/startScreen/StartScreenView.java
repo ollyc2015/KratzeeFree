@@ -45,7 +45,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
             offerTutorial();
 
-            pref.edit().putBoolean(Constants.FIRST_TIME_PARTICIPANT, false).apply();
         }
 
         tutorialView = new TutorialView();
@@ -92,13 +91,19 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(getString(R.string.yes), (dialog1, whichButton) -> {
 
+                    pref.edit().putBoolean(Constants.FIRST_TIME_PARTICIPANT, false).apply();
+
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
 
                     tutorialView.startScreenTutorial1(this);
 
                 })
-                .setNegativeButton(getString(R.string.no), null).show();
+                .setNegativeButton(getString(R.string.no), (dialog1, whichButton) -> {
+
+                    pref.edit().putBoolean(Constants.FIRST_TIME_PARTICIPANT, false).apply();
+
+                }).show();
     }
 
     @Override
