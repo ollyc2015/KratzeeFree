@@ -95,7 +95,6 @@ public class LecturerForgotPresenter implements LecturerForgotContract.Presenter
 
                     BaseActivity.showToast((Context) view, resp.getMessage());
                     countDownTimer.cancel();
-                    LecturerForgotView.isResetInitiated = false;
                     view.goToLogin();
 
                 } else {

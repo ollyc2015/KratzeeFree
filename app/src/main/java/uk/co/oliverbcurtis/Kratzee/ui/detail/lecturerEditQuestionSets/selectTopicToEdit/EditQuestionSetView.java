@@ -11,11 +11,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
-
 import com.google.gson.Gson;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
@@ -125,9 +123,9 @@ public class EditQuestionSetView extends BaseActivity implements EditQuestionSet
         linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
         linearLayout.addView(sw);
 
-        builder.setTitle("Edit Topic");
+        builder.setTitle("Edit Topic Questions");
         builder.setMessage("You have selected: \n\n"+buttonText+" \n\nPlease note; the Question PIN cannot be changed.");
-        builder.setPositiveButton("Select", (dialog, which) -> { });
+        builder.setPositiveButton("Edit", (dialog, which) -> { });
         builder.setNeutralButton("Delete", (dialog, which) -> { });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
         builder.setView(linearLayout);

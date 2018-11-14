@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
 
 @Module
 public class AppModule {
@@ -45,6 +46,12 @@ public class AppModule {
     @Provides @Singleton
     SharedPreferences providesSharedPreferences(Context app){
         return  PreferenceManager.getDefaultSharedPreferences(app);
+    }
+
+    //Provides reference to a tutorial object
+    @Provides
+    public TutorialView providesTutorialView() {
+        return new TutorialView();
     }
 
 }

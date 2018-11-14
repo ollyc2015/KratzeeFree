@@ -63,19 +63,19 @@ public class LecturerForgotView extends BaseActivity implements LecturerForgotCo
 
                 if (!isResetInitiated) {
 
-                    email = et_email.getText().toString();
+                    email = et_email.getText().toString().trim();
 
                     if (!email.isEmpty()) {
                         progress.setVisibility(View.VISIBLE);
                         presenter.initiateResetPasswordProcess(email, progress, et_email, et_code, et_password, tv_timer, btn_reset);
                     } else {
 
-                        showToast(this, "Please Complete all empty fields");
+                        showToast(this, "Please Enter Your Registered Email");
                     }
                 } else {
 
-                    String code = et_code.getText().toString();
-                    String password = et_password.getText().toString();
+                    String code = et_code.getText().toString().trim();
+                    String password = et_password.getText().toString().trim();
 
                     if (!code.isEmpty() && !password.isEmpty()) {
 
@@ -90,9 +90,24 @@ public class LecturerForgotView extends BaseActivity implements LecturerForgotCo
         }
     }
 
+
+    //This is called on password reset completion
+    @Override
     public void goToLogin(){
 
+        isResetInitiated = false;
         Intent intent = new Intent(getApplicationContext(), LecturerLoginView.class);
         startActivity(intent);
+
+    }
+
+
+    //If the user presses the back button after submitting their email, reset the boolean variable before going to the previous screen
+    @Override
+    public void onBackPressed(){
+
+        isResetInitiated = false;
+        super.onBackPressed();
+
     }
 }

@@ -2,8 +2,10 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
     </style>
+
 
     <style name="CustomShowcaseTheme2" parent="ShowcaseView">
         <item name="sv_backgroundColor">#e51249d9</item>
@@ -11,6 +13,13 @@
         <item name="sv_buttonText">Close</item>
     </style>
 
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">5.0dp</item>
+        <!--<item name="android:popupBackground">#FFF</item>-->
+    </style>
 
 
 </resources>

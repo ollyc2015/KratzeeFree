@@ -13,6 +13,6 @@
 
     <color name="blue_background">#4A5899</color>
 
-    <color name="black">#b6cb3f</color>
+    <color name="black">#000000</color>
     <color name="orange">#F8774D</color>
 </resources>

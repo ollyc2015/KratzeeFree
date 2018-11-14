@@ -7,6 +7,6 @@ public interface StartScreenContract {
         void initView();
         void goSelectedScreen();
         void offerTutorial();
-
+        void showInternetMessage();
     }
 }

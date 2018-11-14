@@ -1,14 +1,21 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.feedbackForm.FeedbackView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
@@ -19,8 +26,9 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     public static boolean lecturerButtonPressed = false;
 
     private Button btn_lecturer, btn_student;
-    private TutorialView tutorialView;
     public static int tutorial_counter = 0;
+
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +40,26 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     @Override
     public void initView() {
 
+        Toolbar toolbar1 = findViewById(R.id.quiz_format);
+        setSupportActionBar(toolbar1);
+
         btn_student = findViewById(R.id.btn_student);
         btn_student.setOnClickListener(this);
 
         btn_lecturer = findViewById(R.id.btn_lecturer);
         btn_lecturer.setOnClickListener(this);
 
-        SharedPreferences.Editor editor = pref.edit();
+        editor = pref.edit();
         editor.putBoolean(Constants.DEMO_REQUEST_MADE, false).apply();
 
-        if(pref.getBoolean(Constants.FIRST_TIME_PARTICIPANT,true)) {
+        if(pref.getBoolean(Constants.FIRST_TIME_PARTICIPANT,true) && isNetworkAvailable()) {
 
             offerTutorial();
 
-        }
+        }else if(!isNetworkAvailable()){
 
-        tutorialView = new TutorialView();
+            showInternetMessage();
+        }
     }
 
     @Override
@@ -86,7 +98,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     public void offerTutorial(){
 
         new AlertDialog.Builder(this)
-                .setTitle("First Time?")
+                .setTitle("Tutorial")
                 .setMessage("Welcome To Kratzee! Fancy a Tour? If so, Click 'Yes' and we will go Through the app Together!")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(getString(R.string.yes), (dialog1, whichButton) -> {
@@ -106,6 +118,22 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                 }).show();
     }
 
+
+    @Override
+    public void showInternetMessage(){
+
+        new AlertDialog.Builder(this)
+                .setTitle("Internet Required")
+                .setMessage("Welcome To Kratzee! Unfortunately, an Internet Connection is Needed to Run Kratzee.\n\nPlease connect to 4G or Wifi and Everything Should Run Smoothly!")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(getString(R.string.ok), (dialog1, whichButton) -> {
+
+                    dialog1.dismiss();
+
+                })
+                .setNegativeButton(getString(R.string.cancel), (dialog1, whichButton) -> { dialog1.dismiss(); }).show();
+    }
+
     @Override
     public void goSelectedScreen() {
 
@@ -121,6 +149,34 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         }
     }
 
+
+    //Used to check if there is an available internet connection when starting the app
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+
+    //This method handles the option selected
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.tutorial_request:
+                editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
+                tutorialView.startScreenTutorial1(this);
+                break;
+
+            case R.id.feedback_request:
+                Intent intent = new Intent(getApplicationContext(), FeedbackView.class);
+                startActivity(intent);
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {

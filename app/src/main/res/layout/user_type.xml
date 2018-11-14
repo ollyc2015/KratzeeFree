@@ -26,7 +26,7 @@
 
             <include
                 android:id="@+id/quiz_format"
-                layout="@layout/user_type_app_bar"></include>
+                layout="@layout/user_type_app_bar" />
 
 
             <TextView

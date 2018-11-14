@@ -4,6 +4,7 @@
     package="uk.co.oliverbcurtis.Kratzee">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -100,6 +101,10 @@
             android:windowSoftInputMode="adjustPan"/>
 
         <activity android:name=".ui.detail.lecturerEditQuestionSets.selectedTopicQuestions.SelectedTopicView"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity android:name=".ui.detail.feedbackForm.FeedbackView"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
 

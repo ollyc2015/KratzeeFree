@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 
@@ -15,10 +18,14 @@ import javax.inject.Inject;
 
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.dagger.DaggerApplication;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen.IndiQuizScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectedTopicQuestions.SelectedTopicView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen.TeamQuizScreenView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -27,8 +34,8 @@ public class BaseActivity extends AppCompatActivity {
     KratzeeDatabase kratzeeDatabase;
     //@Inject public
    // Context context;
-   // @Inject public
-    //Resources res;
+    @Inject public
+    TutorialView tutorialView;
     @Inject public
     SharedPreferences pref;
 
@@ -36,14 +43,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         ((DaggerApplication) getApplication()).getAppComponent().inject(this);
-
+/*
         Toolbar toolbar = findViewById(R.id.quiz_app_bar);
         setSupportActionBar(toolbar);
-
-        Toolbar toolbar1 = findViewById(R.id.quiz_format);
-        setSupportActionBar(toolbar1);
 
         Toolbar toolbar2 = findViewById(R.id.quiz_type);
         setSupportActionBar(toolbar2);
@@ -62,9 +65,17 @@ public class BaseActivity extends AppCompatActivity {
 
         Toolbar toolbar7 = findViewById(R.id.team_selection);
         setSupportActionBar(toolbar7);
-
+*/
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu, this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     public static void showToast(Context context, String toast) {
         Toast.makeText(context, toast, Toast.LENGTH_LONG).show();
