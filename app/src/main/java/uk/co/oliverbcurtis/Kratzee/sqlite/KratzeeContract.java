@@ -7,6 +7,7 @@ public class KratzeeContract {
     //Defines question table contents
     public static final String QUESTION_ID = "question_id";
     public static final String QUESTION_STRING = "question_string";
+    public static final String QUESTION_TOPIC = "question_topic";
     public static final String QUESTION_LECTURER_ID = "lecturerID";
 
 

@@ -15,7 +15,7 @@ import static com.rd.utils.DensityUtils.dpToPx;
 
 public class DynamicQuestionButton {
 
-    public void createButton(SelectedTopicView view, Question question, Answer answer){
+    public void createButton(SelectedTopicView view, Question question){
 
         int questionNumber = 1;
 

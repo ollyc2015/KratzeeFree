@@ -39,7 +39,8 @@ public class KratzeeDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + QUESTION_TABLE + " ("
                 + KratzeeContract.QUESTION_ID + " TEXT PRIMARY KEY,"
                 + KratzeeContract.QUESTION_STRING + " TEXT NOT NULL,"
-                + KratzeeContract.QUESTION_LECTURER_ID + " TEXT NOT NULL)");
+                + KratzeeContract.QUESTION_LECTURER_ID + " TEXT NOT NULL,"
+                + KratzeeContract.QUESTION_TOPIC + " TEXT)");
 
 
         //Defines table contents for answers

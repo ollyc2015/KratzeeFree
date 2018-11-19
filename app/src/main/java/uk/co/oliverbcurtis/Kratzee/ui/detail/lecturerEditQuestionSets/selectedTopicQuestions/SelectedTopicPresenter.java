@@ -174,7 +174,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             answer.setIsAnswerCorrectList(markedCorrectList);
 
             DynamicQuestionButton dynamicQuestionButton = new DynamicQuestionButton();
-            dynamicQuestionButton.createButton((SelectedTopicView) view, question, answer);
+            dynamicQuestionButton.createButton((SelectedTopicView) view, question);
 
         }else{
 

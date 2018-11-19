@@ -43,6 +43,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         Toolbar toolbar1 = findViewById(R.id.quiz_format);
         setSupportActionBar(toolbar1);
 
+
         btn_student = findViewById(R.id.btn_student);
         btn_student.setOnClickListener(this);
 

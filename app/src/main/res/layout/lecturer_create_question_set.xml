@@ -107,7 +107,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/editTextGroupLayout"
+                    android:id="@+id/new_question_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <Button
                         android:id="@+id/btn_add_question"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 </FrameLayout>
 
 
-                <android.support.v7.widget.AppCompatButton
+                <Button
                     android:id="@+id/btn_submit_all_questions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,9 +152,7 @@
                     style="@style/Base.Widget.AppCompat.ProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn_submit_team"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
+                    android:indeterminateDrawable="@drawable/progress"
                     android:layout_marginTop="26dp"
                     android:indeterminate="true"
                     android:visibility="invisible" />

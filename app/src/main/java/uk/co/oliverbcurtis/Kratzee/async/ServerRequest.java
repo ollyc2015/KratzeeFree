@@ -16,6 +16,7 @@ public class ServerRequest {
     private Team team;
     private TeamMember teamMember;
     private Lecturer lecturer;
+    private Object newlyAddedTopicQuestions;
 
     public void setOperation(String operation) {
         this.operation = operation;
@@ -43,5 +44,10 @@ public class ServerRequest {
 
     public void setLecturer (Lecturer lecturer){
         this.lecturer = lecturer;
+    }
+
+    public void setNewlyAddedTopicQuestions(Object newlyAddedTopicQuestions){
+
+        this.newlyAddedTopicQuestions = newlyAddedTopicQuestions;
     }
 }

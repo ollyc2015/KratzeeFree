@@ -91,4 +91,7 @@ public class Constants {
     public static final String DELETE_QUESTION = "delete_question";
     public static final String DELETE_TOPIC = "delete_topic";
 
+    //This is the operation set when adding a new set of questions to the external DB
+    public static final String ADD_NEW_TOPIC = "add_new_topic";
+
 }

@@ -173,10 +173,13 @@ public class EditQuestionSetView extends BaseActivity implements EditQuestionSet
     @Override
     public void onBackPressed() {
 
+        allTopicsRequested = false;
+
         //On back pressed has been overridden because, if the user presses the back button after deleting a topic,
         //we don't want to make the deleted topic button to reappear, we want to send the user to the previous activity
         Intent intent = new Intent(getApplicationContext(), LecturerProfileView.class);
         startActivity(intent);
+
 
     }
 }
