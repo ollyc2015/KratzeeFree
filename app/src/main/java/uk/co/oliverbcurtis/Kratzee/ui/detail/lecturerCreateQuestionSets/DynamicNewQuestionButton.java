@@ -6,9 +6,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import uk.co.oliverbcurtis.Kratzee.R;
-
 import static android.content.ContentValues.TAG;
 import static com.rd.utils.DensityUtils.dpToPx;
 
@@ -30,7 +28,7 @@ public class DynamicNewQuestionButton {
                 // Sets the text for when the button is not in the checked state.
                 btn_new_question.setTypeface(null, Typeface.BOLD);
                 btn_new_question.setTextColor(Color.WHITE);
-                btn_new_question.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+                btn_new_question.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
                 //set the Tag value of the team_member ID for database submission
                 btn_new_question.setTag(questionId);
                 btn_new_question.setId(-1);
@@ -45,6 +43,5 @@ public class DynamicNewQuestionButton {
             } catch (Exception e) {
                 Log.d(TAG, "Failed to Create Topic button because "+e.toString());
             }
-
     }
 }

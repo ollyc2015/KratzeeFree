@@ -45,7 +45,7 @@ public class DynamicQuestionTopicButton {
                 // Sets the text for when the button is not in the checked state.
                 btn_question_topic.setTypeface(null, Typeface.BOLD);
                 btn_question_topic.setTextColor(Color.WHITE);
-                btn_question_topic.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+                btn_question_topic.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
                 //set the Tag value of the team_member ID for database submission
                 btn_question_topic.setTag(questionTopicPINSet.toArray()[i]);
                 btn_question_topic.setId(-1);

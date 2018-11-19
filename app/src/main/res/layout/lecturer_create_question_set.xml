@@ -9,10 +9,6 @@
     android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp">
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mScrollView"
@@ -88,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginRight="50dp"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/regular"
@@ -126,11 +122,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="40dp"
                         android:layout_marginRight="40dp"
                         android:background="@drawable/mybutton"
+                        android:fontFamily="@font/regular"
                         android:text="Add Question"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
 
                 </FrameLayout>
 
@@ -143,8 +141,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="40dp"
                     android:background="@drawable/mybutton"
+                    android:fontFamily="@font/regular"
                     android:text="Submit All Questions"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
 
                 <ProgressBar
@@ -161,6 +161,5 @@
             </LinearLayout>
 
         </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

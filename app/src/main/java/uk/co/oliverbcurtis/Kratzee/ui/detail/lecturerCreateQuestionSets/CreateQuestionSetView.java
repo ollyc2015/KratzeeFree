@@ -3,6 +3,7 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerCreateQuestionSets;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -74,8 +75,6 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
                 if(!topic.isEmpty()) {
 
-                    et_question_topic.setEnabled(false);
-
                     inflateQuestionLayout(topic);
 
                 }else{
@@ -137,7 +136,8 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
             String answer3 = et_answer3_edit.getText().toString();
             String answer4 = et_answer4_edit.getText().toString();
 
-            if(!question.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty()){
+            if(!topic.isEmpty() && !question.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty() &&
+                    cb_answer1_edit.isChecked() || cb_answer2_edit.isChecked() || cb_answer3_edit.isChecked() || cb_answer4_edit.isChecked()){
 
                 progress.setVisibility(View.VISIBLE);
 
@@ -145,7 +145,7 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
             }else {
 
-                showToast(this, "Please Complete all Fields");
+                showToast(this, "Please Complete all Fields and Mark at Least One Answer as Correct");
             }
         });
 
@@ -156,6 +156,65 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
         new_question_layout.addView(btn_new_question);
 
+        btn_new_question.setOnClickListener(v -> {
+            Log.i("Clicked", "" + v.getTag());
+            String buttonText = (String) btn_new_question.getText();
+            String questionID = v.getTag().toString();
+            showQuestionSelectionDialog(buttonText, questionID);
+        });
+
+    }
+
+    @Override
+    public void showQuestionSelectionDialog(String buttonText, String questionID){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Selected Question");
+        builder.setMessage("You have selected: "+buttonText);
+        builder.setPositiveButton("Remove", (dialog, which) -> { });
+        builder.setNegativeButton("Cancel", (dialog, which) -> {dialog.dismiss();});
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+
+            dialog.dismiss();
+
+            //If user clicks to delete the question, create another alert dialog to check they wish to delete the question
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setTitle("Delete Question");
+            builder1.setMessage("Delete Question?");
+            builder1.setPositiveButton("Yes", (dialog1, which) -> {
+
+                progress.setVisibility(View.VISIBLE);
+
+                boolean response = presenter.deleteQuestionAnswersFromSQLiteDB(questionID, kratzeeDatabase);
+
+                if(response){
+
+                    response = presenter.deleteQuestionFromSQLiteDB(questionID, kratzeeDatabase);
+
+                    if(response){
+
+                        showToast(this, "Question Removed");
+                        progress.setVisibility(View.INVISIBLE);
+                        new_question_layout.removeView(new_question_layout.findViewWithTag(questionID));
+
+                    }else{
+
+                        progress.setVisibility(View.INVISIBLE);
+                        showToast(this, "Unable to Delete Question");
+                    }
+                }else{
+
+                    progress.setVisibility(View.INVISIBLE);
+                    showToast(this, "Unable to Delete Answers");
+                }
+            });
+            builder1.setNegativeButton("Cancel", (dialog1, which) -> {dialog.dismiss();});
+            builder1.show();
+
+        });
     }
 
 
@@ -174,6 +233,20 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
         builder.create().show();
+
+    }
+
+
+    @Override
+    public void  questionsSubmitSuccessful(){
+
+        new_question_layout.removeAllViews();
+        et_question_topic.getText().clear();
+
+        android.database.sqlite.SQLiteDatabase db = kratzeeDatabase.getWritableDatabase();
+        db.execSQL("delete from " + QUESTION_TABLE);
+        db.execSQL("delete from " + ANSWER_TABLE);
+        db.close();
 
     }
 

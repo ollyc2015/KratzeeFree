@@ -43,7 +43,7 @@ public class DynamicTeamMemberButton {
                 btn_teamMember_name.setTextOn(teamMember1.getLoaded_fullName().get(i).toString() + " | " + teamMember1.getLoaded_student_number().get(i).toString());
                 btn_teamMember_name.setTypeface(null, Typeface.BOLD);
                 btn_teamMember_name.setTextColor(Color.WHITE);
-                btn_teamMember_name.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+                btn_teamMember_name.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
                 //set the Tag value of the team_member ID for database submission
                 btn_teamMember_name.setTag(teamMember1.getLoaded_team_member_id().get(i).toString());
                 btn_teamMember_name.setId(-1);

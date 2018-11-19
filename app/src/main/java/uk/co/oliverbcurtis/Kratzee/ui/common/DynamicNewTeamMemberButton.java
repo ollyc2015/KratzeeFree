@@ -52,7 +52,7 @@ public class DynamicNewTeamMemberButton {
             btn_teamMember_name.setTextOn(et_team_member_name.getText() +" | "+ et_team_member_student_number.getText());
             btn_teamMember_name.setTypeface(null, Typeface.BOLD);
             btn_teamMember_name.setTextColor(Color.WHITE);
-            btn_teamMember_name.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+            btn_teamMember_name.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
             btn_teamMember_name.setTag(newTeamMemberUniqueID);
             btn_teamMember_name.setHint(et_team_member_student_number.toString());
             btn_teamMember_name.setGravity(Gravity.CENTER);

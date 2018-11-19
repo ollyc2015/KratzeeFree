@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import uk.co.oliverbcurtis.Kratzee.R;
-import uk.co.oliverbcurtis.Kratzee.model.Answer;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
 import static android.content.ContentValues.TAG;
 import static com.rd.utils.DensityUtils.dpToPx;
@@ -35,7 +34,7 @@ public class DynamicQuestionButton {
                 // Sets the text for when the button is not in the checked state.
                 btn_topic_question.setTypeface(null, Typeface.BOLD);
                 btn_topic_question.setTextColor(Color.WHITE);
-                btn_topic_question.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+                btn_topic_question.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
                 //set the Tag value of the team_member ID for database submission
                 btn_topic_question.setTag(question.getQuestionIDList().get(i));
                 btn_topic_question.setId(-1);

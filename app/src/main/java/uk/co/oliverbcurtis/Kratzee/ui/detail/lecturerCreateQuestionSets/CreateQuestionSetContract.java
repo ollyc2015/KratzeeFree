@@ -18,6 +18,8 @@ public interface CreateQuestionSetContract {
         void inflateQuestionLayout(String topic);
         void populateLayout(Button btn_new_question);
         void showConfirmationDialog();
+        void questionsSubmitSuccessful();
+        void showQuestionSelectionDialog(String buttonText, String questionID);
     }
 
     interface Presenter{
@@ -28,5 +30,7 @@ public interface CreateQuestionSetContract {
         void getQuestionsFromSQLite(KratzeeDatabase kratzeeDatabase, SharedPreferences pref, ProgressBar progress);
         void getAnswersFromSQLite(List<String> questionStringArray, List<String> questionTopicStringArray, KratzeeDatabase kratzeeDatabase, SharedPreferences pref, ProgressBar progress);
         void submitQuestions(List<String> questionStringArray, List<String> questionTopicStringArray, List<String> answerStringArray, List<String> correctArray, SharedPreferences pref, ProgressBar progress);
+        boolean deleteQuestionAnswersFromSQLiteDB(String questionID, KratzeeDatabase kratzeeDatabase);
+        boolean deleteQuestionFromSQLiteDB(String questionID, KratzeeDatabase kratzeeDatabase);
     }
 }

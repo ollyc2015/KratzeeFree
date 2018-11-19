@@ -145,6 +145,25 @@ public class CreateQuestionSetPresenter implements CreateQuestionSetContract.Pre
 
 
     @Override
+    public boolean deleteQuestionAnswersFromSQLiteDB(String questionID, KratzeeDatabase kratzeeDatabase){
+
+        android.database.sqlite.SQLiteDatabase db = kratzeeDatabase.getWritableDatabase();
+        long result = db.delete(ANSWER_TABLE, KratzeeContract.QUESTION_ID + "=\""+ questionID+"\"", null);
+
+        return result != -1;
+    }
+
+    @Override
+    public boolean deleteQuestionFromSQLiteDB(String questionID, KratzeeDatabase kratzeeDatabase){
+
+        android.database.sqlite.SQLiteDatabase db = kratzeeDatabase.getWritableDatabase();
+        long result =  db.delete(QUESTION_TABLE, KratzeeContract.QUESTION_ID + "=\""+questionID+"\"", null);
+
+        return result != -1;
+    }
+
+
+    @Override
     public void getQuestionsFromSQLite(KratzeeDatabase kratzeeDatabase, SharedPreferences pref, ProgressBar progress){
         try {
 
@@ -223,7 +242,7 @@ public class CreateQuestionSetPresenter implements CreateQuestionSetContract.Pre
     @Override
     public void submitQuestions(List<String> questionStringArray, List<String> questionTopicStringArray, List<String> answerStringArray, List<String> correctArray, SharedPreferences pref, ProgressBar progress){
 
-        List<Object> completedQuestionObject = new ArrayList<Object>();
+        List<Object> completedQuestionObject = new ArrayList<>();
 
         Question question = new Question();
         question.setQuestionStringList(questionStringArray);
@@ -253,8 +272,7 @@ public class CreateQuestionSetPresenter implements CreateQuestionSetContract.Pre
 
                     BaseActivity.showToast((Context) view, resp.getMessage());
                     progress.setVisibility(View.INVISIBLE);
-
-
+                    view.questionsSubmitSuccessful();
 
                 } else {
                     String messageFromServer = resp.getMessage();
