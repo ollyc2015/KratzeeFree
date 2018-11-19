@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-public interface EditQuestionSetContract {
+public interface SelectTopicContract {
 
     interface View{
 
@@ -18,7 +18,7 @@ public interface EditQuestionSetContract {
 
     interface Presenter{
 
-        void attachView(EditQuestionSetContract.View view);
+        void attachView(SelectTopicContract.View view);
         void deleteTopic(String topicPin, ProgressBar progress, SharedPreferences pref, LinearLayout existingTopicSelectionLayout, SwipeRefreshLayout swipe_container);
         void updateTopicActiveState(String topicActive, String topicPin, SharedPreferences pref, ProgressBar progress);
     }

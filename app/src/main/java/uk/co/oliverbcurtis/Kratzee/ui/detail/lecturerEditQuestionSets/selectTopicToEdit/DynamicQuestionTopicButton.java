@@ -19,7 +19,7 @@ import static com.rd.utils.DensityUtils.dpToPx;
 
 public class DynamicQuestionTopicButton {
 
-    public void createButton(EditQuestionSetView view, Question question, LinearLayout topicLayour, ProgressBar progress, SwipeRefreshLayout swipe_container){
+    public void createButton(SelectTopicView view, Question question, LinearLayout topicLayour, ProgressBar progress, SwipeRefreshLayout swipe_container){
 
         progress.setVisibility(View.INVISIBLE);
         swipe_container.setRefreshing(false);

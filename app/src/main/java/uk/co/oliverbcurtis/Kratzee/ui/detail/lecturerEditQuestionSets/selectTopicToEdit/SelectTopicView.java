@@ -23,10 +23,10 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu.LecturerProfileView;
 
 
-public class EditQuestionSetView extends BaseActivity implements EditQuestionSetContract.View {
+public class SelectTopicView extends BaseActivity implements SelectTopicContract.View {
 
-    private EditQuestionSetPresenter presenter;
-    private static boolean allTopicsRequested = false;
+    private SelectTopicPresenter presenter;
+    public static boolean allTopicsRequested = false;
     private ProgressBar progress;
     private LinearLayout existingTopicSelectionLayout;
     private DynamicQuestionTopicButton dynamicQuestionTopicButton = new DynamicQuestionTopicButton();
@@ -44,7 +44,7 @@ public class EditQuestionSetView extends BaseActivity implements EditQuestionSet
     @Override
     public void initView() {
 
-        presenter = new EditQuestionSetPresenter();
+        presenter = new SelectTopicPresenter();
         presenter.attachView(this);
 
         existingTopicSelectionLayout = findViewById(R.id.existingTopicSelectionLayout);

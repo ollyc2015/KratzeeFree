@@ -18,15 +18,15 @@ import uk.co.oliverbcurtis.Kratzee.model.Lecturer;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 
-public class EditQuestionSetPresenter implements EditQuestionSetContract.Presenter {
+public class SelectTopicPresenter implements SelectTopicContract.Presenter {
 
-    private EditQuestionSetContract.View view;
+    private SelectTopicContract.View view;
     private OperationAPI apiService  = ApiUtils.getApiService();
     private DynamicQuestionTopicButton dynamicQuestionTopicButton = new DynamicQuestionTopicButton();
 
 
     @Override
-    public void attachView(EditQuestionSetContract.View view) {
+    public void attachView(SelectTopicContract.View view) {
 
         this.view = view;
     }
@@ -63,7 +63,7 @@ public class EditQuestionSetPresenter implements EditQuestionSetContract.Present
                     editor.putString("questionObject", json);
                     editor.apply();
 
-                    dynamicQuestionTopicButton.createButton((EditQuestionSetView) view, question, existingTopicSelectionLayout, progress, swipe_container);
+                    dynamicQuestionTopicButton.createButton((SelectTopicView) view, question, existingTopicSelectionLayout, progress, swipe_container);
 
 
                 } else if (resp.getResult().equals(Constants.FAILURE)) {

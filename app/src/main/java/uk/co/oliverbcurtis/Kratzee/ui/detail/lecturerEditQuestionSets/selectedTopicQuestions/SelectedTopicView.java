@@ -16,7 +16,7 @@ import java.util.List;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.EditQuestionSetView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.SelectTopicView;
 
 public class SelectedTopicView extends BaseActivity implements SelectedTopicContract.View{
 
@@ -203,7 +203,7 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
 
         //On back pressed has been overridden because, if the user presses the back button after deleting a question,
         //we don't want to make the deleted question button to reappear, we want to send the user to the previous activity
-        Intent intent = new Intent(getApplicationContext(), EditQuestionSetView.class);
+        Intent intent = new Intent(getApplicationContext(), SelectTopicView.class);
         startActivity(intent);
 
     }

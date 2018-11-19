@@ -76,23 +76,31 @@ public class RequestQuestionsExternalDB extends BaseActivity {
                         android.database.sqlite.SQLiteDatabase db = kratzeeDatabase.getWritableDatabase();
                         db.execSQL("delete from "+ QUESTION_TABLE);
 
+                        if(questionIDArray.length > 0) {
 
-                        for (int i = 0; i < questionIDArray.length; i++) {
-                            //Inserting the question list into the SQLite DB when the getQuestions method is called
-                            ContentValues contentValues = new ContentValues();
-                            contentValues.put(KratzeeContract.QUESTION_ID, questionIDArray[i]);
-                            contentValues.put(KratzeeContract.QUESTION_STRING, questionArray[i]);
-                            contentValues.put(KratzeeContract.QUESTION_LECTURER_ID, pref.getString(Constants.LECTURER_ID, ""));
+                            for (int i = 0; i < questionIDArray.length; i++) {
+                                //Inserting the question list into the SQLite DB when the getQuestions method is called
+                                ContentValues contentValues = new ContentValues();
+                                contentValues.put(KratzeeContract.QUESTION_ID, questionIDArray[i]);
+                                contentValues.put(KratzeeContract.QUESTION_STRING, questionArray[i]);
+                                contentValues.put(KratzeeContract.QUESTION_LECTURER_ID, pref.getString(Constants.LECTURER_ID, ""));
 
-                            //insert rows
-                            long result = db.insert(QUESTION_TABLE, null, contentValues);
+                                //insert rows
+                                long result = db.insert(QUESTION_TABLE, null, contentValues);
 
-                            if (result == -1) {
-                                BaseActivity.showToast(context, "Unable to add questions to SQLite DB");
+                                if (result == -1) {
+                                    BaseActivity.showToast(context, "Unable to add questions to SQLite DB");
+                                }
                             }
+                            //db.close();
+                            getAnswers(progress, apiService, context, kratzeeDatabase, questionIDArray[0]);
+                        }else{
+
+                            //If there are no questions, it is because the admin has deleted all the topic questions, rather than
+                            //deleting the topic. Therefore take them back to topic selection since there are no more questions for
+                            //the previously selected topic
+                            goToAdminTopicSelection((Activity) context);
                         }
-                        //db.close();
-                        getAnswers(progress, apiService, context, kratzeeDatabase, questionIDArray[0]);
                     } catch (Exception ex) {
                         Log.e("Error", ex.toString());
                     }

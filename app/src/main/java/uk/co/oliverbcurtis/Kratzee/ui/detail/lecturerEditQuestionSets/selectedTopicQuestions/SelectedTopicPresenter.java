@@ -1,7 +1,9 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectedTopicQuestions;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,6 +28,8 @@ import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeContract;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 
+
+
 public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
 
     private SelectedTopicContract.View view;
@@ -39,8 +43,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
     }
 
     @Override
-    public void
-    getAllQuestions(KratzeeDatabase kratzeeDatabase) {
+    public void getAllQuestions(KratzeeDatabase kratzeeDatabase) {
 
         List<String> array1 = null, array2 = null,array3 =null, array4 =null;
 
@@ -71,7 +74,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             cursor.close();
             db.close();
         } catch (SQLiteException se) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+            BaseActivity.showToast((Context) view, "SQLite error "+se);
         }
 
         //Load in the questions from the SQLite DB
@@ -99,7 +102,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             cursor.close();
             db.close();
         } catch (SQLiteException se) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+            BaseActivity.showToast((Context) view, "SQLite error "+se);
         }
 
         //next, load in all the answers
@@ -126,7 +129,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             cursor.close();
             db.close();
         } catch (SQLiteException se) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+            BaseActivity.showToast((Context) view, "SQLite error "+se);
         }
 
         //next, load in if the answer is correct or incorrect
@@ -153,7 +156,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             cursor.close();
             db.close();
         } catch (SQLiteException se) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+            BaseActivity.showToast((Context) view, "SQLite error "+se);
         }
 
         generateQuestionButton(array1, array2, array3, array4);
@@ -163,7 +166,8 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
     @Override
     public void generateQuestionButton(List<String> questionIDList, List<String> questionList, List<String> answerList, List<String> markedCorrectList){
 
-        if(questionIDList != null && questionList != null && answerList != null && markedCorrectList != null){
+
+        if(!questionIDList.isEmpty() && questionIDList != null){
 
             Question question = new Question();
             question.setQuestionIDList(questionIDList);
@@ -177,10 +181,11 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             dynamicQuestionButton.createButton((SelectedTopicView) view, question);
 
         }else{
-
-            BaseActivity.showToast((Context) view, "Unable to Load Questions");
+            //If there are no questionIDs, it is because the admin has deleted all the topic questions, rather than
+            //deleting the topic. Therefore take them back to topic selection since there are no more questions for
+            //the previously selected topic. This is also
+           BaseActivity.showToast((Context) view, "Unable To Find any Questions, Taking you Back to Topic Selection");
         }
-
     }
 
     @Override
@@ -507,4 +512,6 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
             }
         });
     }
+
+
 }

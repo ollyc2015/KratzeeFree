@@ -21,6 +21,7 @@ import uk.co.oliverbcurtis.Kratzee.dagger.DaggerApplication;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen.IndiQuizScreenView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.SelectTopicView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectedTopicQuestions.SelectedTopicView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
@@ -91,5 +92,10 @@ public class BaseActivity extends AppCompatActivity {
 
     public static void goToAdminEditTopic(Activity activity){
         activity.startActivity(new Intent(activity, SelectedTopicView.class));
+    }
+
+    public static void goToAdminTopicSelection(Activity activity){
+        SelectTopicView.allTopicsRequested = false;
+        activity.startActivity(new Intent(activity, SelectTopicView.class));
     }
 }

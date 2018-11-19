@@ -16,7 +16,7 @@ import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerCreateQuestionSets.CreateQuestionSetView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.EditQuestionSetView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.SelectTopicView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class LecturerProfileView extends BaseActivity implements LecturerProfileContract.View, View.OnClickListener {
@@ -186,7 +186,7 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
 
     @Override
     public void goToEditQuestionSets(){
-        Intent intent = new Intent(getApplicationContext(), EditQuestionSetView.class);
+        Intent intent = new Intent(getApplicationContext(), SelectTopicView.class);
         startActivity(intent);
     }
 
