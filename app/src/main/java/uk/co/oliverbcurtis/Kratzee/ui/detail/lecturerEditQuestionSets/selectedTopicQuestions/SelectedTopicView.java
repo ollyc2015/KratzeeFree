@@ -178,7 +178,8 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
             String answer3 = et_answer3_edit.getText().toString();
             String answer4 = et_answer4_edit.getText().toString();
 
-            if(!question.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty()){
+            if(!question.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty() &&
+                    cb_answer1_edit.isChecked() || cb_answer2_edit.isChecked() || cb_answer3_edit.isChecked() || cb_answer4_edit.isChecked()){
 
                 this.progress.setVisibility(View.VISIBLE);
 

@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import java.util.List;
+
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 
@@ -87,7 +89,7 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
                 if(new_question_layout.getChildCount() > 0) {
 
-                    showConfirmationDialog();
+                    showSubmitAllQuestionsDialog();
                 }else{
 
                     showToast(this, "Please add a Question Before Trying to Submit a Question Set");
@@ -172,11 +174,18 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
         builder.setTitle("Selected Question");
         builder.setMessage("You have selected: "+buttonText);
-        builder.setPositiveButton("Remove", (dialog, which) -> { });
+        builder.setNeutralButton("Remove", (dialog, which) -> { });
+        builder.setPositiveButton("Edit", (dialog, which) -> { });
         builder.setNegativeButton("Cancel", (dialog, which) -> {dialog.dismiss();});
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+
+            presenter.getSelectedQuestionFromSQLiteDB(pref, progress, questionID, kratzeeDatabase);
+            dialog.dismiss();
+
+                });
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v -> {
 
             dialog.dismiss();
 
@@ -217,13 +226,96 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         });
     }
 
+    @Override
+    public void showEditQuestionLayout(List<String> question_array, List<String> answer_id_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID, ProgressBar progress){
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view = inflater.inflate(R.layout.lecturer_edit_question, null);
+
+        et_edit_question = view.findViewById(R.id.et_edit_question);
+        et_edit_question.setText(question_array.get(0));
+
+        et_answer1_edit = view.findViewById(R.id.et_answer1_edit);
+        et_answer1_edit.setText(answer_array.get(0));
+        cb_answer1_edit = view.findViewById(R.id.cb_answer1_edit);
+
+        et_answer2_edit = view.findViewById(R.id.et_answer2_edit);
+        et_answer2_edit.setText(answer_array.get(1));
+        cb_answer2_edit = view.findViewById(R.id.cb_answer2_edit);
+
+        et_answer3_edit = view.findViewById(R.id.et_answer3_edit);
+        et_answer3_edit.setText(answer_array.get(2));
+        cb_answer3_edit = view.findViewById(R.id.cb_answer3_edit);
+
+        et_answer4_edit = view.findViewById(R.id.et_answer4_edit);
+        et_answer4_edit.setText(answer_array.get(3));
+        cb_answer4_edit = view.findViewById(R.id.cb_answer4_edit);
+
+        if (isAnswerCorrectArray.get(0).contains("Correct")){
+            cb_answer1_edit.setChecked(true);
+        }else{
+            cb_answer1_edit.setChecked(false);
+        }
+
+        if (isAnswerCorrectArray.get(1).contains("Correct")){
+            cb_answer2_edit.setChecked(true);
+        }else{
+            cb_answer2_edit.setChecked(false);
+        }
+
+        if (isAnswerCorrectArray.get(2).contains("Correct")){
+            cb_answer3_edit.setChecked(true);
+        }else{
+            cb_answer3_edit.setChecked(false);
+        }
+
+        if (isAnswerCorrectArray.get(3).contains("Correct")){
+            cb_answer4_edit.setChecked(true);
+        }else{
+            cb_answer4_edit.setChecked(false);
+        }
+
+
+        builder.setView(view);
+        builder.setTitle("Edit Question");
+        builder.setPositiveButton("Update", (dialog, which) -> {
+
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) ->{dialog.dismiss(); progress.setVisibility(View.INVISIBLE);});
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+
+
+            String questionString = et_edit_question.getText().toString();
+            String answer1 = et_answer1_edit.getText().toString();
+            String answer2 = et_answer2_edit.getText().toString();
+            String answer3 = et_answer3_edit.getText().toString();
+            String answer4 = et_answer4_edit.getText().toString();
+
+            if(!questionString.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty()&&
+                    cb_answer1_edit.isChecked() || cb_answer2_edit.isChecked() || cb_answer3_edit.isChecked() || cb_answer4_edit.isChecked()){
+
+                progress.setVisibility(View.VISIBLE);
+
+                presenter.updateQuestionSQLiteDB(questionString, answer_id_array, answer1, answer2, answer3, answer4, cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit, questionID, progress, dialog, kratzeeDatabase);
+
+            }else {
+
+                showToast(this, "Please Complete all Fields");
+            }
+        });
+    }
+
 
     @Override
-    public void showConfirmationDialog(){
+    public void showSubmitAllQuestionsDialog(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Submit All Questions?");
+        builder.setTitle("Save & Submit All Questions?");
         builder.setPositiveButton("OK", (dialog, which) ->
         {
             progress.setVisibility(View.VISIBLE);

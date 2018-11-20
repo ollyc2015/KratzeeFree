@@ -88,4 +88,8 @@
     <string name="contact_posted">Your message has been successfully delivered.</string>
     <string name="take_a_quiz">Take a Quiz!</string>
     <string name="create_a_quiz">Create a Quiz!</string>
+
+
+    <!--Lecturer create questions-->
+    <string name="submit_lecturer_questions">Save &amp; Submit All Questions</string>
 </resources>

@@ -3,6 +3,7 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTop
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
+
 import com.google.gson.Gson;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
@@ -97,7 +100,7 @@ public class SelectTopicView extends BaseActivity implements SelectTopicContract
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         Switch sw = new Switch(this);
-        sw.setText("Activate Question-Set");
+        sw.setText("\nActivate Question-Set");
         if(istopicActive.contains("Yes")){
             sw.setChecked(true);
         }
@@ -118,13 +121,26 @@ public class SelectTopicView extends BaseActivity implements SelectTopicContract
             }
         });
 
+        // The TextView to show alert dialog content. This custom feature is needed to allow the text to be selectable
+        TextView message = new TextView(this);
+        message.setText("\nYou have selected: \n\n"+buttonText+" \n\nPlease note; the Question PIN cannot be changed.");
+        message.setTextColor(Color.parseColor("#000000"));
+        message.setTextIsSelectable(true);
+
         LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        layoutParams.setMargins(55, 0, 30, 0);
+
         linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
-        linearLayout.addView(sw);
+        linearLayout.addView(sw, layoutParams);
+        linearLayout.addView(message, layoutParams);
 
         builder.setTitle("Edit Topic Questions");
-        builder.setMessage("You have selected: \n\n"+buttonText+" \n\nPlease note; the Question PIN cannot be changed.");
+        //builder.setMessage("\nYou have selected: \n\n"+buttonText+" \n\nPlease note; the Question PIN cannot be changed.");
         builder.setPositiveButton("Edit", (dialog, which) -> { });
         builder.setNeutralButton("Delete", (dialog, which) -> { });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());

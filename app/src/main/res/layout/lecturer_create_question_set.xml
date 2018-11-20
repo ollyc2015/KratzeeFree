@@ -142,7 +142,7 @@
                     android:layout_marginRight="40dp"
                     android:background="@drawable/mybutton"
                     android:fontFamily="@font/regular"
-                    android:text="Submit All Questions"
+                    android:text="@string/submit_lecturer_questions"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
 

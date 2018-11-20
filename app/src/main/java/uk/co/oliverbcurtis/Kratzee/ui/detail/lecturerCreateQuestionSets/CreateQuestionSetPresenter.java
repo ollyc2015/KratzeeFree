@@ -28,6 +28,7 @@ import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeContract;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import static uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase.ANSWER_TABLE;
+import static uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase.NEW_INDIVIDUAL;
 import static uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase.QUESTION_TABLE;
 
 public class CreateQuestionSetPresenter implements CreateQuestionSetContract.Presenter {
@@ -286,6 +287,221 @@ public class CreateQuestionSetPresenter implements CreateQuestionSetContract.Pre
                 BaseActivity.showToast((Context) view, t.toString());
             }
         });
+    }
+
+
+    @Override
+    public void getSelectedQuestionFromSQLiteDB(SharedPreferences pref, ProgressBar progress, String questionID, KratzeeDatabase kratzeeDatabase) {
+
+        List<String> question_array = null, answer_id_array = null, answer_array = null, isAnswerCorrectArray = null;
+
+
+        //Load in the questions from the SQLite DB
+        try {
+
+            SQLiteDatabase db = kratzeeDatabase.getReadableDatabase();
+            String selectQuery = "SELECT " + KratzeeContract.QUESTION_STRING + " FROM " + KratzeeDatabase.QUESTION_TABLE +
+                    " WHERE " + KratzeeContract.QUESTION_ID + "=\""+questionID+"\"";
+
+
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null) {
+                //as long as the cursor is not null, create a list to store the questions in
+                question_array = new ArrayList<>();
+                //move cursor to position 0 of the returned results (the first question)
+                if (cursor.moveToFirst()) {
+                    //As long as there are questions, keep looping them into the results variable
+                    while (!cursor.isAfterLast()) {
+                        String results = cursor.getString(cursor.getColumnIndex(KratzeeContract.QUESTION_STRING));
+                        //then add them to the array that was created earlier
+                        question_array.add(results);
+                        //after adding the first question, move the cursor to the next position if questions exist
+                        cursor.moveToNext();
+                    }
+                }
+            }
+
+            cursor.close();
+            db.close();
+        } catch (SQLiteException se) {
+            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+        }
+
+        //next, load in all the answer IDs
+        try {
+            SQLiteDatabase db = kratzeeDatabase.getReadableDatabase();
+            String selectQuery = "SELECT " + KratzeeContract.ANSWER_ID + " FROM " + KratzeeDatabase.ANSWER_TABLE +
+                    " WHERE " + KratzeeContract.QUESTION_ID + "=\""+questionID+"\"";
+
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null) {
+                //as long as the cursor is not null, create a list to store the questions in
+                answer_id_array = new ArrayList<String>();
+                //move cursor to position 0 of the returned results (the first question)
+                if (cursor.moveToFirst()) {
+                    //As long as there are questions, keep looping them into the results variable
+                    while (!cursor.isAfterLast()) {
+                        String results = cursor.getString(cursor.getColumnIndex(KratzeeContract.ANSWER_ID));
+                        //then add them to the array that was created earlier
+                        answer_id_array.add(results);
+                        //after adding the first question, move the cursor to the next position if questions exist
+                        cursor.moveToNext();
+                    }
+                }
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException se) {
+            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+        }
+
+        //next, load in all the answers
+        try {
+            SQLiteDatabase db = kratzeeDatabase.getReadableDatabase();
+            String selectQuery = "SELECT " + KratzeeContract.ANSWER_STRING + " FROM " + KratzeeDatabase.ANSWER_TABLE +
+                    " WHERE " + KratzeeContract.QUESTION_ID + "=\""+questionID+"\"";
+
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null) {
+                //as long as the cursor is not null, create a list to store the questions in
+                answer_array = new ArrayList<String>();
+                //move cursor to position 0 of the returned results (the first question)
+                if (cursor.moveToFirst()) {
+                    //As long as there are questions, keep looping them into the results variable
+                    while (!cursor.isAfterLast()) {
+                        String results = cursor.getString(cursor.getColumnIndex(KratzeeContract.ANSWER_STRING));
+                        //then add them to the array that was created earlier
+                        answer_array.add(results);
+                        //after adding the first question, move the cursor to the next position if questions exist
+                        cursor.moveToNext();
+                    }
+                }
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException se) {
+            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+        }
+
+        //next, load in if the answer is correct or incorrect
+        try {
+            SQLiteDatabase db = kratzeeDatabase.getReadableDatabase();
+            String selectQuery = "SELECT " + KratzeeContract.CORRECT + " FROM " + KratzeeDatabase.ANSWER_TABLE +
+                    " WHERE " + KratzeeContract.QUESTION_ID + "=\""+questionID+"\"";
+
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null) {
+                //as long as the cursor is not null, create a list to store the questions in
+                isAnswerCorrectArray = new ArrayList<String>();
+                //move cursor to position 0 of the returned results (the first question)
+                if (cursor.moveToFirst()) {
+                    //As long as there are questions, keep looping them into the results variable
+                    while (!cursor.isAfterLast()) {
+                        String results = cursor.getString(cursor.getColumnIndex(KratzeeContract.CORRECT));
+                        //then add them to the array that was created earlier
+                        isAnswerCorrectArray.add(results);
+                        //after adding the first question, move the cursor to the next position if questions exist
+                        cursor.moveToNext();
+                    }
+                }
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException se) {
+            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+        }
+
+        view.showEditQuestionLayout(question_array, answer_id_array, answer_array, isAnswerCorrectArray, questionID, progress);
+
+    }
+
+
+    @Override
+    public void updateQuestionSQLiteDB(String questionString, List<String> answer_id_array, String answerString1, String answerString2, String answerString3, String answerString4, CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit, String questionID, ProgressBar progress, AlertDialog dialog, KratzeeDatabase kratzeeDatabase){
+
+        String isChecked1, isChecked2, isChecked3, isChecked4;
+
+        if (cb_answer1_edit.isChecked()){
+            isChecked1 = "Correct";
+        }else{
+            isChecked1 = "Incorrect";
+        }
+
+        if (cb_answer2_edit.isChecked()){
+            isChecked2 = "Correct";
+        }else{
+            isChecked2 = "Incorrect";
+        }
+
+        if (cb_answer3_edit.isChecked()){
+            isChecked3 = "Correct";
+        }else{
+            isChecked3 = "Incorrect";
+        }
+
+        if (cb_answer4_edit.isChecked()){
+            isChecked4 = "Correct";
+        }else{
+            isChecked4 = "Incorrect";
+        }
+
+        try {
+
+            SQLiteDatabase db1 = kratzeeDatabase.getWritableDatabase();
+            String updateQuestion = "UPDATE " + QUESTION_TABLE + " SET " + KratzeeContract.QUESTION_STRING
+                    + "=\'"+ questionString +"\' WHERE " + KratzeeContract.QUESTION_ID + "=\""+questionID+"\"";
+            db1.execSQL(updateQuestion);
+            db1.close();
+
+
+            SQLiteDatabase db2 = kratzeeDatabase.getWritableDatabase();
+            String updateAnswer1 = "UPDATE " + ANSWER_TABLE + " SET " + KratzeeContract.ANSWER_STRING
+                    + "=\'"+ answerString1 +"\'"+ ", " + KratzeeContract.CORRECT + "=\'"+ isChecked1 +"\'"+ " WHERE " +
+                    KratzeeContract.ANSWER_ID + "=\""+ answer_id_array.get(0)+"\"";
+            db2.execSQL(updateAnswer1);
+            db2.close();
+
+            Log.v("Answer_Query1" , "Update "+updateAnswer1);
+
+            SQLiteDatabase db3 = kratzeeDatabase.getWritableDatabase();
+            String updateAnswer2 = "UPDATE " + ANSWER_TABLE + " SET " + KratzeeContract.ANSWER_STRING
+                    + "=\'"+ answerString2 +"\'"+ ", " + KratzeeContract.CORRECT + "=\'"+ isChecked2 +"\'"+ " WHERE " +
+                    KratzeeContract.ANSWER_ID + "=\""+ answer_id_array.get(1)+"\"";
+            db3.execSQL(updateAnswer2);
+            db3.close();
+
+            Log.v("Answer_Query2" , "Update "+updateAnswer2);
+
+            SQLiteDatabase db4 = kratzeeDatabase.getWritableDatabase();
+            String updateAnswer3 = "UPDATE " + ANSWER_TABLE + " SET " + KratzeeContract.ANSWER_STRING
+                    + "=\'"+ answerString3 +"\'"+ ", " + KratzeeContract.CORRECT + "=\'"+ isChecked3 +"\'"+ " WHERE " +
+                    KratzeeContract.ANSWER_ID + "=\""+ answer_id_array.get(2)+"\"";
+            db4.execSQL(updateAnswer3);
+            db4.close();
+
+            Log.v("Answer_Query3" , "Update "+updateAnswer3);
+
+            SQLiteDatabase db5 = kratzeeDatabase.getWritableDatabase();
+            String updateAnswer4 = "UPDATE " + ANSWER_TABLE + " SET " + KratzeeContract.ANSWER_STRING
+                    + "=\'"+ answerString4 +"\'"+ ", " + KratzeeContract.CORRECT + "=\'"+ isChecked4 +"\'"+ " WHERE " +
+                    KratzeeContract.ANSWER_ID + "=\""+ answer_id_array.get(3)+"\"";
+            db5.execSQL(updateAnswer4);
+            db5.close();
+
+            Log.v("Answer_Query4" , "Update "+updateAnswer4);
+
+
+            progress.setVisibility(View.INVISIBLE);
+            dialog.dismiss();
+            BaseActivity.showToast((Context) view, "Question Updated");
+
+        }catch (SQLiteException se) {
+            BaseActivity.showToast((Context) view, "Error caused due to "+se);
+        }
     }
 }
 
