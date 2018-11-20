@@ -18,6 +18,7 @@ public interface SelectedTopicContract {
         void loadAllQuestions(ProgressBar progress);
         void populateLayout(Button btn_question_topic);
         void showQuestionSelectionDialog(String buttonText, String questionID);
+        void checkBoxOnClickListeners(CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit);
         void showEditQuestionLayout(List<String> questionArray, List<String> question_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID, ProgressBar progress);
         void getQuestions();
     }

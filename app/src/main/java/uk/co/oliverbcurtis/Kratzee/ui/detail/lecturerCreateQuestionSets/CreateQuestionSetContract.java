@@ -20,6 +20,7 @@ public interface CreateQuestionSetContract {
         void showSubmitAllQuestionsDialog();
         void questionsSubmitSuccessful();
         void showQuestionSelectionDialog(String buttonText, String questionID);
+        void checkBoxOnClickListeners(CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit);
         void showEditQuestionLayout(List<String> question_array, List<String> answer_id_array, List<String> answer_array, List<String> isAnswerCorrectArray, String questionID, ProgressBar progress);
     }
 

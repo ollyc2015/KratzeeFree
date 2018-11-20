@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
 import java.util.List;
 
@@ -122,6 +123,8 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         et_answer4_edit = view.findViewById(R.id.et_answer4_edit);
         cb_answer4_edit = view.findViewById(R.id.cb_answer4_edit);
 
+        checkBoxOnClickListeners(cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit);
+
         builder.setView(view);
         builder.setTitle("Add Question");
         builder.setPositiveButton("Add", (dialog, which) -> {
@@ -142,6 +145,8 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
                     cb_answer1_edit.isChecked() || cb_answer2_edit.isChecked() || cb_answer3_edit.isChecked() || cb_answer4_edit.isChecked()){
 
                 progress.setVisibility(View.VISIBLE);
+
+                view.findViewById(R.id.editQuestionScrollview).post(() -> ((ScrollView) view.findViewById(R.id.editQuestionScrollview)).fullScroll(View.FOCUS_DOWN));
 
                 presenter.addQuestionToSQLite(question, answer1, answer2, answer3, answer4, cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit, progress, dialog, kratzeeDatabase, topic, pref, this);
 
@@ -255,27 +260,45 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
         if (isAnswerCorrectArray.get(0).contains("Correct")){
             cb_answer1_edit.setChecked(true);
-        }else{
-            cb_answer1_edit.setChecked(false);
+            cb_answer2_edit.setEnabled(false);
+            cb_answer2_edit.setAlpha(.5f);
+            cb_answer3_edit.setEnabled(false);
+            cb_answer3_edit.setAlpha(.5f);
+            cb_answer4_edit.setEnabled(false);
+            cb_answer4_edit.setAlpha(.5f);
         }
 
         if (isAnswerCorrectArray.get(1).contains("Correct")){
             cb_answer2_edit.setChecked(true);
-        }else{
-            cb_answer2_edit.setChecked(false);
+            cb_answer1_edit.setEnabled(false);
+            cb_answer1_edit.setAlpha(.5f);
+            cb_answer3_edit.setEnabled(false);
+            cb_answer3_edit.setAlpha(.5f);
+            cb_answer4_edit.setEnabled(false);
+            cb_answer4_edit.setAlpha(.5f);
         }
 
         if (isAnswerCorrectArray.get(2).contains("Correct")){
             cb_answer3_edit.setChecked(true);
-        }else{
-            cb_answer3_edit.setChecked(false);
+            cb_answer2_edit.setEnabled(false);
+            cb_answer2_edit.setAlpha(.5f);
+            cb_answer1_edit.setEnabled(false);
+            cb_answer1_edit.setAlpha(.5f);
+            cb_answer4_edit.setEnabled(false);
+            cb_answer4_edit.setAlpha(.5f);
         }
 
         if (isAnswerCorrectArray.get(3).contains("Correct")){
             cb_answer4_edit.setChecked(true);
-        }else{
-            cb_answer4_edit.setChecked(false);
+            cb_answer2_edit.setEnabled(false);
+            cb_answer2_edit.setAlpha(.5f);
+            cb_answer3_edit.setEnabled(false);
+            cb_answer3_edit.setAlpha(.5f);
+            cb_answer1_edit.setEnabled(false);
+            cb_answer1_edit.setAlpha(.5f);
         }
+
+        checkBoxOnClickListeners(cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit);
 
 
         builder.setView(view);
@@ -340,6 +363,100 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         db.execSQL("delete from " + ANSWER_TABLE);
         db.close();
 
+    }
+
+    @Override
+    public void checkBoxOnClickListeners(CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit){
+
+        cb_answer1_edit.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if(cb_answer1_edit.isChecked()){
+
+                cb_answer2_edit.setEnabled(false);
+                cb_answer2_edit.setAlpha(.5f);
+                cb_answer3_edit.setEnabled(false);
+                cb_answer3_edit.setAlpha(.5f);
+                cb_answer4_edit.setEnabled(false);
+                cb_answer4_edit.setAlpha(.5f);
+
+            }else if (!cb_answer1_edit.isChecked()){
+
+                cb_answer2_edit.setEnabled(true);
+                cb_answer2_edit.setAlpha(1f);
+                cb_answer3_edit.setEnabled(true);
+                cb_answer3_edit.setAlpha(1f);
+                cb_answer4_edit.setEnabled(true);
+                cb_answer4_edit.setAlpha(1f);
+            }
+        });
+
+        cb_answer2_edit.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if(cb_answer2_edit.isChecked()){
+
+                cb_answer1_edit.setEnabled(false);
+                cb_answer1_edit.setAlpha(.5f);
+                cb_answer3_edit.setEnabled(false);
+                cb_answer3_edit.setAlpha(.5f);
+                cb_answer4_edit.setEnabled(false);
+                cb_answer4_edit.setAlpha(.5f);
+
+            }else if (!cb_answer2_edit.isChecked()){
+
+                cb_answer1_edit.setEnabled(true);
+                cb_answer1_edit.setAlpha(1f);
+                cb_answer3_edit.setEnabled(true);
+                cb_answer3_edit.setAlpha(1f);
+                cb_answer4_edit.setEnabled(true);
+                cb_answer4_edit.setAlpha(1f);
+            }
+
+        });
+
+        cb_answer3_edit.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if(cb_answer3_edit.isChecked()){
+
+                cb_answer1_edit.setEnabled(false);
+                cb_answer1_edit.setAlpha(.5f);
+                cb_answer2_edit.setEnabled(false);
+                cb_answer2_edit.setAlpha(.5f);
+                cb_answer4_edit.setEnabled(false);
+                cb_answer4_edit.setAlpha(.5f);
+
+            }else if (!cb_answer3_edit.isChecked()){
+
+                cb_answer1_edit.setEnabled(true);
+                cb_answer1_edit.setAlpha(1f);
+                cb_answer2_edit.setEnabled(true);
+                cb_answer2_edit.setAlpha(1f);
+                cb_answer4_edit.setEnabled(true);
+                cb_answer4_edit.setAlpha(1f);
+            }
+        });
+
+        cb_answer4_edit.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if(cb_answer4_edit.isChecked()){
+
+                cb_answer1_edit.setEnabled(false);
+                cb_answer1_edit.setAlpha(.5f);
+                cb_answer2_edit.setEnabled(false);
+                cb_answer2_edit.setAlpha(.5f);
+                cb_answer3_edit.setEnabled(false);
+                cb_answer3_edit.setAlpha(.5f);
+
+            }else if (!cb_answer4_edit.isChecked()){
+
+                cb_answer1_edit.setEnabled(true);
+                cb_answer1_edit.setAlpha(1f);
+                cb_answer2_edit.setEnabled(true);
+                cb_answer2_edit.setAlpha(1f);
+                cb_answer3_edit.setEnabled(true);
+                cb_answer3_edit.setAlpha(1f);
+            }
+
+        });
     }
 
 
