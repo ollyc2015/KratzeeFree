@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -18,7 +17,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.feedbackForm.FeedbackView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
+
 
 public class StartScreenView extends BaseActivity implements StartScreenContract.View, View.OnClickListener{
 
@@ -27,6 +26,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
     private Button btn_lecturer, btn_student;
     public static int tutorial_counter = 0;
+    Toolbar toolbar1;
 
     private SharedPreferences.Editor editor;
 
@@ -40,7 +40,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     @Override
     public void initView() {
 
-        Toolbar toolbar1 = findViewById(R.id.quiz_format);
+        toolbar1 = findViewById(R.id.quiz_format);
         setSupportActionBar(toolbar1);
 
 
@@ -82,6 +82,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         }
 
         if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
             switch (tutorial_counter) {
 
                 case 0:
@@ -89,6 +90,10 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                     break;
 
                 case 1:
+                    tutorialView.startScreenTutorial3(this);
+                    break;
+
+                case 2:
                     tutorialView.closeStartScreenTutorial();
                     break;
             }
@@ -109,7 +114,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
 
-                    tutorialView.startScreenTutorial1(this);
+                    tutorialView.startScreenTutorial1(this, toolbar1);
 
                 })
                 .setNegativeButton(getString(R.string.no), (dialog1, whichButton) -> {
@@ -160,14 +165,15 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     }
 
 
-    //This method handles the option selected
+    //This method handles the option selected in the app-bar menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
 
             case R.id.tutorial_request:
+                StartScreenView.tutorial_counter = 0;
                 editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
-                tutorialView.startScreenTutorial1(this);
+                tutorialView.startScreenTutorial1(this, toolbar1);
                 break;
 
             case R.id.feedback_request:

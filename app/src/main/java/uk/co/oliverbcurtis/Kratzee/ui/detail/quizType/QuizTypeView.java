@@ -92,6 +92,7 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
                     tutorialView.quizTypeTutorial2(this);
                     break;
 
+
                 case 1:
                     tutorialView.closeQuizTypeTutorial();
                     break;
@@ -109,9 +110,17 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
     @Override
     public void onBackPressed() {
 
-        super.onBackPressed();
+        if(SubmitPoints.indiQuizSubmitted){
 
-        StartScreenView.studentButtonPressed = false;
-        StartScreenView.lecturerButtonPressed = false;
+            showToast(this, "Please Continue the Quiz by Clicking The Team Quiz Button");
+
+        }else {
+
+            super.onBackPressed();
+
+            StartScreenView.studentButtonPressed = false;
+            StartScreenView.lecturerButtonPressed = false;
+
+        }
     }
 }

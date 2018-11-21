@@ -65,7 +65,8 @@ public class TeamMemberTriviaRegisterPresenter implements TeamMemberTriviaRegist
             List<String> teamMemberStudentNumberArray = new ArrayList<String>();
 
             //First check that the lists are not empty
-            if(dynamicTeamMemberNameList != null && dynamicTeamMemberStudentNumberList != null) {
+            if(dynamicTeamMemberNameList != null && !dynamicTeamMemberNameList.isEmpty()
+                    && dynamicTeamMemberStudentNumberList != null && !dynamicTeamMemberStudentNumberList.isEmpty()) {
                 //Retrieving values from dynamically created EditText
                 String[] teamMember3name = new String[dynamicTeamMemberNameList.size()];
                 String[] teamMember3studentNumber = new String[dynamicTeamMemberStudentNumberList.size()];

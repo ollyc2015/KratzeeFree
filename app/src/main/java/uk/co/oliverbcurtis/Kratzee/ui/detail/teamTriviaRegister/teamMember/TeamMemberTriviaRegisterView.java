@@ -79,13 +79,10 @@ public class TeamMemberTriviaRegisterView extends BaseActivity implements TeamMe
                 presenter.confirmAddTeamMember(et_team_name1, et_team_student_number1, et_team_name2, et_team_student_number2, mLayout, this);
                 break;
 
-
             case R.id.btn_submit_names:
                 //Check submitted values
                 presenter.validateSubmittedNames(et_team_name1, et_team_student_number1, et_team_name2, et_team_student_number2, this, progress);
                 break;
-
-
         }
     }
 

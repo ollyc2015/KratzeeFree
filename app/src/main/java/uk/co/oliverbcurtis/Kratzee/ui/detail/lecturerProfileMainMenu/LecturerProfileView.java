@@ -60,7 +60,7 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
         btn_logout.setOnClickListener(this);
 
         tv_name = findViewById(R.id.tv_name);
-        tv_name.setText("Hello : "+pref.getString(Constants.LECTURER_NAME,""));
+        tv_name.setText("Hello "+pref.getString(Constants.LECTURER_NAME,"")+"!");
 
         tv_email = findViewById(R.id.tv_email);
         tv_email.setText(pref.getString(Constants.LECTURER_EMAIL,""));

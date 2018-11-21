@@ -10,6 +10,7 @@ import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Score;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class EndScreenView extends BaseActivity implements View.OnClickListener  {
 
@@ -51,7 +52,7 @@ public class EndScreenView extends BaseActivity implements View.OnClickListener 
 
         Score.resetScore();
 
-        Intent intent = new Intent(getApplicationContext(), QuizTypeView.class);
+        Intent intent = new Intent(getApplicationContext(), StartScreenView.class);
         startActivity(intent);
     }
 }
