@@ -21,7 +21,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class LecturerProfileView extends BaseActivity implements LecturerProfileContract.View, View.OnClickListener {
 
-    private TextView tv_name,tv_email;
+    private TextView tv_name,tv_email, tv_question_sets_available;
     private AppCompatButton btn_chg_password,btn_logout,btn_create_questions,btn_remove_all_questions, btn_remove_student_data, btn_edit_topics;
     private EditText et_old_password,et_new_password;
     private AlertDialog dialog;
@@ -65,8 +65,12 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
         tv_email = findViewById(R.id.tv_email);
         tv_email.setText(pref.getString(Constants.LECTURER_EMAIL,""));
 
+        tv_question_sets_available = findViewById(R.id.tv_question_sets_available);
 
         progress = findViewById(R.id.progress);
+        progress.setVisibility(View.VISIBLE);
+
+        presenter.getAllTopics(progress, pref, tv_question_sets_available, btn_create_questions);
 
     }
 

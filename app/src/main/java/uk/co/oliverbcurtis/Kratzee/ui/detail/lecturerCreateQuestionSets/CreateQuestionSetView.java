@@ -1,6 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerCreateQuestionSets;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -17,6 +18,8 @@ import java.util.List;
 
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.feedbackForm.FeedbackView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu.LecturerProfileView;
 
 import static uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase.ANSWER_TABLE;
 import static uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase.QUESTION_TABLE;
@@ -363,6 +366,8 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         db.execSQL("delete from " + ANSWER_TABLE);
         db.close();
 
+        onBackPressed();
+
     }
 
     @Override
@@ -465,7 +470,8 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
         questionNumber = 1;
         //Below is what causes the activity to go to the previous activity
-        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), LecturerProfileView.class);
+        startActivity(intent);
 
     }
 }

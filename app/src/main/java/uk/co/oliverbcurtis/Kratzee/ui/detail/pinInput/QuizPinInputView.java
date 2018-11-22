@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import uk.co.oliverbcurtis.Kratzee.R;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
@@ -40,6 +41,13 @@ public class QuizPinInputView extends BaseActivity implements QuizPinContract.Vi
 
         et_pin = findViewById(R.id.et_pin);
         et_pin.setGravity(Gravity.CENTER);
+
+        if(QuizTypeView.teamButtonPressed){
+
+            et_pin.setText(pref.getString(Constants.PIN_ENTERED, ""));
+        }
+
+
 
         btn_submit_pin = findViewById(R.id.btn_submit_pin);
         btn_submit_pin.setOnClickListener(this);

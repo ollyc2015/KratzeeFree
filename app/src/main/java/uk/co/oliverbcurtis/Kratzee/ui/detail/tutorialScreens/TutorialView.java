@@ -21,7 +21,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
     public void startScreenTutorial1(StartScreenView view, Toolbar toolbar){
 
         Target homeTarget = () -> {
-            // Get approximate position of home icon's center
+            // Get approximate position of settings button on the starting screen app bar
             int actionBarSize = toolbar.getHeight();
             int x = actionBarSize * 7;
             int y = actionBarSize / 2;
@@ -31,9 +31,10 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
         showcaseView1 = new ShowcaseView.Builder(view)
                 .setTarget(homeTarget)
                 .setContentTitle("Welcome To Kratzee!")
-                .setContentText("What a Tutorial Refresher or Give Some Useful Feedback? Click Here")
+                .setContentText("Want a Tutorial Refresher or Fancy Giving Some Useful Feedback? Click On The Highlighted Button and Choose From the Available Options.\n\nPlease Click 'Ok' At the Bottom of the Page To Continue the Tutorial.")
                 .setStyle(R.style.CustomShowcaseTheme2)
                 .setOnClickListener(view)
+                .blockAllTouches()
                 .build();
         showcaseView1.setButtonText("OK!");
 
@@ -48,8 +49,9 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
          showcaseView2 = new ShowcaseView.Builder(view)
                 .setTarget(new ViewTarget(view.findViewById(R.id.btn_student)))
                 .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Click Here To Take a Quiz, Please note that you Will Need a Quiz PIN Given to You by The Person That Created the Quiz")
+                .setContentText("To Take a Quiz Click The Button Highlighted, Please Note that you Will Need a Quiz PIN Given to You by The Person That Created the Quiz.")
                 .setStyle(R.style.CustomShowcaseTheme2)
+                 .blockAllTouches()
                 .setOnClickListener(view)
                 .build();
         showcaseView2.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
@@ -68,8 +70,9 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
          showcaseView3 = new ShowcaseView.Builder(view)
                 .setTarget(new ViewTarget(view.findViewById(R.id.btn_lecturer)))
                 .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Click Here To Create an Account and Make Your Own Question Sets! This is Where You'll Generate Your Quiz PIN's!")
+                .setContentText("To Create an Account and Make Your Own Question Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! ")
                 .setStyle(R.style.CustomShowcaseTheme2)
+                 .blockAllTouches()
                 .setOnClickListener(view)
                 .build();
         showcaseView3.setButtonText("OK!");
@@ -95,9 +98,10 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
         showcaseView1 = new ShowcaseView.Builder(view)
                 .setTarget(new ViewTarget(view.findViewById(R.id.btn_indi)))
                 .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Click Here to Take an Independent Quiz. The Idea is to take this by yourself with no help, this will test your own understanding, before taking the same quiz in a team. More will be explained later...")
+                .setContentText("To Take an Independent Quiz, Click The Highlighted Button. The Idea is to take this by yourself with no help, this will test your own understanding, before taking the same quiz in a team. More will be explained later...")
                 .setStyle(R.style.CustomShowcaseTheme2)
                 .setOnClickListener(view)
+                .blockAllTouches()
                 .build();
         showcaseView1.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
         showcaseView1.setButtonText("OK!");
@@ -111,8 +115,9 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
         showcaseView3 = new ShowcaseView.Builder(view)
                 .setTarget(new ViewTarget(view.findViewById(R.id.btn_team)))
                 .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Once you have completed the individual quiz, this button will become available. You will then take the same quiz as a Team, the objective will be explained later...")
+                .setContentText("Once you have Completed the Individual Quiz, The Highlighted Button will become Available. You will then Take the Same Quiz as a Team, the Objective Will be Explained Later...")
                 .setStyle(R.style.CustomShowcaseTheme2)
+                .blockAllTouches()
                 .setOnClickListener(view)
                 .build();
         showcaseView3.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
@@ -127,4 +132,6 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
         showcaseView3.hide();
 
     }
+
+    /*************************BELOW IS THE TUTORIAL FOR THE QUESTION PIN SCREEN*******************************/
 }

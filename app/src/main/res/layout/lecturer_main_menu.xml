@@ -54,7 +54,19 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/mikado_ultra"
+                android:gravity="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_question_sets_available"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="60dp"
                 android:fontFamily="@font/mikado_ultra"
                 android:gravity="center"
                 android:textColor="@android:color/background_light"
@@ -114,7 +126,7 @@
             android:background="@drawable/mybutton"
             android:elevation="24dp"
             android:fontFamily="@font/regular"
-            android:text="Remove All Question Topics"
+            android:text="Remove All Question Sets"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
 

@@ -27,7 +27,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     private Button btn_lecturer, btn_student;
     public static int tutorial_counter = 0;
     Toolbar toolbar1;
-
     private SharedPreferences.Editor editor;
 
     @Override

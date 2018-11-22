@@ -3,8 +3,13 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,6 +101,8 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
         });
     }
 
+
+    @Override
     public void removeAllParticipants(ProgressBar progress, SharedPreferences pref){
 
 
@@ -125,6 +132,61 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
                 BaseActivity.showToast((Context) view, t.toString());
             }
         });
+    }
 
+
+    @Override
+    public void getAllTopics(ProgressBar progress, SharedPreferences pref, TextView tv_question_sets_available, AppCompatButton btn_create_questions) {
+
+        //create new Question object
+        Lecturer lecturer = new Lecturer();
+        lecturer.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+
+        final ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.LOAD_EXISTING_TOPICS);
+        //set values entered for the new question to be sent to the server
+        request.setLecturer(lecturer);
+
+
+        apiService.operation(request).enqueue(new Callback<ServerResponse>() {
+
+            @Override
+            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+
+                if (resp.getResult().equals(Constants.SUCCESS)) {
+
+                    progress.setVisibility(View.INVISIBLE);
+
+                    Question question = resp.getQuestion();
+
+                    Set<String> questionTopicSet = new LinkedHashSet<>(question.getQuestionTopicList());
+
+                    if(questionTopicSet.size() < 5){
+
+                        tv_question_sets_available.setText("You Have Added "+questionTopicSet.size() + " Question-Sets, Please Note, You Can Add a Total of 5 Question-Sets");
+                    }else{
+
+                        tv_question_sets_available.setText("You Have Added 5 Question-Sets, Please Delete an Existing Set if You Wish To Add a New Question-Set");
+                        btn_create_questions.setVisibility(View.GONE);
+                    }
+
+                } else if (resp.getResult().equals(Constants.FAILURE)) {
+
+                    BaseActivity.showToast((Context) view, "Synchronisation Failed, Please Try Again!");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                progress.setVisibility(View.INVISIBLE);
+                BaseActivity.showToast((Context) view, t.toString());
+
+
+            }
+        });
     }
 }
