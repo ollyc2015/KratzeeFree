@@ -70,7 +70,7 @@
 
     <string name="scratch_registered">Scratch Registered</string>
 
-    <string name="addQuestion">Allow Students Access to Your Questions With Your Quiz Pin. This Will Be Generated Once You Submit Your Questions</string>
+    <string name="addQuestion">Allow Students Access to Your Questions With Your Quiz Pin. This Will Be Generated Once You Submit Your Questions and Can Be Found in the \'Edit Existing Question-Sets\' option found in the Main Menu.</string>
     <string name="setQuestions">Set Your Questions</string>
 
     <string name="tutorial">App Tutorial</string>

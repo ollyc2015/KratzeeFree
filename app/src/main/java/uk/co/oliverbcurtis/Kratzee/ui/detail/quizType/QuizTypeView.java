@@ -1,7 +1,6 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.quizType;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -11,7 +10,7 @@ import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SubmitPoints;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.pinInput.QuizPinInputView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.pinInput.QuizPinView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
 
@@ -20,8 +19,6 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
     private Button btn_indi, btn_team;
     public static boolean indiButtonPressed = false;
     public static boolean teamButtonPressed = false;
-
-    private TutorialView tutorialView;
 
 
     @Override
@@ -59,7 +56,6 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
         }
 
         //If the user has decided to take the tutorial, start the first tutorial
-        tutorialView = new TutorialView();
         if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
 
             tutorialView.quizTypeTutorial1(this);
@@ -86,6 +82,7 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
         }
 
         if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
             switch (StartScreenView.tutorial_counter) {
 
                 case 0:
@@ -103,7 +100,7 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
     @Override
     public void goToPinScreen(){
 
-        Intent intent = new Intent(getApplicationContext(), QuizPinInputView.class);
+        Intent intent = new Intent(getApplicationContext(), QuizPinView.class);
         startActivity(intent);
     }
 

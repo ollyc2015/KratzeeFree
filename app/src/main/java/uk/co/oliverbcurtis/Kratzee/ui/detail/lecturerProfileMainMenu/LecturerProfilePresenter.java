@@ -166,10 +166,10 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
                     if(questionTopicSet.size() < 5){
 
                         tv_question_sets_available.setText("You Have Added "+questionTopicSet.size() + " Question-Sets, Please Note, You Can Add a Total of 5 Question-Sets");
+                        btn_create_questions.setVisibility(View.VISIBLE);
                     }else{
 
-                        tv_question_sets_available.setText("You Have Added 5 Question-Sets, Please Delete an Existing Set if You Wish To Add a New Question-Set");
-                        btn_create_questions.setVisibility(View.GONE);
+                        tv_question_sets_available.setText("You Have Added 5 Question-Sets, Please Delete an Existing Set (You Can Do This by Clicking 'Edit Existing Question-Sets' below) if You Wish To Add a New Question-Set");
                     }
 
                 } else if (resp.getResult().equals(Constants.FAILURE)) {

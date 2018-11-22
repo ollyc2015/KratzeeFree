@@ -12,9 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import uk.co.oliverbcurtis.Kratzee.R;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaExisting.IndiTriviaExistView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class IndiTriviaRegisterView extends BaseActivity implements IndiTriviaRegisterContract.View, View.OnClickListener {
 
@@ -36,6 +38,7 @@ public class IndiTriviaRegisterView extends BaseActivity implements IndiTriviaRe
     @Override
     public void initView() {
 
+        StartScreenView.tutorial_counter = 0;
 
         presenter = new IndiTriviaRegisterPresenter();
         presenter.attachView(this);
@@ -53,6 +56,12 @@ public class IndiTriviaRegisterView extends BaseActivity implements IndiTriviaRe
         tv_studentSelection.setOnClickListener(this);
 
         progress = findViewById(R.id.progress);
+
+        //If the user has decided to take the tutorial, start the first tutorial for this screen
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            tutorialView.indiRegisterTutorial1(this);
+        }
 
     }
 
@@ -81,6 +90,27 @@ public class IndiTriviaRegisterView extends BaseActivity implements IndiTriviaRe
 
                 goToStudentNameSelection();
                 break;
+        }
+
+
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            switch (StartScreenView.tutorial_counter) {
+
+                case 0:
+                    tutorialView.indiRegisterTutorial2(this);
+                    break;
+
+
+                case 1:
+                    tutorialView.indiRegisterTutorial3(this);
+                    break;
+
+
+                case 2:
+                    tutorialView.closeIndiRegisterTutorial();
+                    break;
+            }
         }
     }
 

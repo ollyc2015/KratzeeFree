@@ -1,9 +1,12 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import java.util.List;
 
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Answer;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeContract;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase;
@@ -26,15 +30,16 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.MainPagerAdapter;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SwipeDisabledViewPager;
 
 
-public class IndiQuizScreenPresenter extends BaseActivity implements IndiQuizScreenContract.Presenter {
+public class IndiQuizScreenPresenter implements IndiQuizScreenContract.Presenter {
 
     private IndiQuizScreenContract.View view;
     private List<String> array1,array2,array3;
     private View individual_layout;
     private IndiScratchThreshold indiScratchThreshold = new IndiScratchThreshold();
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
-    public void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase) {
+    public void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase, SharedPreferences pref) {
 
         pager.setAdapter(pagerAdapter);
 
@@ -120,12 +125,12 @@ public class IndiQuizScreenPresenter extends BaseActivity implements IndiQuizScr
             Log.e(getClass().getSimpleName(), "Could not create or Open the database");
         }
 
-        loadLayouts(pager, pagerAdapter);
+        loadLayouts(pager, pagerAdapter, pref);
     }
 
 
     @Override
-    public void loadLayouts(final SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter){
+    public void loadLayouts(final SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter, SharedPreferences pref){
 
         int questionNumber = 1;
         int questionString = 0;
@@ -213,6 +218,21 @@ public class IndiQuizScreenPresenter extends BaseActivity implements IndiQuizScr
             //see their previous answers without risking scratching by mistake
             removeScratchFunctionality(pager);
 
+        }
+
+        //If the user has decided to take the tutorial, start the first tutorial for this screen
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            //use view post to add the demo to the queue so the main thread isn't over used
+            handler.post(() -> {
+
+                // use showcaseview (demo) here...
+                if (pager.getCurrentItem() == 0) {
+
+                    view.showDemo(individual_layout);
+
+                }
+            });
         }
     }
 
@@ -331,4 +351,7 @@ public class IndiQuizScreenPresenter extends BaseActivity implements IndiQuizScr
 
         return array1;
     }
+
+
+
 }

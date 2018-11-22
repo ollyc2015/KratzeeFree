@@ -15,9 +15,11 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaRegister.team.TeamTriviaRegisterView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
 
-public class QuizPinInputView extends BaseActivity implements QuizPinContract.View, View.OnClickListener {
+public class QuizPinView extends BaseActivity implements QuizPinContract.View, View.OnClickListener {
 
     private EditText et_pin;
     private AppCompatButton btn_submit_pin;
@@ -35,6 +37,8 @@ public class QuizPinInputView extends BaseActivity implements QuizPinContract.Vi
 
     @Override
     public void initView() {
+
+        StartScreenView.tutorial_counter = 0;
 
         presenter = new QuizPinPresenter();
         presenter.attachView(this);
@@ -54,6 +58,12 @@ public class QuizPinInputView extends BaseActivity implements QuizPinContract.Vi
 
         progress = findViewById(R.id.progress);
 
+        //If the user has decided to take the tutorial, start the first tutorial
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            tutorialView.pinInputTutorial1(this);
+        }
+
     }
 
 
@@ -69,6 +79,15 @@ public class QuizPinInputView extends BaseActivity implements QuizPinContract.Vi
 
                 presenter.pinProcess(pin, progress, pref);
                 break;
+        }
+
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+            switch (StartScreenView.tutorial_counter) {
+
+                case 0:
+                    tutorialView.closeQuizPinTutorial();
+                    break;
+            }
         }
 
     }

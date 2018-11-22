@@ -1,6 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen;
 
 
+import android.content.SharedPreferences;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -17,13 +18,14 @@ public interface IndiQuizScreenContract {
             void goToPreviousScreen();
             void goToNextScreen();
             void submitPoints(ProgressBar progressBar);
+            void showDemo(android.view.View individual_layout);
         }
 
         interface Presenter{
 
-            void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase);
+            void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase, SharedPreferences pref);
             void attachView(IndiQuizScreenContract.View view);
-            void loadLayouts(final SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter);
+            void loadLayouts(final SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter, SharedPreferences pref);
             void setQuestions(android.view.View group_layout, int questionNumber, int questionString);
             void submitButton(android.view.View group_layout, SwipeDisabledViewPager pager);
             void nextQuestionButton(android.view.View individual_layout, SwipeDisabledViewPager pager);
