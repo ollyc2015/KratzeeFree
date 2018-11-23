@@ -32,8 +32,6 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
     @Override
     public void initView() {
 
-        StartScreenView.tutorial_counter = 0;
-
         btn_indi = findViewById(R.id.btn_indi);
         btn_indi.setOnClickListener(this);
 
@@ -81,20 +79,6 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
                 break;
         }
 
-        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
-
-            switch (StartScreenView.tutorial_counter) {
-
-                case 0:
-                    tutorialView.quizTypeTutorial2(this);
-                    break;
-
-
-                case 1:
-                    tutorialView.closeQuizTypeTutorial();
-                    break;
-            }
-        }
     }
 
     @Override

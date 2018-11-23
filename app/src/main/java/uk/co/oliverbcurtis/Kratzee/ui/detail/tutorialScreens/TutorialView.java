@@ -1,95 +1,69 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens;
 
 import android.app.Activity;
-import android.graphics.Point;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
-
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.Target;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import android.widget.ScrollView;
+import me.toptas.fancyshowcase.FancyShowCaseQueue;
+import me.toptas.fancyshowcase.FancyShowCaseView;
+import me.toptas.fancyshowcase.FocusShape;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen.IndiQuizScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.pinInput.QuizPinView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class TutorialView extends BaseActivity implements TutorialContract.View {
 
-    private ShowcaseView showcaseView1, showcaseView2, showcaseView3, showcaseView4;
 
     /****************************************BELOW IS THE TUTORIAL FOR THE START SCREEN*****************************/
 
     @Override
     public void startScreenTutorial1(StartScreenView view, Toolbar toolbar){
 
-        Target homeTarget = () -> {
-            // Get approximate position of settings button on the starting screen app bar
-            int actionBarSize = toolbar.getHeight();
-            int x = actionBarSize * 7;
-            int y = actionBarSize / 2;
-            return new Point(x, y);
-        };
+        int actionBarSize = toolbar.getHeight();
 
-        showcaseView1 = new ShowcaseView.Builder(view)
-                .setTarget(homeTarget)
-                .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Want a Tutorial Refresher or Fancy Giving Some Useful Feedback? Click On The Highlighted Button and Choose From the Available Options.\n\nPlease Click 'Ok' At the Bottom of the Page To Continue the Tutorial.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+
+        final FancyShowCaseView fancyShowCaseView1 = new FancyShowCaseView.Builder(view)
+                .focusOn(toolbar)
+                .title("\n\nWelcome To Kratzee! \n\nWant a Tutorial Refresher or Fancy Giving Some Useful Feedback?\n\nClick On The Highlighted Button and Choose From the Available Options.\n\nClick Anywhere on The Screen to Continue the Tutorial.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.BOTTOM | Gravity.CENTER)
+                .focusRectAtPosition(actionBarSize * 7, actionBarSize / 2,  250, 250)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView1.setButtonText("OK!");
 
 
-    }
+         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
+                 .focusOn(view.findViewById(R.id.btn_student))
+                 .title("\n\nTake a Quiz!\n\nTo Take a Quiz Click The Button Highlighted. Please Note that you Will Need a Quiz PIN Given to You by The Person That Created the Quiz.")
+                 .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                 .roundRectRadius(90)
+                 .backgroundColor(Color.parseColor("#e51249d9"))
+                 .build();
 
-    @Override
-    public void startScreenTutorial2(StartScreenView view){
 
-        showcaseView1.hide();
-
-         showcaseView2 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.btn_student)))
-                .setContentTitle("Welcome To Kratzee!")
-                .setContentText("To Take a Quiz Click The Button Highlighted, Please Note that you Will Need a Quiz PIN Given to You by The Person That Created the Quiz.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                 .blockAllTouches()
-                .setOnClickListener(view)
+        FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.btn_lecturer))
+                .title("\n\nCreate an Account and Make a Kratzee!\n\nTo Create an Account and Make Your Own Question-Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! ")
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView2.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView2.setButtonText("OK!");
-
-        StartScreenView.tutorial_counter++;
-
-    }
 
 
-    @Override
-    public void startScreenTutorial3(StartScreenView view) {
+        FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
+                .add(fancyShowCaseView1)
+                .add(fancyShowCaseView2)
+                .add(fancyShowCaseView3);
 
-        showcaseView2.hide();
-
-         showcaseView3 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.btn_lecturer)))
-                .setContentTitle("Welcome To Kratzee!")
-                .setContentText("To Create an Account and Make Your Own Question Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! ")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                 .blockAllTouches()
-                .setOnClickListener(view)
-                .build();
-        showcaseView3.setButtonText("OK!");
-
-        StartScreenView.tutorial_counter++;
-    }
-
-
-    @Override
-    public void closeStartScreenTutorial(){
-
-        showcaseView3.hide();
+        mQueue.show();
 
     }
 
@@ -99,42 +73,32 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
     public void quizTypeTutorial1(QuizTypeView view){
 
-
-        showcaseView1 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.btn_indi)))
-                .setContentTitle("Welcome To Kratzee!")
-                .setContentText("To Take an Independent Quiz, Click The Highlighted Button. The Idea is to take this by yourself with no help, this will test your own understanding, before taking the same quiz in a team. More will be explained later...")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+        FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.btn_indi))
+                .title("\n\nIndividual Quiz\n\nTo Take an Independent Quiz, Click The Highlighted Button. The Idea is to take this by yourself with no help, this will test your own understanding, before taking the same quiz in a team. More will be explained later...")
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView1.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView1.setButtonText("OK!");
 
-    }
 
-    public void quizTypeTutorial2(QuizTypeView view){
-
-        showcaseView1.hide();
-
-        showcaseView2 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.btn_team)))
-                .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Once you have Completed the Individual Quiz, The Highlighted Button will become Available. You will then Take the Same Quiz as a Team, the Objective Will be Explained Later...")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .blockAllTouches()
-                .setOnClickListener(view)
+        FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.btn_team))
+                .title("\n\nTeam Quiz\n\nOnce you have Completed the Individual Quiz, The Highlighted Button will become Available. You will then Take the Same Quiz as a Team, the Objective Will be Explained Later...")
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView2.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView2.setButtonText("OK!");
 
-        StartScreenView.tutorial_counter++;
 
-    }
 
-    public void closeQuizTypeTutorial(){
+        FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
+                .add(fancyShowCaseView1)
+                .add(fancyShowCaseView2);
 
-        showcaseView2.hide();
+        mQueue.show();
 
     }
 
@@ -144,23 +108,15 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
     public void pinInputTutorial1(QuizPinView view){
 
 
-        showcaseView1 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.et_pin)))
-                .setContentTitle("Welcome To Kratzee!")
-                .setContentText("Enter Your Quiz PIN in the Highlighted Area. This will be Given to You by the Person That has Created the Quiz.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
-                .build();
-        showcaseView1.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView1.setButtonText("OK!");
-
-    }
-
-    public void closeQuizPinTutorial(){
-
-        showcaseView1.hide();
-
+           new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.et_pin))
+                .title("\n\nPIN Input\n\nEnter Your Quiz PIN in the Highlighted Area. This will be Given to You by the Person That has Created the Quiz.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build()
+                .show();
     }
 
 
@@ -169,143 +125,131 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
     public void indiRegisterTutorial1(IndiTriviaRegisterView view){
 
-        showcaseView1 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.et_indi_name)))
-                .setContentTitle("First Time?")
-                .setContentText("If this is your First time Taking a Quiz by The Person who Gave You Their PIN, Register Your Name In the Highlighted Area.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+
+        FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.et_indi_name))
+                .title("\n\nFirst Time?\n\nIf this is your First time Taking a Quiz by The Person who Gave You Their PIN, Register Your Name In the Highlighted Area.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView1.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView1.setButtonText("OK!");
 
-    }
-
-    public void indiRegisterTutorial2(IndiTriviaRegisterView view){
-
-        showcaseView1.hide();
-
-        showcaseView2 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.et_indi_student_number)))
-                .setContentTitle("First Time?")
-                .setContentText("Here You Can Enter Your Student ID or Create a Random 7 Figure Unique-ID (and Remember it) - This will Help You To Identify Yourself in the Event You Take Future Quizzes set by The Same Person")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+        FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.et_indi_student_number))
+                .title("\n\nFirst Time?\n\nHere You Can Enter Your Student ID or Create a Random 7 Figure Unique-ID (and Remember it) - This will Help You To Identify Yourself in the Event You Take Future Quizzes set by The Same Person")
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView2.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView2.setButtonText("OK!");
 
-        StartScreenView.tutorial_counter++;
 
-    }
-
-    public void indiRegisterTutorial3(IndiTriviaRegisterView view){
-
-        showcaseView2.hide();
-
-        showcaseView3 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.tv_studentSelection)))
-                .setContentTitle("Already Registered?")
-                .setContentText("If you have Previously Taken a Quiz by The Person who Gave You Their PIN and Registered Your Name, Click on The Highlighted Button and Search For Your Name or Student Number in The Filterable List")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+        FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.tv_studentSelection))
+                .title("\n\nAlready Registered?\n\nIf you have Previously Taken a Quiz by The Person who Gave You Their PIN and Registered Your Name, Click on The Highlighted Button and Search For Your Name or Student Number in The Filterable List")
+                .titleStyle(R.style.MyTitleStyle, Gravity.TOP | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView3.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-        showcaseView3.setButtonText("OK!");
-
-        StartScreenView.tutorial_counter++;
-
-    }
 
 
-    public void closeIndiRegisterTutorial(){
+        FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
+                .add(fancyShowCaseView1)
+                .add(fancyShowCaseView2)
+                .add(fancyShowCaseView3);
 
-        showcaseView3.hide();
+        mQueue.show();
 
     }
 
 
-    /*************************BELOW IS THE TUTORIAL FOR THE INDIVIDUAL QUIZ SCREEN
-     * @param view
-     ********************************/
+    /*************************BELOW IS THE TUTORIAL FOR THE INDIVIDUAL QUIZ SCREEN********************************/
 
     public void indiQuizScreenTutorial1(Activity view){
 
-        showcaseView1 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.tv_question)))
-                .setContentTitle("Individual Quiz Screen Tutorial")
-                .setContentText("Here You Can Find the Question, Read it Carefully! You Only Need to Select ONE answer Per Question. At this Point You will Not Know If You Are Correct, This is To Test Your Own Understanding Before The Team Quiz.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-               // .setOnClickListener(this::indiQuizScreenTutorial1)
-                .blockAllTouches()
+
+        FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.tv_question))
+                .title("\n\nIndividual Quiz Screen Tutorial\n\nHere You Can Find the Question, Read it Carefully! You Only Need to Select ONE answer Per Question. At this Point You will Not Know If You Are Correct, This is To Test Your Own Understanding Before The Team Quiz.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
+                .enableAutoTextPosition()
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView1.setButtonText("OK!");
+
+        FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.tv_answer1))
+                .title("\n\nIndividual Quiz Screen Tutorial\n\nHere You Find One of Four Possible Answers, Carefully Read Each Possible Answer.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.BOTTOM | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build();
+
+
+        FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.imageView1))
+                .title("\n\nIndividual Quiz Screen Tutorial\n\nOnce You Have Read All The Possible Answers and Are Happy to Submit Your Choice, Scratch a Pad. Only when More Than 80% of the Pad has been Scratched, Will an answer Be Committed.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.BOTTOM | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build();
+
+
+
+        FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
+                .add(fancyShowCaseView1)
+                .add(fancyShowCaseView2)
+                .add(fancyShowCaseView3);
+
+        mQueue.show();
+
+
+        mQueue.setCompleteListener(() -> {
+
+            ((ScrollView) view.findViewById(R.id.myQuestionScrollView)).fullScroll(View.FOCUS_DOWN);
+
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                //Call the next tutorial screen after 100ms, this gives enough time for the view to focus down
+                quizScreenTutorial2(view);
+            }, 100);
+        });
 
     }
 
+    private void quizScreenTutorial2(Activity view){
 
-    public void indiQuizScreenTutorial2(IndiQuizScreenView view){
-
-        showcaseView1.hide();
-
-        showcaseView2 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.tv_answer2)))
-                .setContentTitle("Individual Quiz Screen Tutorial")
-                .setContentText("Here You Find One of Four Possible Answers, Carefully Read Each Possible Answer.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+        FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.pagination_container))
+                .title("\n\nHighlighted are the Pagination Buttons; These Are Not Active During the Quiz as Pagination is Automatic. However, You Can Use the Pagination Buttons Once You Have Completed The Quiz To Reflect On Your Committed Answers.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView2.setButtonText("OK!");
 
-        StartScreenView.tutorial_counter++;
 
-    }
-
-    public void indiQuizScreenTutorial3(IndiQuizScreenView view){
-
-        showcaseView2.hide();
-
-        showcaseView3 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.imageView2)))
-                .setContentTitle("Individual Quiz Screen Tutorial")
-                .setContentText("Once You Have Read All The Possible Answers and Are Happy to Submit Your Choice, Scratch a Pad. Only when More Than 80% of the Pad has been Scratched, Will an answer Be Committed.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
+        FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.pageIndicatorView))
+                .title("\n\nIndividual Quiz Screen Tutorial\n\nHighlighted is the the Page Indicator. This will Display How Many Questions Are Remaining.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.BOTTOM | Gravity.CENTER)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();
-        showcaseView3.setButtonText("OK!");
 
-        StartScreenView.tutorial_counter++;
+        FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
+                .add(fancyShowCaseView1)
+                .add(fancyShowCaseView2);
 
-    }
+        mQueue.show();
 
-
-    public void indiQuizScreenTutorial4(IndiQuizScreenView view){
-
-        showcaseView3.hide();
-
-        showcaseView4 = new ShowcaseView.Builder(view)
-                .setTarget(new ViewTarget(view.findViewById(R.id.pageIndicatorView)))
-                .setContentTitle("Individual Quiz Screen Tutorial")
-                .setContentText("Here You Can See the Page Indicator. This will Display How Many Questions Are Remaining. You Can Use the Pagination Buttons above, Once You Have Completed The Quiz To Reflect On Your Committed Answers.")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setOnClickListener(view)
-                .blockAllTouches()
-                .build();
-        showcaseView4.setButtonText("OK!");
-
-        StartScreenView.tutorial_counter++;
-
-    }
-
-
-    public void closeIndiQuizScreenTutorial(){
-
-        showcaseView4.hide();
+        mQueue.setCompleteListener(() -> ((ScrollView) view.findViewById(R.id.myQuestionScrollView)).fullScroll(View.FOCUS_UP));
 
     }
 

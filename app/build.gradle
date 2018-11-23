@@ -46,7 +46,5 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor "com.google.dagger:dagger-compiler:2.16"
     //Demo library
-    implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
-
-
+    implementation 'com.github.faruktoptas:FancyShowCaseView:1.1.0'
 }

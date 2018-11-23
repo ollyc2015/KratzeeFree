@@ -38,7 +38,6 @@ public class QuizPinView extends BaseActivity implements QuizPinContract.View, V
     @Override
     public void initView() {
 
-        StartScreenView.tutorial_counter = 0;
 
         presenter = new QuizPinPresenter();
         presenter.attachView(this);
@@ -80,16 +79,6 @@ public class QuizPinView extends BaseActivity implements QuizPinContract.View, V
                 presenter.pinProcess(pin, progress, pref);
                 break;
         }
-
-        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
-            switch (StartScreenView.tutorial_counter) {
-
-                case 0:
-                    tutorialView.closeQuizPinTutorial();
-                    break;
-            }
-        }
-
     }
 
     @Override

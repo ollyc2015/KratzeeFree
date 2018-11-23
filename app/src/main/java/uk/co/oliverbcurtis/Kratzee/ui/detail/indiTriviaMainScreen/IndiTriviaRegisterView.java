@@ -38,8 +38,6 @@ public class IndiTriviaRegisterView extends BaseActivity implements IndiTriviaRe
     @Override
     public void initView() {
 
-        StartScreenView.tutorial_counter = 0;
-
         presenter = new IndiTriviaRegisterPresenter();
         presenter.attachView(this);
 
@@ -93,25 +91,6 @@ public class IndiTriviaRegisterView extends BaseActivity implements IndiTriviaRe
         }
 
 
-        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
-
-            switch (StartScreenView.tutorial_counter) {
-
-                case 0:
-                    tutorialView.indiRegisterTutorial2(this);
-                    break;
-
-
-                case 1:
-                    tutorialView.indiRegisterTutorial3(this);
-                    break;
-
-
-                case 2:
-                    tutorialView.closeIndiRegisterTutorial();
-                    break;
-            }
-        }
     }
 
     @Override

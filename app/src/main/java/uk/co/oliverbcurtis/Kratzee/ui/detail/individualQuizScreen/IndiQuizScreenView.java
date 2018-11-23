@@ -3,12 +3,11 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import java.util.List;
-
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
@@ -16,7 +15,6 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.MainPagerAdapter;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SubmitPoints;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SwipeDisabledViewPager;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 
@@ -26,6 +24,8 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     private SwipeDisabledViewPager pager;
     private MainPagerAdapter pagerAdapter;
     private SubmitPoints submitPoints;
+    private boolean doubleBackToExitPressedOnce = false;
+    Activity individual_quiz;
 
 
     @Override
@@ -39,7 +39,6 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     @Override
     public void initView() {
 
-        StartScreenView.tutorial_counter = 0;
 
         presenter = new IndiQuizScreenPresenter();
         presenter.attachView(this);
@@ -76,31 +75,7 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
         }
 
-/*
-        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
 
-            switch (StartScreenView.tutorial_counter) {
-
-                case 0:
-                    tutorialView.indiQuizScreenTutorial2(this);
-                    break;
-
-
-                case 1:
-                    tutorialView.indiQuizScreenTutorial3(this);
-                    break;
-
-
-                case 2:
-                    tutorialView.indiQuizScreenTutorial4(this);
-                    break;
-
-                case 3:
-                    tutorialView.closeIndiQuizScreenTutorial();
-                    break;
-            }
-        }
-        */
     }
 
     @Override
@@ -153,28 +128,37 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     }
 
 
-    public void backToMainMenu(){
-
-        Intent intent = new Intent(getApplicationContext(), QuizTypeView.class);
-        startActivity(intent);
-    }
-
-
     //We are overriding this method so that users cannot simply back out of the quiz
     @Override
     public void onBackPressed() {
 
       //Below is what causes the activity to go to the previous activity
-      //super.onBackPressed();
+        if (doubleBackToExitPressedOnce) {
+            backToMainMenu();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        showToast(this, "Clicking Back Again Will Take You Back to The Main Menu");
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
     }
 
 
     @Override
     public void showDemo(View individual_layout){
 
-        Activity individual_quiz = (Activity)individual_layout.getContext();
+        //Casting the view to activity is necessary as the showcase view tutorial requires an activity as a param
+        individual_quiz = (Activity)individual_layout.getContext();
 
         tutorialView.indiQuizScreenTutorial1(individual_quiz);
 
+    }
+
+    @Override
+    public void backToMainMenu(){
+
+        Intent intent = new Intent(getApplicationContext(), StartScreenView.class);
+        startActivity(intent);
     }
 }

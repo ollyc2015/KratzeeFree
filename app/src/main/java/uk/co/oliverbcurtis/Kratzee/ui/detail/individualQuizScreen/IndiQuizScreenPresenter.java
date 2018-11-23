@@ -351,7 +351,4 @@ public class IndiQuizScreenPresenter implements IndiQuizScreenContract.Presenter
 
         return array1;
     }
-
-
-
 }

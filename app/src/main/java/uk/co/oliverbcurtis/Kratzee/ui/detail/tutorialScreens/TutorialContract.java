@@ -10,12 +10,6 @@ public interface TutorialContract {
     interface View {
 
         void startScreenTutorial1(StartScreenView view, Toolbar toolbar);
-        void startScreenTutorial2(StartScreenView view);
-        void startScreenTutorial3(StartScreenView view);
-        void closeStartScreenTutorial();
-
 
     }
-
-
 }

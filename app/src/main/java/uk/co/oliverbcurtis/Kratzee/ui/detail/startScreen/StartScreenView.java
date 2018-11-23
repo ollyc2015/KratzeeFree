@@ -25,7 +25,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     public static boolean lecturerButtonPressed = false;
 
     private Button btn_lecturer, btn_student;
-    public static int tutorial_counter = 0;
     Toolbar toolbar1;
     private SharedPreferences.Editor editor;
 
@@ -80,23 +79,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                 break;
         }
 
-        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
-
-            switch (tutorial_counter) {
-
-                case 0:
-                    tutorialView.startScreenTutorial2(this);
-                    break;
-
-                case 1:
-                    tutorialView.startScreenTutorial3(this);
-                    break;
-
-                case 2:
-                    tutorialView.closeStartScreenTutorial();
-                    break;
-            }
-        }
     }
 
     @Override
@@ -170,7 +152,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         switch (item.getItemId()){
 
             case R.id.tutorial_request:
-                StartScreenView.tutorial_counter = 0;
                 editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
                 tutorialView.startScreenTutorial1(this, toolbar1);
                 break;
