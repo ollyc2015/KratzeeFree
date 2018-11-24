@@ -125,9 +125,9 @@ public class SubmitPoints {
                     Score.resetScore();
                     indiQuizSubmitted = true;
                     IndiTriviaRegisterView.indiTriviaAccountCreated =false;
-                    QuizTypeView.indiButtonPressed = false;
+                    //QuizTypeView.indiButtonPressed = false;
                     array1.clear();
-                    indiQuizScreenView.backToMainMenu();
+                    indiQuizScreenView.backToQuizSelection();
 
                 } else {
                     String messageFromServer = resp.getMessage();
@@ -225,8 +225,8 @@ public class SubmitPoints {
                     Score.resetScore();
                     array1.clear();
                     indiQuizSubmitted = true;
-                    QuizTypeView.indiButtonPressed = false;
-                    indiQuizScreenView.backToMainMenu();
+                    //QuizTypeView.indiButtonPressed = false;
+                    indiQuizScreenView.backToQuizSelection();
 
                 } else {
                     String messageFromServer = resp.getMessage();

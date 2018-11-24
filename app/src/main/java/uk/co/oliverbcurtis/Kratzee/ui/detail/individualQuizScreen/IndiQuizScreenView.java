@@ -15,6 +15,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.MainPagerAdapter;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SubmitPoints;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SwipeDisabledViewPager;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 
@@ -139,7 +140,7 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
         }
 
         this.doubleBackToExitPressedOnce = true;
-        showToast(this, "Clicking Back Again Will Take You Back to The Main Menu");
+        showToast(this, "Clicking Back Again Will Take You Back to The Main Menu & You'll Lose Your Progress");
 
         new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
     }
@@ -153,6 +154,13 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
         tutorialView.indiQuizScreenTutorial1(individual_quiz);
 
+    }
+
+    @Override
+    public void backToQuizSelection(){
+
+        Intent intent = new Intent(getApplicationContext(), QuizTypeView.class);
+        startActivity(intent);
     }
 
     @Override

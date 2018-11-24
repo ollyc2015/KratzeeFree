@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import uk.co.oliverbcurtis.Kratzee.R;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaExisting.TeamTriviaExistView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaRegister.teamMember.TeamMemberTriviaRegisterView;
@@ -46,6 +47,12 @@ public class TeamTriviaRegisterView extends BaseActivity implements TeamTriviaRe
         presenter = new TeamTriviaRegisterPresenter();
 
         progress = findViewById(R.id.progress);
+
+        //If the user has decided to take the tutorial, start the first tutorial
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            tutorialView.teamRegistrationTutorial1(this);
+        }
     }
 
 

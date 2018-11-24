@@ -20,6 +20,7 @@ public interface IndiQuizScreenContract {
             void submitPoints(ProgressBar progressBar);
             void showDemo(android.view.View individual_layout);
             void backToMainMenu();
+            void backToQuizSelection();
         }
 
         interface Presenter{

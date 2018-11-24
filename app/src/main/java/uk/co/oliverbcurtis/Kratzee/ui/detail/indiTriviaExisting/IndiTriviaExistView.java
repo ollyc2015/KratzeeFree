@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import uk.co.oliverbcurtis.Kratzee.R;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Individual;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
@@ -54,6 +55,12 @@ public class IndiTriviaExistView extends BaseActivity implements IndiTriviaExist
         searchFilter();
 
         onRefresh();
+
+        //If the user has decided to take the tutorial, start the first tutorial
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            tutorialView.registeredIndividual1(this);
+        }
     }
 
 

@@ -1,8 +1,11 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaExisting;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatButton;
@@ -20,6 +23,7 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.List;
 import uk.co.oliverbcurtis.Kratzee.R;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Team;
 import uk.co.oliverbcurtis.Kratzee.model.TeamMember;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
@@ -37,7 +41,6 @@ public class TeamTriviaExistView extends BaseActivity implements TeamTriviaExist
     private EditText et_search_name;
     private List<String> new_team_member_id, new_team_member_present, existing_team_member_present, new_team_member_name, new_team_member_student_number, new_student_email;
     private DynamicNewTeamMemberButton dynamicNewTeamMemberButton;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +72,11 @@ public class TeamTriviaExistView extends BaseActivity implements TeamTriviaExist
 
         onRefresh();
 
+        //If the user has decided to take the tutorial, start the first tutorial
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            tutorialView.registeredTeamTutorial1(this);
+        }
     }
 
 
@@ -166,23 +174,22 @@ public class TeamTriviaExistView extends BaseActivity implements TeamTriviaExist
 
         //Inflate the layout select_team_member
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = (LayoutInflater) teamTriviaExistView.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        View view = inflater.inflate(R.layout.select_existing_team_member, null);
+        View select_teamMembers = LayoutInflater.from(this).inflate(R.layout.select_existing_team_member, null);
+        select_teamMembers.requestFocus();
 
         //Make reference to the empty linear layout, found in the select_team_member layout, so that dynamic data can be looped into it
-        LinearLayout teamMemberLayout = view.findViewById(R.id.teamMemberLayout);
+        LinearLayout teamMemberLayout = select_teamMembers.findViewById(R.id.teamMemberLayout);
 
         //Then create the dynamic existing team-member button
         DynamicTeamMemberButton dynamicTeamMemberButton = new DynamicTeamMemberButton();
         dynamicTeamMemberButton.createButton(getApplicationContext(), teamMember1, teamMemberLayout,  this);
 
         //The following are the EditText used to add another team-member to an existing team
-        EditText et_team_member_name = view.findViewById(R.id.et_team_member_name);
-        EditText et_team_member_student_number = view.findViewById(R.id.et_team_member_student_number);
-        EditText et_team_member_email = view.findViewById(R.id.et_team_member_email);
+        EditText et_team_member_name = select_teamMembers.findViewById(R.id.et_team_member_name);
+        EditText et_team_member_student_number = select_teamMembers.findViewById(R.id.et_team_member_student_number);
+        EditText et_team_member_email = select_teamMembers.findViewById(R.id.et_team_member_email);
 
-
-        builder.setView(view);
+        builder.setView(select_teamMembers);
         builder.setTitle("Team-Members");
         builder.setPositiveButton("Start Quiz", (dialog, which) -> { });
         builder.setNeutralButton("Add Team Member", (dialog, which) -> { });
@@ -195,18 +202,18 @@ public class TeamTriviaExistView extends BaseActivity implements TeamTriviaExist
 
         });
 
-
         AlertDialog dialog = builder.create();
+        dialog.show();
 
-
-        dialog.setOnShowListener(dialogInterface -> {
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
 
             submitButtonAction(dialog, teamMember1);
-            addMemberButtonAction(dialog, et_team_member_name, et_team_member_student_number, et_team_member_email, teamMemberLayout, view);
+         });
 
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(view -> {
+
+            addMemberButtonAction(dialog, et_team_member_name, et_team_member_student_number, et_team_member_email, teamMemberLayout, select_teamMembers);
         });
-
-        dialog.show();
     }
 
     //Adding existing Team-member buttons to the layout

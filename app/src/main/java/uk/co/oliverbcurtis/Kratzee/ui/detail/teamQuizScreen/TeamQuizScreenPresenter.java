@@ -1,9 +1,12 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import java.util.Objects;
 
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Answer;
+import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
 import uk.co.oliverbcurtis.Kratzee.model.Score;
 import uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeContract;
@@ -32,11 +36,11 @@ public class TeamQuizScreenPresenter implements TeamQuizScreenContract.Presenter
     private List<String> array1,array2,array3;
     private View team_layout;
     private TeamScratchThreshold teamScratchThreshold = new TeamScratchThreshold();
-
+    private Handler handler = new Handler(Looper.getMainLooper());
 
 
     @Override
-    public void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase) {
+    public void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase, SharedPreferences pref) {
 
         pager.setAdapter(pagerAdapter);
 
@@ -122,12 +126,12 @@ public class TeamQuizScreenPresenter implements TeamQuizScreenContract.Presenter
             Log.e(getClass().getSimpleName(), "Could not create or Open the database");
         }
 
-        loadLayouts(pager, pagerAdapter);
+        loadLayouts(pager, pagerAdapter, pref);
     }
 
 
     @Override
-    public void loadLayouts(final SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter){
+    public void loadLayouts(final SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter, SharedPreferences pref){
 
         int questionNumber = 1;
         int questionString = 0;
@@ -204,6 +208,21 @@ public class TeamQuizScreenPresenter implements TeamQuizScreenContract.Presenter
             //see their previous answers without risking scratching by mistake
             removeScratchFunctionality(pager);
 
+        }
+
+        //If the user has decided to take the tutorial, start the first tutorial for this screen
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+            //use view post to add the demo to the queue so the main thread isn't over used
+            handler.post(() -> {
+
+                // use showcaseview (demo) here...
+                if (pager.getCurrentItem() == 0) {
+
+                    view.showDemo(team_layout);
+
+                }
+            });
         }
 
 

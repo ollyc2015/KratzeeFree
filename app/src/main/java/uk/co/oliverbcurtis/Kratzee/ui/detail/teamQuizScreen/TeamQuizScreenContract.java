@@ -1,5 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen;
 
+import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -17,14 +19,15 @@ public interface TeamQuizScreenContract {
         void goToNextScreen();
         void submitPoints(ProgressBar progressBar);
         void showLeaderBoard();
-
+        void showDemo(android.view.View team_layout);
+        void backToMainMenu();
     }
 
 
     interface Presenter {
 
-        void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase);
-        void loadLayouts(SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter);
+        void selectQuestions(MainPagerAdapter pagerAdapter, SwipeDisabledViewPager pager, KratzeeDatabase kratzeeDatabase, SharedPreferences pref);
+        void loadLayouts(SwipeDisabledViewPager pager, MainPagerAdapter pagerAdapter, SharedPreferences pref);
         void setQuestions(android.view.View group_layout, int questionNumber, int questionString);
         void submitButton(android.view.View group_layout, SwipeDisabledViewPager pager);
         void nextQuestionButton(android.view.View group_layout, SwipeDisabledViewPager pager);

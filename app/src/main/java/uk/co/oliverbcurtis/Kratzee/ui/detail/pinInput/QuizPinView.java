@@ -58,7 +58,7 @@ public class QuizPinView extends BaseActivity implements QuizPinContract.View, V
         progress = findViewById(R.id.progress);
 
         //If the user has decided to take the tutorial, start the first tutorial
-        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+        if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true) && QuizTypeView.indiButtonPressed) {
 
             tutorialView.pinInputTutorial1(this);
         }

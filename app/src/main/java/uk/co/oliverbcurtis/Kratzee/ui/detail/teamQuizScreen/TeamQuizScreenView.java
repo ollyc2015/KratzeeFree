@@ -1,8 +1,10 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -18,6 +20,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.SubmitPoints;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SwipeDisabledViewPager;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.leaderboard.existingTeamLeaderboard.LeaderboardView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.leaderboard.newTriviaTeamEndScreen.EndScreenView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaRegister.teamMember.TeamMemberTriviaRegisterView;
 
 public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenContract.View, View.OnClickListener {
@@ -26,7 +29,8 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     private SwipeDisabledViewPager pager;
     private MainPagerAdapter pagerAdapter;
     private SubmitPoints submitPoints;
-
+    private Activity team_quiz;
+    private boolean doubleBackToExitPressedOnce = false;
 
 
     @Override
@@ -38,7 +42,6 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     }
 
 
-
     @Override
     public void initView() {
 
@@ -47,11 +50,11 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
 
 
         pagerAdapter = new MainPagerAdapter();
-        pager = findViewById (R.id.pager);
+        pager = findViewById(R.id.pager);
 
         submitPoints = new SubmitPoints();
 
-        presenter.selectQuestions(pagerAdapter, pager , kratzeeDatabase);
+        presenter.selectQuestions(pagerAdapter, pager, kratzeeDatabase, pref);
 
 
     }
@@ -79,9 +82,19 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
         }
     }
 
+    @Override
+    public void showDemo(View team_layout) {
+
+        //Casting the view to activity is necessary as the showcase view tutorial requires an activity as a param
+        team_quiz = (Activity) team_layout.getContext();
+
+        tutorialView.teamQuizScreenTutorial1(team_quiz);
+
+    }
+
 
     @Override
-    public void submitPoints(ProgressBar progressBar){
+    public void submitPoints(ProgressBar progressBar) {
 
         //Saving the number of questions array in shared pref for use in the leader-board table
         List<String> questionArray = presenter.returnQuestionArray();
@@ -90,12 +103,12 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
         editor.putStringSet("NumberOfQuestions", set).apply();
 
         //This is used to SUBMIT a NEW TRIVIA team to the external DB
-        if(TeamMemberTriviaRegisterView.newTeamSubmitted) {
+        if (TeamMemberTriviaRegisterView.newTeamSubmitted) {
 
             submitPoints.submitNewTeamTriviaPoints(progressBar, this, kratzeeDatabase);
 
-        //This method is used to UPDATE EXISTING TRIVIA and ASSESSMENT team profiles
-        }else {
+            //This method is used to UPDATE EXISTING TRIVIA and ASSESSMENT team profiles
+        } else {
 
             submitPoints.submitExistingTeamTriviaPoints(progressBar, this, kratzeeDatabase);
 
@@ -103,17 +116,17 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     }
 
     @Override
-    public void goToPreviousScreen(){
+    public void goToPreviousScreen() {
 
         View current_page = presenter.getCurrentPage(pagerAdapter, pager);
         List<String> questionArray = presenter.returnQuestionArray();
 
-        if (pager.getAdapter().getCount()== questionArray.size() && !current_page.findViewById(R.id.star1).isShown() && !current_page.findViewById(R.id.star2).isShown() &&
+        if (pager.getAdapter().getCount() == questionArray.size() && !current_page.findViewById(R.id.star1).isShown() && !current_page.findViewById(R.id.star2).isShown() &&
                 !current_page.findViewById(R.id.star3).isShown() && !current_page.findViewById(R.id.star4).isShown()) {
 
             showToast(this, "You Can Review Your Previous Answers Once You Have Answered All of the Questions");
 
-        }else{
+        } else {
 
             pager.setCurrentItem(pager.getCurrentItem() - 1);
         }
@@ -121,28 +134,28 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
 
 
     @Override
-    public void goToNextScreen(){
+    public void goToNextScreen() {
 
         View current_page = presenter.getCurrentPage(pagerAdapter, pager);
 
-        if(!current_page.findViewById(R.id.star1).isShown() && !current_page.findViewById(R.id.star2).isShown() &&
-                !current_page.findViewById(R.id.star3).isShown() && !current_page.findViewById(R.id.star4).isShown()){
+        if (!current_page.findViewById(R.id.star1).isShown() && !current_page.findViewById(R.id.star2).isShown() &&
+                !current_page.findViewById(R.id.star3).isShown() && !current_page.findViewById(R.id.star4).isShown()) {
 
             showToast(this, "Please Find the Star Before Moving On");
 
-        }else{
+        } else {
             pager.setCurrentItem(pager.getCurrentItem() + 1);
         }
     }
 
     @Override
-    public void showLeaderBoard(){
+    public void showLeaderBoard() {
 
         Intent intent = new Intent(getApplicationContext(), LeaderboardView.class);
         startActivity(intent);
     }
 
-    public void newTriviaRegisteredTeamEndScreen(){
+    public void newTriviaRegisteredTeamEndScreen() {
 
         Intent intent = new Intent(getApplicationContext(), EndScreenView.class);
         startActivity(intent);
@@ -155,6 +168,22 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     public void onBackPressed() {
 
         //Below is what causes the activity to go to the previous activity
-        //super.onBackPressed();
+        if (doubleBackToExitPressedOnce) {
+            backToMainMenu();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        showToast(this, "Clicking Back Again Will Take You Back to The Main Menu & You'll Lose Your Progress");
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
+
+    @Override
+    public void backToMainMenu(){
+
+        Intent intent = new Intent(getApplicationContext(), StartScreenView.class);
+        startActivity(intent);
+    }
+
 }

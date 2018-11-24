@@ -64,9 +64,9 @@
                             android:layout_marginTop="50dp"
                             android:fontFamily="@font/regular"
                             android:hint="@string/search_hint"
-                            android:textColorHint="@color/white"
                             android:inputType="textCapSentences|textPersonName"
                             android:textColor="@android:color/background_light"
+                            android:textColorHint="@color/white"
                             android:textColorLink="@android:color/background_light"
                             android:textSize="30sp"
                             android:textStyle="bold" />
