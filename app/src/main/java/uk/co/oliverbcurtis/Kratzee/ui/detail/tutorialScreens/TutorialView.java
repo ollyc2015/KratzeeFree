@@ -31,7 +31,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         final FancyShowCaseView fancyShowCaseView1 = new FancyShowCaseView.Builder(view)
                 .focusOn(toolbar.getChildAt(2))
-                .title("\n\nWelcome To Kratzee! \n\nWant a Tutorial Refresher or Fancy Giving Some Useful Feedback?\n\nClick On The Highlighted Button and Choose From the Available Options.\n\nClick Anywhere on The Screen to Continue the Tutorial.")
+                .title("\nWelcome To Kratzee! \n\nWant a Tutorial Refresher or Fancy Giving Some Useful Feedback?\n\nClick On The Highlighted Button and Choose From the Available Options.\n\nClick Anywhere on The Screen to Continue the Tutorial.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .roundRectRadius(90)
@@ -41,7 +41,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
          FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                  .focusOn(view.findViewById(R.id.btn_student))
-                 .title("\n\nTake a Quiz!\n\nTo Take a Quiz Click The Button Highlighted. Please Note that you Will Need a Quiz PIN Given to You by The Person That Created the Quiz.")
+                 .title("\nTake a Quiz!\n\nTo Take a Quiz Click The Button Highlighted. Please Note that you Will Need a Quiz PIN Given to You by The Person That Created the Quiz.")
                  .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                  .enableAutoTextPosition()
                  .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -52,7 +52,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.btn_lecturer))
-                .title("\n\nCreate an Account and Make a Kratzee!\n\nTo Create an Account and Make Your Own Question-Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! ")
+                .title("\nCreate an Account and Make a Kratzee!\n\nTo Create an Account and Make Your Own Question-Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! ")
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
@@ -78,9 +78,8 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.btn_indi))
-                .title("\n\nIndividual Quiz\n\nTo Take an Independent Quiz, Click The Highlighted Button. The Idea is to take this by yourself with no help, this will test your own understanding, before taking the same quiz in a team. More will be explained later...")
-                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
-                .enableAutoTextPosition()
+                .title("\nIndividual Quiz\n\nThe Idea of the Individual Quiz is to test your own understanding with no help, before taking the same quiz again in a team...")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP)
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .roundRectRadius(90)
                 .backgroundColor(Color.parseColor("#e51249d9"))
@@ -89,7 +88,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.btn_team))
-                .title("\n\nTeam Quiz\n\nOnce you have Completed the Individual Quiz, The Highlighted Button will become Available. You will then Take the Same Quiz as a Team, the Objective Will be Explained Later...")
+                .title("\nTeam Quiz\n\nOnce you have Completed the Individual Quiz, The Highlighted Button will become Available. You will then Take the Same Quiz as a Team, the Objective Will be Explained Later...")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -115,7 +114,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
            new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_pin))
-                .title("\n\nPIN Input\n\nEnter Your Quiz PIN in the Highlighted Area. This will be Given to You by the Person That has Created the Quiz.")
+                .title("\nPIN Input\n\nEnter Your Quiz PIN in the Highlighted Area. This will be Given to You by the Person That has Created the Quiz.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -134,9 +133,8 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_indi_name))
-                .title("\n\nFirst Time?\n\nIf this is your First time Taking a Individual-Quiz by The Person who Gave You Their PIN, Register Your Name In the Highlighted Area.")
-                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
-                .enableAutoTextPosition()
+                .title("\nFirst Time?\n\nIf this is your First time Taking an Individual-Quiz by The Person who Gave You Their PIN, Register Your Name In the Highlighted Area.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP)
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .roundRectRadius(90)
                 .backgroundColor(Color.parseColor("#e51249d9"))
@@ -144,7 +142,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_indi_student_number))
-                .title("\n\nFirst Time?\n\nHere You Can Enter Your Student ID or Create a Random 7 Figure Unique-ID (and Remember it) - This will Help You To Identify Yourself in the Event You Take Future Quizzes set by The Same Person")
+                .title("\nFirst Time?\n\nHere You Can Enter Your Student ID or Create a Random 7 Figure Unique-ID (and Remember it) - This will Help You To Identify Yourself in the Event You Take Future Quizzes set by The Same Person")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -155,7 +153,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.tv_studentSelection))
-                .title("\n\nAlready Registered?\n\nIf you have Previously Taken an Individual-Quiz by The Person who Gave You Their PIN and Registered Your Name, Click on The Highlighted Button and Search For Your Name or Student Number in The Filterable List")
+                .title("\nAlready Registered?\n\nIf you have Previously Taken an Individual-Quiz by The Person who Gave You Their PIN and Registered Your Name, Click on The Highlighted Button and Search For Your Name or Student Number in The Filterable List")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -179,7 +177,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_search_name))
-                .title("\n\nQuick Search\n\nIf You Cannot Immediately See Your Name In the List Below, Use the Search Field Highlighted to Filter By Entering Your Full-Name or Student-ID.")
+                .title("\nQuick Search\n\nIf You Cannot Immediately See Your Name In the List Below, Use the Search Field Highlighted to Filter By Entering Your Full-Name or Student-ID.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .enableAutoTextPosition()
@@ -191,7 +189,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.individualNameLayout))
-                .title("\n\nRegistered Teams\n\nIn the Highlighted Area You Can See All The Registered Names used to Take the Quizzes Set by The user that Gave You Their Quiz PIN. Please Search For Your Name In The Highlighted Area.")
+                .title("\nRegistered Teams\n\nIn the Highlighted Area You Can See All The Registered Names used to Take the Quizzes Set by The user that Gave You Their Quiz PIN. Please Search For Your Name In The Highlighted Area.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -215,7 +213,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.tv_question))
-                .title("\n\nIndividual Quiz Screen Tutorial\n\nHere You Can Find the Question, Read it Carefully! You Only Need to Select ONE answer Per Question. At this Point You will Not Know If You Are Correct, This is To Test Your Own Understanding Before The Team Quiz.")
+                .title("\nIndividual Quiz Screen Tutorial\n\nHere You Can Find the Question, Read it Carefully! You Only Need to Select ONE answer Per Question. At this Point You will Not Know If You Are Correct, This is To Test Your Own Understanding Before The Team Quiz.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -225,7 +223,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.tv_answer1))
-                .title("\n\nIndividual Quiz Screen Tutorial\n\nHere You Find One of Four Possible Answers, Carefully Read Each Possible Answer.")
+                .title("\nIndividual Quiz Screen Tutorial\n\nHere You Find One of Four Possible Answers, Carefully Read Each Possible Answer.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -236,7 +234,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.imageView1))
-                .title("\n\nIndividual Quiz Screen Tutorial\n\nOnce You Have Read All The Possible Answers and Are Happy to Submit Your Choice, Scratch a Pad. Only when More Than 80% of the Pad has been Scratched, Will an answer Be Committed.")
+                .title("\nIndividual Quiz Screen Tutorial\n\nOnce You Have Read All The Possible Answers and Are Happy to Submit Your Choice, Scratch a Pad. Only when More Than 80% of the Pad has been Scratched, Will an answer Be Committed.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -271,7 +269,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.pagination_container))
-                .title("\n\nPagination Buttons\n\nHighlighted are the Pagination Buttons; These Are Not Active During the Quiz as Pagination is Automatic. However, You Can Use the Pagination Buttons Once You Have Completed The Quiz To Reflect On Your Committed Answers.")
+                .title("\nPagination Buttons\n\nHighlighted are the Pagination Buttons; These Are Not Active During the Quiz as Pagination is Automatic. However, You Can Use the Pagination Buttons Once You Have Completed The Quiz To Reflect On Your Committed Answers.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -282,7 +280,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.pageIndicatorView))
-                .title("\n\nIndividual Quiz Screen Tutorial\n\nHighlighted is the the Page Indicator. This will Display How Many Questions Are Remaining.\n\nGood Luck!")
+                .title("\nIndividual Quiz Screen Tutorial\n\nHighlighted is the the Page Indicator. This Will Display How Many Questions Are Remaining.\n\nGood Luck!")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -308,9 +306,8 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_team))
-                .title("\n\nFirst Time?\n\nIf this is your First time Taking a Team Quiz by The Person who Gave You Their PIN, Register Your Team-Name In the Highlighted Area. Then Add Your Team-Members!")
-                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
-                .enableAutoTextPosition()
+                .title("\nFirst Time?\n\nIf this is your First time Taking a Team Quiz by The Person who Gave You Their PIN, Register Your Team-Name In the Highlighted Area. Then Add Your Team-Members!")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP)
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .roundRectRadius(90)
                 .backgroundColor(Color.parseColor("#e51249d9"))
@@ -320,7 +317,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.tv_teamSelection))
-                .title("\n\nAlready Registered?\n\nIf you have Previously Taken a Team-Quiz by The Person who Gave You Their PIN and Registered Your Team-Name and Team-Members\n\nClick on The Highlighted Button and Search For Your Team-Name in The Filterable List")
+                .title("\nAlready Registered?\n\nIf you have Previously Taken a Team-Quiz by The Person who Gave You Their PIN and Registered Your Team-Name and Team-Members\n\nClick on The Highlighted Button and Search For Your Team-Name in The Filterable List")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -342,7 +339,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.tv_all_student_names))
-                .title("\n\nExisting Teams\n\nFind Your Team Name and Once You Click on it, You'll be able to Select Your Team-Members That Are Present For This Session.\n\nYou Can also Add Another Team-Member if They were Not Present When You Originally Created the Team.")
+                .title("\nExisting Teams\n\nFind Your Team Name and Once You Click on it, You'll be able to Select Your Team-Members That Are Present For This Session.\n\nYou Can also Add Another Team-Member if They were Not Present When You Originally Created the Team.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .enableAutoTextPosition()
@@ -353,7 +350,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_search_name))
-                .title("\n\nQuick Search\n\nIf You Cannot Immediately See Your Team Name In the List Below, Use the Search Field Highlighted to Filter Through The Registered Teams")
+                .title("\nQuick Search\n\nIf You Cannot Immediately See Your Team Name In the List Below, Use the Search Field Highlighted to Filter Through The Registered Teams")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -364,7 +361,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.teamNameLayout))
-                .title("\n\nRegistered Teams\n\nIn the Highlighted Area You Can See All The Registered Teams used to Take the Quizzes Set by the user that Gave You Their Quiz PIN. Please Search For The Team Name You Created")
+                .title("\nRegistered Teams\n\nIn the Highlighted Area You Can See All The Registered Teams used to Take the Quizzes Set by the user that Gave You Their Quiz PIN. Please Search For The Team Name You Created")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -386,9 +383,8 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.team_points_containter))
-                .title("\n\nTeam Quiz Screen Tutorial\n\nThe Layout is Exactly the Same as the Individual Quiz Layout with a Couple of Additional Features.\n\nYou Can Now Keep Track of your Points. The Purpose here is to have a discussion with Your Team-Members, based on Your Individual Submissions, to Help Sniff out the correct answer as a Team!")
-                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
-                .enableAutoTextPosition()
+                .title("\nTeam Quiz Screen Tutorial\n\nThe Layout is Exactly the Same as the Individual Quiz Layout with a Couple of Additional Features.\n\nYou Can Now Keep Track of your Points. The Purpose here is to have a discussion with Your Team-Members, based on Your Individual Submissions, to Help Sniff out the correct answer as a Team!")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.BOTTOM )
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .roundRectRadius(90)
@@ -398,7 +394,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.imageView1))
-                .title("\n\nTeam Quiz Screen Tutorial\n\nNow When Your Scratch a Pad, You will Know if You have Found the Correct Answer by Finding the Star!\n\nIf you Find the Star on your...\n\n\n\n\n\n\n\nFirst Attempt = 4 Points\nSecond Attempt = 2 Points\nThird Attempt = 1 Point\nFourth Attempt = 0 Points\n\nGood Luck!")
+                .title("\nTeam Quiz Screen Tutorial\n\nNow When Your Scratch a Pad, You will Know if You have Found the Correct Answer by Finding the Star! Good Luck!\n\nIf you Find the Star on your...\nFirst Attempt = 4 Points\nSecond Attempt = 2 Points\nThird Attempt = 1 Point\nFourth Attempt = 0 Points")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
