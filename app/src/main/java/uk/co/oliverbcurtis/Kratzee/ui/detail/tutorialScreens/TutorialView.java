@@ -28,15 +28,12 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
     @Override
     public void startScreenTutorial1(StartScreenView view, Toolbar toolbar){
 
-        int actionBarSize = toolbar.getHeight();
-
 
         final FancyShowCaseView fancyShowCaseView1 = new FancyShowCaseView.Builder(view)
-                .focusOn(toolbar)
+                .focusOn(toolbar.getChildAt(2))
                 .title("\n\nWelcome To Kratzee! \n\nWant a Tutorial Refresher or Fancy Giving Some Useful Feedback?\n\nClick On The Highlighted Button and Choose From the Available Options.\n\nClick Anywhere on The Screen to Continue the Tutorial.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
-                .focusRectAtPosition(actionBarSize * 7, actionBarSize / 2,  250, 250)
                 .roundRectRadius(90)
                 .backgroundColor(Color.parseColor("#e51249d9"))
                 .build();

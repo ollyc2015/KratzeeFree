@@ -169,7 +169,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     public void onBackPressed() {
 
         //Below is what causes the activity to go to the previous activity
-        //super.onBackPressed();
+        showToast(this, "Back is Deactivated on this Screen, Go Forwards, its the Only Way!");
 
     }
 }
