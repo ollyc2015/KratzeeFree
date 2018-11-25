@@ -45,7 +45,8 @@
             android:ems="10"
             android:fontFamily="@font/regular"
             android:hint="@string/questionRequired"
-            android:inputType="textCapSentences|textMultiLine"
+            android:imeOptions="actionNext"
+            android:inputType="text|textCapSentences"
             android:textStyle="bold" />
 
         <FrameLayout
@@ -78,7 +79,7 @@
                 android:ems="10"
                 android:fontFamily="@font/regular"
                 android:hint="@string/answer1"
-                android:inputType="textCapSentences|textMultiLine"
+                android:inputType="text|textCapSentences"
                 android:textStyle="bold" />
 
         </FrameLayout>
@@ -100,7 +101,7 @@
                 android:ems="10"
                 android:fontFamily="@font/regular"
                 android:hint="@string/answer2"
-                android:inputType="textCapSentences|textMultiLine"
+                android:inputType="text|textCapSentences"
                 android:textStyle="bold" />
 
             <CheckBox
@@ -146,7 +147,7 @@
                 android:ems="10"
                 android:fontFamily="@font/regular"
                 android:hint="@string/answer3"
-                android:inputType="textCapSentences|textMultiLine"
+                android:inputType="text|textCapSentences"
                 android:textStyle="bold" />
 
         </FrameLayout>
@@ -180,7 +181,7 @@
                 android:ems="10"
                 android:fontFamily="@font/regular"
                 android:hint="@string/answer4"
-                android:inputType="textCapSentences|textMultiLine"
+                android:inputType="text|textCapSentences"
                 android:textStyle="bold" />
 
         </FrameLayout>

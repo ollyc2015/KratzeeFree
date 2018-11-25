@@ -13,12 +13,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-
 import java.util.List;
-
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.feedbackForm.FeedbackView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu.LecturerProfileView;
 
 import static uk.co.oliverbcurtis.Kratzee.sqlite.KratzeeDatabase.ANSWER_TABLE;
@@ -34,6 +31,7 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
     private CheckBox cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit;
     private LinearLayout new_question_layout;
     public static int questionNumber = 1;
+    private ScrollView mScrollView;
 
 
     @Override
@@ -48,6 +46,8 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
         presenter = new CreateQuestionSetPresenter();
         presenter.attachView(this);
+
+        mScrollView = findViewById(R.id.mScrollView);
 
         et_question_topic = findViewById(R.id.et_question_topic);
 
@@ -468,10 +468,18 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
     @Override
     public void onBackPressed() {
 
-        questionNumber = 1;
-        //Below is what causes the activity to go to the previous activity
-        Intent intent = new Intent(getApplicationContext(), LecturerProfileView.class);
-        startActivity(intent);
+        if(new_question_layout.getChildCount() > 0){
+
+            showToast(this, "Please Save Your Questions or Remove Them Before Leaving!");
+            mScrollView.fullScroll(View.FOCUS_DOWN);
+        }else {
+
+            questionNumber = 1;
+            //Below is what causes the activity to go to the previous activity
+            Intent intent = new Intent(getApplicationContext(), LecturerProfileView.class);
+            startActivity(intent);
+
+        }
 
     }
 }

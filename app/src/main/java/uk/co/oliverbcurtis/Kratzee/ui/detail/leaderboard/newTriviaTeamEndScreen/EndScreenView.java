@@ -5,17 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Score;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
-import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 public class EndScreenView extends BaseActivity implements View.OnClickListener  {
 
     private TextView tv_points_display;
-    private Button btn_home;
+    private ImageView btn_home;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

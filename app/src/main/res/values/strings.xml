@@ -92,4 +92,5 @@
 
     <!--Lecturer create questions-->
     <string name="submit_lecturer_questions">Save &amp; Submit All Questions</string>
+    <string name="new_team_registered_end_screen">new team registered end screen</string>
 </resources>
