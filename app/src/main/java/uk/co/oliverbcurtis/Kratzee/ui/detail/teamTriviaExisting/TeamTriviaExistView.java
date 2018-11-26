@@ -285,6 +285,7 @@ public class TeamTriviaExistView extends BaseActivity implements TeamTriviaExist
 
                             dialog.dismiss();
                             progress.setVisibility(View.VISIBLE);
+                            teamNameLayout.setVisibility(View.GONE);
                             presenter.submitTeamMembers(new_team_member_present, existing_team_member_present, new_team_member_name, new_team_member_student_number, kratzeeDatabase, pref, teamMember1, new_student_email, new_team_member_id);
 
                         })

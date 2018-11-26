@@ -296,6 +296,7 @@ public class TeamTriviaExistPresenter implements TeamTriviaExistContract.Present
 
         }catch (Exception e) {
             e.printStackTrace();
+            BaseActivity.showToast((Context) view, "Unable to Submit Team To Database due to "+e);
         }
 
     }

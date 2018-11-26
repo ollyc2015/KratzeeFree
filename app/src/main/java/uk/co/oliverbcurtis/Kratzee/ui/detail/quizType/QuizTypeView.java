@@ -36,7 +36,7 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
         btn_indi.setOnClickListener(this);
 
         btn_team = findViewById(R.id.btn_team);
-
+        
 
         if(SubmitPoints.indiQuizSubmitted){
             btn_team.setOnClickListener(this);
@@ -53,6 +53,7 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
             Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
             btn_indi.startAnimation(shake);
         }
+
 
 
         //If the user has decided to take the tutorial, start the first tutorial
