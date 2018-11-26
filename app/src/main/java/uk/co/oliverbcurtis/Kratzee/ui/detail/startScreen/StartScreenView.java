@@ -4,13 +4,18 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
@@ -28,6 +33,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     Toolbar toolbar1;
     private SharedPreferences.Editor editor;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +46,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
         toolbar1 = findViewById(R.id.quiz_format);
         setSupportActionBar(toolbar1);
-
 
         btn_student = findViewById(R.id.btn_student);
         btn_student.setOnClickListener(this);
@@ -59,6 +64,8 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
             showInternetMessage();
         }
+
+
     }
 
     @Override

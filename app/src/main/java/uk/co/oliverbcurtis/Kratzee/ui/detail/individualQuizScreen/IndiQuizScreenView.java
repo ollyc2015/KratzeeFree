@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import java.util.List;
 import uk.co.oliverbcurtis.Kratzee.R;
@@ -39,7 +40,6 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
     @Override
     public void initView() {
-
 
         presenter = new IndiQuizScreenPresenter();
         presenter.attachView(this);

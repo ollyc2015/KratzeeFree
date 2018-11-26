@@ -6,10 +6,14 @@ import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import me.toptas.fancyshowcase.FancyShowCaseQueue;
 import me.toptas.fancyshowcase.FancyShowCaseView;
 import me.toptas.fancyshowcase.FocusShape;
+import me.toptas.fancyshowcase.listener.DismissListener;
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaExisting.IndiTriviaExistView;
@@ -243,7 +247,6 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
                 .build();
 
 
-
         FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
                 .add(fancyShowCaseView1)
                 .add(fancyShowCaseView2)
@@ -254,13 +257,60 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         mQueue.setCompleteListener(() -> {
 
-            ((ScrollView) view.findViewById(R.id.myQuestionScrollView)).fullScroll(View.FOCUS_DOWN);
+            ImageView fingerDemo = view.findViewById(R.id.finger_demo);
+            fingerDemo.setImageResource(R.drawable.finger_demo);
+            fingerDemo.bringToFront();
 
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> {
-                //Call the next tutorial screen after 100ms, this gives enough time for the view to focus down
-                quizScreenTutorial2(view);
-            }, 200);
+            TranslateAnimation mAnimation = new TranslateAnimation(0, 180, 0, 0);
+            mAnimation.setDuration(1000);
+            mAnimation.setFillAfter(true);
+            mAnimation.setRepeatCount(-1); //if set to -1, the animation will repeat continuously
+            mAnimation.setRepeatMode(Animation.REVERSE);
+            fingerDemo.setAnimation(mAnimation);
+
+            mAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                    new FancyShowCaseView.Builder(view)
+                            .focusOn(view.findViewById(R.id.imageView1))
+                            .title("\nIndividual Quiz Screen Tutorial\n\nSimply Scratch Left to Right Then Lift your Finger off the Screen and then Re-Apply, Left to Right For A Better Scratch Experience!")
+                            .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
+                            .enableAutoTextPosition()
+                            .focusCircleRadiusFactor(1.8)
+                            .roundRectRadius(90)
+                            .backgroundColor(Color.parseColor("#e51249d9"))
+                            .dismissListener(new DismissListener() {
+                                @Override
+                                public void onDismiss(String id) {
+                                    // FancyShowCaseView is dismissed by user
+                                    //Remove the finger image
+                                    fingerDemo.setImageResource(android.R.color.transparent);
+                                    ((ScrollView) view.findViewById(R.id.myQuestionScrollView)).fullScroll(View.FOCUS_DOWN);
+
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(() -> {
+                                        //Call the next tutorial screen after 100ms, this gives enough time for the view to focus down
+                                        quizScreenTutorial2(view);
+                                    }, 200);
+                                }
+
+                                @Override
+                                public void onSkipped(String id) {
+                                    // Skipped because it was setup to shown only once and shown before
+                                }
+                            })
+                            .build()
+                            .show();
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) { }
+
+                @Override
+                public void onAnimationEnd(Animation animation) { }
+            });
         });
 
     }
