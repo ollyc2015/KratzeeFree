@@ -1,5 +1,11 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Handler;
@@ -23,6 +29,9 @@ import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaExisting.TeamTriviaExistView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.teamTriviaRegister.team.TeamTriviaRegisterView;
+
+import static android.view.View.TRANSLATION_X;
+import static android.view.View.TRANSLATION_Y;
 
 public class TutorialView extends BaseActivity implements TutorialContract.View {
 
@@ -259,7 +268,8 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
             ImageView fingerDemo = view.findViewById(R.id.finger_demo);
             fingerDemo.setImageResource(R.drawable.finger_demo);
-            fingerDemo.bringToFront();
+
+
 
             TranslateAnimation mAnimation = new TranslateAnimation(0, 180, 0, 0);
             mAnimation.setDuration(1000);
@@ -267,6 +277,38 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
             mAnimation.setRepeatCount(-1); //if set to -1, the animation will repeat continuously
             mAnimation.setRepeatMode(Animation.REVERSE);
             fingerDemo.setAnimation(mAnimation);
+
+
+            /*
+            ValueAnimator animator = ValueAnimator.ofFloat(0, 1); // values from 0 to 1
+            animator.setDuration(1000); // 1 seconds duration
+            animator.setRepeatCount(-1);
+            animator.setRepeatMode(ValueAnimator.REVERSE);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
+            {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+
+                    float value = (Float) (animation.getAnimatedValue());
+                    // Set translation of your view here. Position can be calculated
+                    // out of value. This code should move the view in a half circle.
+                    fingerDemo.setTranslationX((float)(180.0 * Math.sin(value*Math.PI)));
+                    fingerDemo.setTranslationY((float)(80.0 * Math.cos(value*Math.PI)));
+
+                }
+            });
+            animator.addListener(new AnimatorListenerAdapter()
+            {
+                @Override
+                public void onAnimationEnd(Animator animation)
+                {
+                    // done
+                }
+            });
+            animator.start();
+
+*/
+
 
             mAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -311,6 +353,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
                 @Override
                 public void onAnimationEnd(Animation animation) { }
             });
+
         });
 
     }
