@@ -6,6 +6,8 @@ import android.support.v7.widget.AppCompatButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
+
 public interface LecturerProfileContract {
 
     interface View {
@@ -27,6 +29,6 @@ public interface LecturerProfileContract {
         void changePasswordProcess(String email, String old_password, String new_password, ProgressBar progress, AlertDialog dialog);
         void removeAllQuestion(ProgressBar progress, SharedPreferences pref);
         void removeAllParticipants(ProgressBar progress, SharedPreferences pref);
-        void getAllTopics(ProgressBar progress, SharedPreferences pref, TextView tv_question_sets_available, AppCompatButton btn_create_questions);
+        void getAllTopics(ProgressBar progress, SharedPreferences pref, TextView tv_question_sets_available, AppCompatButton btn_create_questions, TutorialView tutorialView);
     }
 }

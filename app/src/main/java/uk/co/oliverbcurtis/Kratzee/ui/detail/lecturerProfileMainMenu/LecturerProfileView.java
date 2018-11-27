@@ -70,7 +70,8 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
         progress = findViewById(R.id.progress);
         progress.setVisibility(View.VISIBLE);
 
-        presenter.getAllTopics(progress, pref, tv_question_sets_available, btn_create_questions);
+        presenter.getAllTopics(progress, pref, tv_question_sets_available, btn_create_questions, tutorialView);
+
 
     }
 

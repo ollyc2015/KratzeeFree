@@ -21,6 +21,7 @@ import uk.co.oliverbcurtis.Kratzee.model.Constants;
 import uk.co.oliverbcurtis.Kratzee.model.Lecturer;
 import uk.co.oliverbcurtis.Kratzee.model.Question;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.tutorialScreens.TutorialView;
 
 public class LecturerProfilePresenter implements LecturerProfileContract.Presenter {
 
@@ -136,7 +137,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
 
 
     @Override
-    public void getAllTopics(ProgressBar progress, SharedPreferences pref, TextView tv_question_sets_available, AppCompatButton btn_create_questions) {
+    public void getAllTopics(ProgressBar progress, SharedPreferences pref, TextView tv_question_sets_available, AppCompatButton btn_create_questions, TutorialView tutorialView) {
 
         //create new Question object
         Lecturer lecturer = new Lecturer();
@@ -170,6 +171,12 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
                     }else{
 
                         tv_question_sets_available.setText("You Have Added 5 Question-Sets, Please Delete an Existing Set (You Can Do This by Clicking 'Edit Existing Question-Sets' below) if You Wish To Add a New Question-Set");
+                    }
+
+                    //If the user has decided to take the tutorial, start the first tutorial
+                    if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+                        tutorialView.lecturerProfileTutorial1((LecturerProfileView) view);
                     }
 
                 } else if (resp.getResult().equals(Constants.FAILURE)) {

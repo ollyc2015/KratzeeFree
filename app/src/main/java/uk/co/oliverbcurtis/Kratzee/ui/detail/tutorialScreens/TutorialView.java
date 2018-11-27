@@ -24,6 +24,7 @@ import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaExisting.IndiTriviaExistView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu.LecturerProfileView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.pinInput.QuizPinView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
@@ -500,6 +501,60 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
                 .add(fancyShowCaseView2);
 
         mQueue.show();
+    }
+
+    /*************************BELOW IS THE TUTORIAL FOR LECTURER PROFILE MAIN MENU SCREEN********************************/
+
+    public void lecturerProfileTutorial1(LecturerProfileView view){
+
+        FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.tv_question_sets_available))
+                .title("\nQuiz Creator Tutorial\n\nHere you can Keep Track of your Remaining Question-Set Allocation. Currently, You can add a Total of 5 different Question-Sets.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER )
+                .focusCircleRadiusFactor(1.8)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build();
+
+        FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.btn_create_questions))
+                .title("\nCreate a Question-Set\n\nThe Highlighted Button is Visible When you're within Your Question-Set Allocation Limit. Create a Question-Set & a Question-PIN will automatically be Generated.\n\nA Question-Set is defined by a Topic and a You can add as many Questions to a Topic as you Wish!")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP )
+                .enableAutoTextPosition()
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build();
+
+        FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.btn_edit_topics))
+                .title("\nEdit a Question-Set\n\nIn 'Edit Existing Question-Sets' (the button highlighted) you can Edit an Existing Question-Set and Also Find Your Generated Question-PINs.\n\nYou can also Activate and Deactivate Your Question-Topics. This means that whilst deactivated, no-one can access your Question-Set, Even if they have the PIN.")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP )
+                .enableAutoTextPosition()
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build();
+
+        FancyShowCaseView fancyShowCaseView4  = new FancyShowCaseView.Builder(view)
+                .focusOn(view.findViewById(R.id.btn_edit_topics))
+                .title("\nEdit a Question-Set\n\nA Good Tip\n\nOnce Your users have Taken the Individual Quiz and have Entered the same PIN for the Team-Quiz, Deactivate the Quiz PIN. This will Limit Cheating because if a Team Back out of The Quiz after completing it but not submitting and then Re-Enter the PIN, they will be unable to Gain Access to the Quiz and Start Again without having to notify you.\n\nNow Explore and Enjoy!")
+                .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP )
+                .enableAutoTextPosition()
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .roundRectRadius(90)
+                .backgroundColor(Color.parseColor("#e51249d9"))
+                .build();
+
+        FancyShowCaseQueue mQueue = new FancyShowCaseQueue()
+                .add(fancyShowCaseView1)
+                .add(fancyShowCaseView2)
+                .add(fancyShowCaseView3)
+                .add(fancyShowCaseView4);
+
+        mQueue.show();
+
     }
 
 }

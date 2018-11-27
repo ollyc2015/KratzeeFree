@@ -28,6 +28,7 @@
             android:textSize="50sp" />
 
         <LinearLayout
+            android:id="@+id/tv_welcome_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -70,6 +71,7 @@
                 android:layout_marginBottom="60dp"
                 android:fontFamily="@font/mikado_ultra"
                 android:gravity="center"
+                android:padding="10dp"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp"
                 android:visibility="gone" />
