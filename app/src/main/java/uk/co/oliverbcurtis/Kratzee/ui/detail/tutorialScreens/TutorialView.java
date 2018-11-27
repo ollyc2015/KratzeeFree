@@ -66,7 +66,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.btn_lecturer))
-                .title("\nCreate an Account and Make a Kratzee!\n\nTo Create an Account and Make Your Own Question-Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! ")
+                .title("\nCreate an Account and Make a Kratzee!\n\nTo Create an Account and Make Your Own Question-Sets, Click The Highlighted Button! This is Where You'll Generate Your Quiz PIN's! Click the highlighted button to Continue the Tutorial to set-up a Question-Set. Please Note, to continue the tutorial for taking a Quiz, Please Reset the Quiz Tutorial as shown Earlier.")
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
@@ -509,7 +509,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView1  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.tv_question_sets_available))
-                .title("\nQuiz Creator Tutorial\n\nHere you can Keep Track of your Remaining Question-Set Allocation. Currently, You can add a Total of 5 different Question-Sets.")
+                .title("\nQuiz Creator Tutorial\n\nHere you can Keep Track of your Remaining Question-Set Allocation. You can add a Total of 5 different Question-Sets.")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER )
                 .focusCircleRadiusFactor(1.8)
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
@@ -519,7 +519,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.btn_create_questions))
-                .title("\nCreate a Question-Set\n\nThe Highlighted Button is Visible When you're within Your Question-Set Allocation Limit. Create a Question-Set & a Question-PIN will automatically be Generated.\n\nA Question-Set is defined by a Topic and a You can add as many Questions to a Topic as you Wish!")
+                .title("\nCreate a Question-Set\n\nThe Highlighted Button is Visible When you're within Your Question-Set Allocation Limit. Create a Question-Set & a Question-PIN will automatically be Generated.\n\nA Question-Set is defined by a Topic and You can add as many Questions to a Topic as you Wish!")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER | Gravity.TOP )
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
