@@ -14,7 +14,6 @@ public interface LeaderboardContract {
 
         void initView();
         void populateLeaderboard(List<TeamMember> array1);
-        void backToMainMenu();
 
     }
 

@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import uk.co.oliverbcurtis.Kratzee.model.TeamMember;
@@ -127,7 +129,8 @@ public class LeaderboardPresenter implements LeaderboardContract.Presenter {
         String selectQuery = "SELECT " + KratzeeContract.LEADERBOARD_FULLNAME + ","
                 + KratzeeContract.LEADERBOARD_STUDENT_NUMBER + ","
                 + KratzeeContract.LEADERBOARD_POINTS + " FROM " + KratzeeDatabase.LEADERBOARD
-                +" ORDER BY "+ KratzeeContract.LEADERBOARD_POINTS +" DESC";;
+                +" ORDER BY CAST("+KratzeeContract.LEADERBOARD_POINTS + " AS INTEGER)" +" DESC";
+
 
         Cursor cursor1 = db1.rawQuery(selectQuery, null);
 
@@ -146,8 +149,8 @@ public class LeaderboardPresenter implements LeaderboardContract.Presenter {
             cursor1.close();
             db1.close();
 
-        }
+            view.populateLeaderboard(teamMembers);
 
-        view.populateLeaderboard(teamMembers);
+        }
     }
 }

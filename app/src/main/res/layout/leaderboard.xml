@@ -1,11 +1,7 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
@@ -15,7 +11,7 @@
 
         <include
             android:id="@+id/quiz_summary"
-            layout="@layout/leaderboard_app_bar"></include>
+            layout="@layout/leaderboard_app_bar" />
 
         <TextView
             android:id="@+id/tv_points_info"
@@ -34,27 +30,14 @@
         <ListView
             android:id="@+id/points_summary_listview"
             android:layout_width="match_parent"
-            android:layout_height="361dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:orientation="vertical"
-            android:weightSum="4">
+            android:weightSum="1">
 
         </ListView>
 
-        <Button
-            android:id="@+id/btn_close"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/mybutton"
-            android:fontFamily="@font/mikado_ultra"
-            android:text="Close"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
 
     </LinearLayout>
-</FrameLayout>
+

@@ -3,6 +3,7 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.leaderboard.existingTeamLeaderboar
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,11 +20,10 @@ import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
 
 
-public class LeaderboardView extends BaseActivity implements LeaderboardContract.View, View.OnClickListener {
+public class LeaderboardView extends BaseActivity implements LeaderboardContract.View {
 
     private LeaderboardPresenter presenter;
     private ListView points_summary_listview;
-    private Button btn_close;
     private TextView pointsInfo;
 
     @Override
@@ -48,9 +48,6 @@ public class LeaderboardView extends BaseActivity implements LeaderboardContract
         pointsInfo = findViewById(R.id.tv_points_info);
         pointsInfo.setText("This Sessions Points: "+Score.getScore()+"/"+questionArray.size()*4+" Points\nThese Points Will Be Added To Your Existing Points (If Applicable). Students Marked as Absent will Not Benefit From This Sessions Points.");
 
-        btn_close = findViewById(R.id.btn_close);
-        btn_close.setOnClickListener(this);
-
         presenter.getTeamMemberPoints(kratzeeDatabase, pref);
 
     }
@@ -66,21 +63,11 @@ public class LeaderboardView extends BaseActivity implements LeaderboardContract
 
 
     @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.btn_close:
-                backToMainMenu();
-                break;
-
-        }
-    }
-
-    @Override
-    public void backToMainMenu(){
+    public void onBackPressed() {
 
         Score.resetScore();
+
+        showToast(this, "You have Now Completed both the Individual Quiz & Team Quiz! Well Done!");
 
         Intent intent = new Intent(getApplicationContext(), StartScreenView.class);
         startActivity(intent);
