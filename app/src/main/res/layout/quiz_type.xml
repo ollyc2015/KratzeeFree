@@ -6,93 +6,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/scratch_end_gradient">
+       <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/scratch_end_gradient">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/main_background">
+              <RelativeLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:background="@drawable/main_background">
 
-            <include
-                android:id="@+id/quiz_type"
-                layout="@layout/quiz_type_app_bar"></include>
+                     <include
+                         android:id="@+id/quiz_type"
+                         layout="@layout/quiz_type_app_bar"></include>
 
-            <TextView
-                android:id="@+id/tv_welcome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/btn_indi"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="40dp"
-                android:ems="10"
-                android:fontFamily="@font/mikado_ultra"
-                android:gravity="center"
-                android:maxLength="280"
-                android:maxLines="8"
-                android:text="@string/startScreen"
-                android:textColor="@android:color/background_light"
-                android:textSize="50sp"
-                tools:layout_editor_absoluteX="128dp"
-                tools:layout_editor_absoluteY="169dp" />
+                     <TextView
+                         android:id="@+id/tv_welcome"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_above="@+id/btn_indi"
+                         android:layout_alignParentLeft="true"
+                         android:layout_marginLeft="20dp"
+                         android:layout_marginRight="20dp"
+                         android:layout_marginBottom="40dp"
+                         android:ems="10"
+                         android:fontFamily="@font/mikado_ultra"
+                         android:gravity="center"
+                         android:maxLength="280"
+                         android:maxLines="8"
+                         android:text="@string/startScreen"
+                         android:textColor="@android:color/background_light"
+                         android:textSize="50sp"
+                         tools:layout_editor_absoluteX="128dp"
+                         tools:layout_editor_absoluteY="169dp" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_indi"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="2"
-                android:background="@drawable/custom_button"
-                android:fontFamily="@font/regular"
-                android:text="@string/indiQuiz"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                     <android.support.v7.widget.AppCompatButton
+                         android:id="@+id/btn_indi"
+                         android:layout_width="match_parent"
+                         android:layout_height="100dp"
+                         android:layout_centerHorizontal="true"
+                         android:layout_centerVertical="true"
+                         android:layout_marginLeft="20dp"
+                         android:layout_marginRight="20dp"
+                         android:layout_weight="2"
+                         android:background="@drawable/custom_button"
+                         android:fontFamily="@font/regular"
+                         android:text="@string/indiQuiz"
+                         android:textColor="@android:color/white"
+                         android:textSize="20sp"
+                         android:textStyle="bold" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_team"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/btn_indi"
-                android:layout_alignRight="@+id/btn_indi"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="29dp"
-                android:layout_weight="2"
-                android:background="@drawable/custom_button"
-                android:elevation="24dp"
-                android:fontFamily="@font/regular"
-                android:text="@string/teamQuiz"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold">
+                     <android.support.v7.widget.AppCompatButton
+                         android:id="@+id/btn_team"
+                         android:layout_width="match_parent"
+                         android:layout_height="100dp"
+                         android:layout_below="@+id/btn_indi"
+                         android:layout_alignRight="@+id/btn_indi"
+                         android:layout_gravity="center_horizontal"
+                         android:layout_marginLeft="20dp"
+                         android:layout_marginTop="29dp"
+                         android:layout_weight="2"
+                         android:background="@drawable/custom_button"
+                         android:elevation="24dp"
+                         android:fontFamily="@font/regular"
+                         android:text="@string/teamQuiz"
+                         android:textColor="@android:color/white"
+                         android:textSize="20sp"
+                         android:textStyle="bold">
 
-            </android.support.v7.widget.AppCompatButton>
+                     </android.support.v7.widget.AppCompatButton>
 
 
-        </RelativeLayout>
+              </RelativeLayout>
 
-    </FrameLayout>
+       </FrameLayout>
 
 </ScrollView>
-
-
-
-
-
-
-
-
-
-
