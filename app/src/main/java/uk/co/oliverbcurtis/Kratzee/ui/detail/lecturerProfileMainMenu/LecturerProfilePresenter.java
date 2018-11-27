@@ -157,14 +157,14 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
 
                 if (resp.getResult().equals(Constants.SUCCESS)) {
 
-                    progress.setVisibility(View.INVISIBLE);
+                    progress.setVisibility(View.GONE);
+                    tv_question_sets_available.setVisibility(View.VISIBLE);
 
                     Question question = resp.getQuestion();
 
                     Set<String> questionTopicSet = new LinkedHashSet<>(question.getQuestionTopicList());
 
                     if(questionTopicSet.size() < 5){
-
                         tv_question_sets_available.setText("You Have Added "+questionTopicSet.size() + " Question-Sets, Please Note, You Can Add a Total of 5 Question-Sets");
                         btn_create_questions.setVisibility(View.VISIBLE);
                     }else{
@@ -175,6 +175,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
                 } else if (resp.getResult().equals(Constants.FAILURE)) {
 
                     BaseActivity.showToast((Context) view, "Synchronisation Failed, Please Try Again!");
+                    progress.setVisibility(View.GONE);
                 }
 
             }
@@ -182,7 +183,7 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
-                progress.setVisibility(View.INVISIBLE);
+                progress.setVisibility(View.GONE);
                 BaseActivity.showToast((Context) view, t.toString());
 
 
