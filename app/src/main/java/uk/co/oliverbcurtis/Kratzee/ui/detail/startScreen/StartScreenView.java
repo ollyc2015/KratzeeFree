@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +31,9 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     public static boolean lecturerButtonPressed = false;
 
     private Button btn_lecturer, btn_student;
-    Toolbar toolbar1;
+    private Toolbar toolbar1;
     private SharedPreferences.Editor editor;
+    private boolean doubleBackToExitPressedOnce = false;
 
 
     @Override
@@ -176,7 +178,18 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     public void onBackPressed() {
 
         //Below is what causes the activity to go to the previous activity
-        showToast(this, "Back is Deactivated on this Screen, Go Forwards, its the Only Way!");
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity(); //used to to close all the tasks in the stack related to the app
+            System.exit(0); //exit the app
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        showToast(this, "Clicking Back Again Will Close the App Completely and Take You to Your Home Menu");
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
 
     }
+
+
 }

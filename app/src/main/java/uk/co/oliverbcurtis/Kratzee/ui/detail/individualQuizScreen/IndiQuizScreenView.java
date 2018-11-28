@@ -27,7 +27,7 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     private MainPagerAdapter pagerAdapter;
     private SubmitPoints submitPoints;
     private boolean doubleBackToExitPressedOnce = false;
-    Activity individual_quiz;
+    private Activity individual_quiz;
 
 
     @Override
