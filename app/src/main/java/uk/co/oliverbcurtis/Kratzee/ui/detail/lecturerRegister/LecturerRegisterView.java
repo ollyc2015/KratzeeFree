@@ -58,9 +58,9 @@ public class LecturerRegisterView extends BaseActivity implements LecturerRegist
     @Override
     public void registerUser(){
 
-        String name = et_name.getText().toString();
-        String email = et_email.getText().toString();
-        String password = et_password.getText().toString();
+        String name = et_name.getText().toString().trim();
+        String email = et_email.getText().toString().trim();
+        String password = et_password.getText().toString().trim();
 
         if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
 
