@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -18,6 +20,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.MainPagerAdapter;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SubmitPoints;
 import uk.co.oliverbcurtis.Kratzee.ui.common.SwipeDisabledViewPager;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen.IndiQuizScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.leaderboard.existingTeamLeaderboard.LeaderboardView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.leaderboard.newTriviaTeamEndScreen.EndScreenView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
@@ -31,6 +34,9 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     private SubmitPoints submitPoints;
     private Activity team_quiz;
     private boolean doubleBackToExitPressedOnce = false;
+    private GestureDetector mGesture;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
 
     @Override
@@ -56,7 +62,7 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
 
         presenter.selectQuestions(pagerAdapter, pager, kratzeeDatabase, pref);
 
-
+        mGesture = new GestureDetector(this, mOnGesture);
     }
 
 
@@ -185,5 +191,60 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
         Intent intent = new Intent(getApplicationContext(), StartScreenView.class);
         startActivity(intent);
     }
+
+
+    //The below two methods handle touch events during the scratching. If the user scratches very quickly, the scroll will lock in place
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        boolean handled = super.dispatchTouchEvent(ev);
+        handled = mGesture.onTouchEvent(ev);
+        return handled;
+    }
+
+    private GestureDetector.OnGestureListener mOnGesture = new GestureDetector.SimpleOnGestureListener() {
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                               float velocityY) {
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
+
+                    showToast(TeamQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+
+                    // Disable Scrolling by setting up an OnTouchListener to do nothing
+                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
+
+                    current_page.setOnTouchListener((arg0, arg1) -> true);
+                }else{
+
+                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
+                    current_page.setOnTouchListener(null);
+
+                    showToast(TeamQuizScreenView.this, "Scrolling Not Blocked");
+
+                }
+                // right to left swipe/left to right swipe
+                if (Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY || Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
+
+                    current_page.setOnTouchListener((arg0, arg1) -> true);
+
+                    showToast(TeamQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+                }else{
+
+                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
+                    current_page.setOnTouchListener(null);
+
+                    showToast(TeamQuizScreenView.this, "Scrolling Not Blocked");
+
+                }
+
+            } catch (Exception e) {
+
+            }
+            return false;
+        }
+    };
 
 }

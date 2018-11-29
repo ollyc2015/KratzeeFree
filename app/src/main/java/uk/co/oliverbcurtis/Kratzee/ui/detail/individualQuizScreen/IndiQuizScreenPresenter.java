@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.rd.PageIndicatorView;
@@ -238,16 +239,16 @@ public class IndiQuizScreenPresenter implements IndiQuizScreenContract.Presenter
 
 
     @Override
-    public void setQuestions(View group_layout, int questionNumber, int questionString){
+    public void setQuestions(View individual_layout, int questionNumber, int questionString){
 
         Question question = new Question();
         question.setQuestionNumber(questionNumber);
         question.setQuestionString(array1.get(questionString));
 
         //Set the title of the all the views - Question 1, Question 2 etc
-        ((TextView) group_layout.findViewById(R.id.tv_question_number)).setText("Question "+question.getQuestionNumber());
+        ((TextView) individual_layout.findViewById(R.id.tv_question_number)).setText("Question "+question.getQuestionNumber());
         //Set the question string
-        ((TextView) group_layout.findViewById(R.id.tv_question)).setText(question.getQuestionString());
+        ((TextView) individual_layout.findViewById(R.id.tv_question)).setText(question.getQuestionString());
 
     }
 
@@ -351,4 +352,5 @@ public class IndiQuizScreenPresenter implements IndiQuizScreenContract.Presenter
 
         return array1;
     }
+
 }
