@@ -65,7 +65,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView3  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.btn_lecturer))
-                .title("\nCreate an Account and Make a Kratzee!\n\nThe Button Highlighted is Where You'll Create Questions, Obtain Your Quiz PIN's & Other Administrative Tasks!")
+                .title("\nCreate an Account and Make a Kratzee!\n\nThe Button Highlighted is Where You'll Create Questions, Obtain Your Quiz PIN's & Other Administrative Tasks!\n\nThis should be Your Starting Point if You haven't Been Given a PIN and Therefore Need to Create a Quiz.")
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
