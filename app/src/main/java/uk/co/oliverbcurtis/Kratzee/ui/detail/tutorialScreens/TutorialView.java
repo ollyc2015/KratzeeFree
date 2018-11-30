@@ -155,7 +155,7 @@ public class TutorialView extends BaseActivity implements TutorialContract.View 
 
         FancyShowCaseView fancyShowCaseView2  = new FancyShowCaseView.Builder(view)
                 .focusOn(view.findViewById(R.id.et_indi_student_number))
-                .title("\nFirst Time?\n\nHere You Can Enter Your Student ID or Create a Random 7 Figure Unique-ID (and Remember it) - This will Help You To Identify Yourself in the Event You Take Future Quizzes set by The Same Person")
+                .title("\nFirst Time?\n\nHere You Can Enter Your Student ID or Create a Random 8 Figure Unique-ID (and Remember it) - This will Help You To Identify Yourself in the Event You Take Future Quizzes set by The Same Person. A good ID might be your DOB: DDMMYYYY E.G. 07081988")
                 .titleStyle(R.style.MyTitleStyle, Gravity.CENTER)
                 .enableAutoTextPosition()
                 .focusShape(FocusShape.ROUNDED_RECTANGLE)
