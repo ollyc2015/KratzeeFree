@@ -174,8 +174,9 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
                     }
 
                     //If the user has decided to take the tutorial, start the first tutorial
-                    if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+                    if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true) && pref.getBoolean(Constants.SHOW_HOW_TO_SET_QUESTIONS,true)) {
 
+                        pref.edit().putBoolean(Constants.SHOW_HOW_TO_SET_QUESTIONS, false).apply();
                         tutorialView.lecturerProfileTutorial1((LecturerProfileView) view);
                     }
 

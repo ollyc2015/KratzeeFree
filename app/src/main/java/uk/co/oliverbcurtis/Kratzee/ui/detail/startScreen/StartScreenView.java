@@ -3,8 +3,6 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -12,10 +10,7 @@ import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Constants;
@@ -32,7 +27,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
     private Button btn_lecturer, btn_student;
     private Toolbar toolbar1;
-    private SharedPreferences.Editor editor;
     private boolean doubleBackToExitPressedOnce = false;
 
 
@@ -55,10 +49,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         btn_lecturer = findViewById(R.id.btn_lecturer);
         btn_lecturer.setOnClickListener(this);
 
-        editor = pref.edit();
-        editor.putBoolean(Constants.DEMO_REQUEST_MADE, false).apply();
-
-        if(pref.getBoolean(Constants.FIRST_TIME_PARTICIPANT,true) && isNetworkAvailable()) {
+        if(pref.getBoolean(Constants.FIRST_RUN,true) && isNetworkAvailable()) {
 
             offerTutorial();
 
@@ -66,8 +57,6 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
             showInternetMessage();
         }
-
-
     }
 
     @Override
@@ -99,17 +88,19 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(getString(R.string.yes), (dialog1, whichButton) -> {
 
-                    pref.edit().putBoolean(Constants.FIRST_TIME_PARTICIPANT, false).apply();
+                    pref.edit().putBoolean(Constants.FIRST_RUN, false).apply();
 
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
+                    //Below is needed so that the tutorial won't repeat after the user has set a question-set and gone back to the lecturer main menu
+                    //We will only set 'SHOW_HOW_TO_SET_QUESTIONS' to false once shown and leave 'DEMO_REQUEST_MADE' as true to use on the 'Take a Quiz' section
+                    pref.edit().putBoolean(Constants.SHOW_HOW_TO_SET_QUESTIONS, true).apply();
+                    pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
 
                     tutorialView.startScreenTutorial1(this, toolbar1);
 
                 })
                 .setNegativeButton(getString(R.string.no), (dialog1, whichButton) -> {
 
-                    pref.edit().putBoolean(Constants.FIRST_TIME_PARTICIPANT, false).apply();
+                    pref.edit().putBoolean(Constants.FIRST_RUN, false).apply();
 
                 }).show();
     }
@@ -148,8 +139,8 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
 
     //Used to check if there is an available internet connection when starting the app
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -158,10 +149,12 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
     //This method handles the option selected in the app-bar menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()){
 
             case R.id.tutorial_request:
-                editor.putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
+                pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
+                pref.edit().putBoolean(Constants.SHOW_HOW_TO_SET_QUESTIONS, true).apply();
                 tutorialView.startScreenTutorial1(this, toolbar1);
                 break;
 
@@ -190,6 +183,4 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
         new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
 
     }
-
-
 }

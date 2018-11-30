@@ -54,8 +54,6 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
             btn_indi.startAnimation(shake);
         }
 
-
-
         //If the user has decided to take the tutorial, start the first tutorial
         if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
             //When the screen is loaded for the first time, show the tutorial, but after the user has completed the indi quiz

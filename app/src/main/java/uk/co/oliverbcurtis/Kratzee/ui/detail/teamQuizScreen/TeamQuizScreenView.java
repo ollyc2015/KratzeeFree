@@ -1,6 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,7 +37,6 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     private boolean doubleBackToExitPressedOnce = false;
     private GestureDetector mGesture;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private boolean scratchMessageShown = false;
 
 
     @Override
@@ -201,6 +201,8 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
         return handled;
     }
 
+
+
     private GestureDetector.OnGestureListener mOnGesture = new GestureDetector.SimpleOnGestureListener() {
 
         @Override
@@ -215,12 +217,9 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
 
                     current_page.setOnTouchListener((arg0, arg1) -> true);
 
-                    if(!scratchMessageShown) {
-                        scratchMessageShown = true;
-                        showToast(TeamQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
-                    }else{
-                        showToast(TeamQuizScreenView.this ,"Scrolling Blocked");
-                    }
+
+                    showToast(TeamQuizScreenView.this ,"Scrolling Blocked");
+
 
                 }else{
 
@@ -231,8 +230,11 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
 
             } catch (Exception e) {
 
+                showToast(TeamQuizScreenView.this, "Unable to Determine Scratch Velocity Due to "+e);
+
             }
             return false;
         }
     };
+
 }

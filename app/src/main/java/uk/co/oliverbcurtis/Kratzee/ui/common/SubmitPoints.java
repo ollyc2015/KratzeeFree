@@ -415,6 +415,7 @@ public class SubmitPoints {
                             array1.clear();
                             indiQuizSubmitted = false;
                             TeamMemberTriviaRegisterView.newTeamSubmitted = false;
+                            pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, false).apply();
                             teamQuizScreenView.newTriviaRegisteredTeamEndScreen();
                         }
 
@@ -536,6 +537,7 @@ public class SubmitPoints {
     //Submit an existing trivia team-member points
     public void submitExistingTeamMemeberTriviaPoints(ProgressBar progress, TeamQuizScreenView teamQuizScreenView, KratzeeDatabase kratzeeDatabase){
 
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(teamQuizScreenView);
 
         int thisSessionsPoints = Score.getScore();
 
@@ -622,6 +624,7 @@ public class SubmitPoints {
                             existingTeamMemberSubmitted = true;
                             String messageFromServer = resp.getMessage();
                             array1.clear();
+                            pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, false).apply();
                             submitNewTeamMembersExistingTeam(progress, teamQuizScreenView, kratzeeDatabase, messageFromServer);
                         }
 
@@ -642,6 +645,8 @@ public class SubmitPoints {
     }
 
     private void submitNewTeamMembersExistingTeam(ProgressBar progress, TeamQuizScreenView teamQuizScreenView, KratzeeDatabase kratzeeDatabase, String messageFromServer){
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(teamQuizScreenView);
 
         //First, check to see if there were any new team-members added to an existing team, if not skip this step
         SQLiteDatabase db2 = kratzeeDatabase.getReadableDatabase();
@@ -764,6 +769,7 @@ public class SubmitPoints {
                                 array1.clear();
                                 indiQuizSubmitted = false;
                                 TeamMemberTriviaRegisterView.newTeamSubmitted = false;
+                                pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, false).apply();
                                 teamQuizScreenView.showLeaderBoard();
                             }
 

@@ -1,7 +1,9 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.individualQuizScreen;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,7 +40,6 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     private Activity individual_quiz;
     private GestureDetector mGesture;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private boolean scratchMessageShown = false;
 
 
     @Override
@@ -63,6 +64,7 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
         presenter.selectQuestions(pagerAdapter, pager , kratzeeDatabase, pref);
 
         mGesture = new GestureDetector(this, mOnGesture);
+
     }
 
 
@@ -205,11 +207,14 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
                     current_page.setOnTouchListener((arg0, arg1) -> true);
 
-                    if(!scratchMessageShown) {
-                        scratchMessageShown = true;
-                        showToast(IndiQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+                    if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+
+                        scratchNotification();
+
                     }else{
-                        showToast(IndiQuizScreenView.this ,"Scrolling Blocked");
+
+                        showToast(IndiQuizScreenView.this ,"Scrolling Blocked to Allow Better Scratch Experience");
+
                     }
 
                 }else{
@@ -220,8 +225,22 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
             } catch (Exception e) {
 
+                showToast(IndiQuizScreenView.this, "Unable to Determine Scratch Velocity Due to "+e);
+
             }
             return false;
         }
     };
+
+
+    @Override
+    public void scratchNotification(){
+
+        new AlertDialog.Builder(this)
+                .setTitle("Scratching Quickly?")
+                .setMessage("When You Scratch Quickly, The Scroll Screen will be Locked into Position to Allow For a Better Scratch Experience. Please Scroll Lightly to Unlock Scrolling.\n\nTo Lock the Screen, Scratch the Pad from Left to Right Quickly, Lifting Your Finger off the Screen Once You've Swiped to the Right.\n\nNow You Can Continue Scratching without Lifting Your Finger, Until the Pad Has Been Fully Scratched!")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, (dialog1, whichButton) -> { })
+                .setNegativeButton(android.R.string.no, null).show();
+    }
 }

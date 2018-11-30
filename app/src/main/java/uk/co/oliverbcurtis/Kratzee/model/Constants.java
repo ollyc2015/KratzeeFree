@@ -71,12 +71,12 @@ public class Constants {
     public static final String LECTURER_ID = "lecturer_id";
 
     //Check if this is the first time the user has opened the app and clicked to take a quiz
-    public static final String FIRST_TIME_PARTICIPANT = "first_time_participant";
-    //Check if this is the first time the user has opened the app set their own quiz
-    public static final String FIRST_TIME_LECTURER = "first_time_lecturer";
-
+    public static final String FIRST_RUN = "first_time_participant";
     //At the beginning of the app, the user will be asked if they wish to have a demo of the app features
     public static final String DEMO_REQUEST_MADE = "demo_has_request_made";
+    //Check if the user has seen the 'how to set your questions' tutorial
+    public static final String SHOW_HOW_TO_SET_QUESTIONS = "first_time_lecturer";
+
 
     //When a lecturer loads their profile and clicks to add a question topic, first load all existing topics, below is the operation needed
     public static final String LOAD_EXISTING_TOPICS = "load_existing_topics";
