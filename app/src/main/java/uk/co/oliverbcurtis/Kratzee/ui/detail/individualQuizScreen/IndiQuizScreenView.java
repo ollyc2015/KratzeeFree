@@ -207,7 +207,9 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
                     current_page.setOnTouchListener((arg0, arg1) -> true);
 
-                    if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true)) {
+                    if(pref.getBoolean(Constants.DEMO_REQUEST_MADE,true) && pref.getBoolean(Constants.INFORM_HOW_TO_SCRATCH,true)) {
+
+                        pref.edit().putBoolean(Constants.INFORM_HOW_TO_SCRATCH, false).apply();
 
                         scratchNotification();
 

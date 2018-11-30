@@ -94,6 +94,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
                     //We will only set 'SHOW_HOW_TO_SET_QUESTIONS' to false once shown and leave 'DEMO_REQUEST_MADE' as true to use on the 'Take a Quiz' section
                     pref.edit().putBoolean(Constants.SHOW_HOW_TO_SET_QUESTIONS, true).apply();
                     pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
+                    pref.edit().putBoolean(Constants.INFORM_HOW_TO_SCRATCH, true).apply();
 
                     tutorialView.startScreenTutorial1(this, toolbar1);
 
@@ -155,6 +156,7 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
             case R.id.tutorial_request:
                 pref.edit().putBoolean(Constants.DEMO_REQUEST_MADE, true).apply();
                 pref.edit().putBoolean(Constants.SHOW_HOW_TO_SET_QUESTIONS, true).apply();
+                pref.edit().putBoolean(Constants.INFORM_HOW_TO_SCRATCH, true).apply();
                 tutorialView.startScreenTutorial1(this, toolbar1);
                 break;
 

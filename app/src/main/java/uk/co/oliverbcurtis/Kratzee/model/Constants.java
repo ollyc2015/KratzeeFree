@@ -76,7 +76,8 @@ public class Constants {
     public static final String DEMO_REQUEST_MADE = "demo_has_request_made";
     //Check if the user has seen the 'how to set your questions' tutorial
     public static final String SHOW_HOW_TO_SET_QUESTIONS = "first_time_lecturer";
-
+    //Check if the 'how to scratch' alert dialog has been shown.
+    public static final String INFORM_HOW_TO_SCRATCH = "inform_how_to_scratch";
 
     //When a lecturer loads their profile and clicks to add a question topic, first load all existing topics, below is the operation needed
     public static final String LOAD_EXISTING_TOPICS = "load_existing_topics";
