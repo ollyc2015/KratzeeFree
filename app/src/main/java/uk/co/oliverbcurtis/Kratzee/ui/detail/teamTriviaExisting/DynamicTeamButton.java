@@ -38,7 +38,7 @@ public class DynamicTeamButton {
                 btn_teamName.setTag(value);
                 btn_teamName.setTypeface(null, Typeface.BOLD);
                 //set button style to custom button
-                btn_teamName.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+                btn_teamName.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
                 //btn_question.setText("Question " + value);
                 btn_teamName.setGravity(Gravity.CENTER);
                 params.setMargins(100, dpToPx(10), 100, dpToPx(10));

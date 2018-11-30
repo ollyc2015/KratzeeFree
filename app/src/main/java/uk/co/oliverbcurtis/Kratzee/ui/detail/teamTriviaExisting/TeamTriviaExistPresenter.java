@@ -216,7 +216,7 @@ public class TeamTriviaExistPresenter implements TeamTriviaExistContract.Present
 
         } else {
 
-            teamMemberButton.setBackground(v.getResources().getDrawable(R.drawable.mybutton));
+            teamMemberButton.setBackground(v.getResources().getDrawable(R.drawable.custom_button));
 
             //get the id of the absent student
             Object originalStudentTagAbsent = v.getTag();
@@ -249,7 +249,7 @@ public class TeamTriviaExistPresenter implements TeamTriviaExistContract.Present
 
         } else {
 
-            teamMemberButton.setBackground(v.getResources().getDrawable(R.drawable.mybutton));
+            teamMemberButton.setBackground(v.getResources().getDrawable(R.drawable.custom_button));
 
             //get the id of the absent student
             Object originalStudentTagAbsent = v.getTag();

@@ -41,7 +41,7 @@ public void createButton(IndiTriviaExistView view, Individual individual) {
             btn_indiName.setTag(value);
             btn_indiName.setTypeface(null, Typeface.BOLD);
             //set button style to custom button
-            btn_indiName.setBackground(view.getResources().getDrawable(R.drawable.mybutton));
+            btn_indiName.setBackground(view.getResources().getDrawable(R.drawable.custom_button));
             //btn_question.setText("Question " + value);
             btn_indiName.setGravity(Gravity.CENTER);
             params.setMargins(150, dpToPx(10), 150, dpToPx(10));
