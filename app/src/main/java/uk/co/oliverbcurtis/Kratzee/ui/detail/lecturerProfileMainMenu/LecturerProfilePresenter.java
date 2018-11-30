@@ -90,13 +90,13 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
 
                 ServerResponse resp = response.body();
                 BaseActivity.showToast((Context) view, resp.getMessage());
-                progress.setVisibility(View.INVISIBLE);
+                progress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
-                progress.setVisibility(View.INVISIBLE);
+                progress.setVisibility(View.GONE);
                 BaseActivity.showToast((Context) view, t.toString());
             }
         });
@@ -123,13 +123,13 @@ public class LecturerProfilePresenter implements LecturerProfileContract.Present
 
                 ServerResponse resp = response.body();
                 BaseActivity.showToast((Context) view, resp.getMessage());
-                progress.setVisibility(View.INVISIBLE);
+                progress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
-                progress.setVisibility(View.INVISIBLE);
+                progress.setVisibility(View.GONE);
                 BaseActivity.showToast((Context) view, t.toString());
             }
         });
