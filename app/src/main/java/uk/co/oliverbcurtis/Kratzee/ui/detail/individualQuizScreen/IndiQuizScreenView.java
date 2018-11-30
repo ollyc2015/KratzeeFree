@@ -25,6 +25,7 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.SwipeDisabledViewPager;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.indiTriviaMainScreen.IndiTriviaRegisterView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.quizType.QuizTypeView;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.startScreen.StartScreenView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.teamQuizScreen.TeamQuizScreenView;
 
 
 public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenContract.View, View.OnClickListener  {
@@ -36,8 +37,8 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     private boolean doubleBackToExitPressedOnce = false;
     private Activity individual_quiz;
     private GestureDetector mGesture;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private boolean scratchMessageShown = false;
 
 
     @Override
@@ -196,22 +197,7 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                float velocityY) {
             try {
-                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
 
-                    showToast(IndiQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
-
-                    // Disable Scrolling by setting up an OnTouchListener to do nothing
-                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
-
-                    current_page.setOnTouchListener((arg0, arg1) -> true);
-                }else{
-
-                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
-                    current_page.setOnTouchListener(null);
-
-                    showToast(IndiQuizScreenView.this, "Scrolling Not Blocked");
-
-                }
                 // right to left swipe/left to right swipe
                 if (Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY || Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 
@@ -219,14 +205,17 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
                     current_page.setOnTouchListener((arg0, arg1) -> true);
 
-                    showToast(IndiQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+                    if(!scratchMessageShown) {
+                        scratchMessageShown = true;
+                        showToast(IndiQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+                    }else{
+                        showToast(IndiQuizScreenView.this ,"Scrolling Blocked");
+                    }
+
                 }else{
 
                     View current_page = presenter.getCurrentPage(pagerAdapter, pager);
                     current_page.setOnTouchListener(null);
-
-                    showToast(IndiQuizScreenView.this, "Scrolling Not Blocked");
-
                 }
 
             } catch (Exception e) {

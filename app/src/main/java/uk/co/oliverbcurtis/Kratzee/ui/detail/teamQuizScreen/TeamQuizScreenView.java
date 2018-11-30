@@ -35,8 +35,8 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     private Activity team_quiz;
     private boolean doubleBackToExitPressedOnce = false;
     private GestureDetector mGesture;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private boolean scratchMessageShown = false;
 
 
     @Override
@@ -207,36 +207,25 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                float velocityY) {
             try {
-                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
 
-                    showToast(TeamQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
-
-                    // Disable Scrolling by setting up an OnTouchListener to do nothing
-                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
-
-                    current_page.setOnTouchListener((arg0, arg1) -> true);
-                }else{
-
-                    View current_page = presenter.getCurrentPage(pagerAdapter, pager);
-                    current_page.setOnTouchListener(null);
-
-                    showToast(TeamQuizScreenView.this, "Scrolling Not Blocked");
-
-                }
-                // right to left swipe/left to right swipe
+                // right to left swipe/left to right swipe. If the velocity used is higher than the threshold amount, drop below.
                 if (Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY || Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 
                     View current_page = presenter.getCurrentPage(pagerAdapter, pager);
 
                     current_page.setOnTouchListener((arg0, arg1) -> true);
 
-                    showToast(TeamQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+                    if(!scratchMessageShown) {
+                        scratchMessageShown = true;
+                        showToast(TeamQuizScreenView.this, "Scrolling Blocked To Allow Better Scratch Experience, Scroll Lightly to Unblock Scrolling");
+                    }else{
+                        showToast(TeamQuizScreenView.this ,"Scrolling Blocked");
+                    }
+
                 }else{
 
                     View current_page = presenter.getCurrentPage(pagerAdapter, pager);
                     current_page.setOnTouchListener(null);
-
-                    showToast(TeamQuizScreenView.this, "Scrolling Not Blocked");
 
                 }
 
@@ -246,5 +235,4 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
             return false;
         }
     };
-
 }
