@@ -1,6 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerRegister;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ProgressBar;
 import retrofit2.Call;
@@ -27,7 +28,7 @@ public class LecturerRegisterPresenter implements LecturerRegisterContract.Prese
     }
 
     @Override
-    public void registerProcess(String name, String email, String password, ProgressBar progress) {
+    public void registerProcess(String name, String email, String password, ProgressBar progress, SharedPreferences pref) {
 
         //Creating a new Lecturer object
         Lecturer lecturer = new Lecturer();
@@ -51,7 +52,21 @@ public class LecturerRegisterPresenter implements LecturerRegisterContract.Prese
                     progress.setVisibility(View.INVISIBLE);
 
                     BaseActivity.showToast((Context) view, resp.getMessage());
-                    view.gotToLogin();
+
+
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.putBoolean(Constants.LECTURER_IS_LOGGED_IN, true);
+                    editor.putString(Constants.LECTURER_ID, resp.getLecturer().getLecturerID());
+                    editor.putString(Constants.LECTURER_EMAIL, resp.getLecturer().getEmail());
+                    editor.putString(Constants.LECTURER_NAME, resp.getLecturer().getName());
+                    editor.apply();
+
+                    Lecturer lecturer1 = resp.getLecturer();
+
+                    BaseActivity.showToast((Context) view, resp.getMessage());
+
+                    view.goToLecturerLobbyScreen(lecturer1);
 
                 } else {
                     String messageFromServer = resp.getMessage();

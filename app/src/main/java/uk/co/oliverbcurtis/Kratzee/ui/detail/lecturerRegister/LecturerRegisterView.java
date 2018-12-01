@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import uk.co.oliverbcurtis.Kratzee.R;
+import uk.co.oliverbcurtis.Kratzee.model.Lecturer;
 import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerLogin.LecturerLoginView;
+import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerProfileMainMenu.LecturerProfileView;
 
 
 public class LecturerRegisterView extends BaseActivity implements LecturerRegisterContract.View, View.OnClickListener {
@@ -65,7 +67,7 @@ public class LecturerRegisterView extends BaseActivity implements LecturerRegist
         if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
 
             progress.setVisibility(View.VISIBLE);
-            presenter.registerProcess(name,email,password, progress);
+            presenter.registerProcess(name,email,password, progress, pref);
 
         } else {
 
@@ -74,9 +76,11 @@ public class LecturerRegisterView extends BaseActivity implements LecturerRegist
     }
 
     @Override
-    public void gotToLogin(){
+    public void goToLecturerLobbyScreen(Lecturer lecturer){
 
-        Intent intent = new Intent(getApplicationContext(), LecturerLoginView.class);
+        Intent intent = new Intent(getApplicationContext(), LecturerProfileView.class);
+        intent.putExtra("lecturer", lecturer);
         startActivity(intent);
+
     }
 }
