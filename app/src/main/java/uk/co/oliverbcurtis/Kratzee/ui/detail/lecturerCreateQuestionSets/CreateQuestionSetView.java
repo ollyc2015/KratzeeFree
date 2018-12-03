@@ -91,12 +91,12 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
             case R.id.btn_submit_all_questions:
 
-                if(new_question_layout.getChildCount() > 0) {
+                if(new_question_layout.getChildCount() > 1) {
 
                     showSubmitAllQuestionsDialog();
                 }else{
 
-                    showToast(this, "Please add a Question Before Trying to Submit a Question Set");
+                    showToast(this, "Please add a minimum of TWO Question Before Trying to Submit a Question Set");
                 }
                 break;
 
@@ -344,17 +344,9 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         builder.setTitle("Save & Submit All Questions?");
         builder.setPositiveButton("OK", (dialog, which) ->
         {
-            if(new_question_layout.getChildCount() < 2) {
-
-                showToast(this, "Please add a minimum of TWO questions");
-
-            }else {
-
-                progress.setVisibility(View.VISIBLE);
-                questionNumber = 1;
-                presenter.getQuestionsFromSQLite(kratzeeDatabase, pref, progress);
-
-            }
+            progress.setVisibility(View.VISIBLE);
+            questionNumber = 1;
+            presenter.getQuestionsFromSQLite(kratzeeDatabase, pref, progress);
 
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
