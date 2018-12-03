@@ -147,7 +147,7 @@ public class SelectTopicView extends BaseActivity implements SelectTopicContract
         //builder.setMessage("\nYou have selected: \n\n"+buttonText+" \n\nPlease note; the Question PIN cannot be changed.");
         builder.setPositiveButton("Edit", (dialog, which) -> { });
         builder.setNeutralButton("Delete", (dialog, which) -> { });
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton("Save & Close", (dialog, which) -> dialog.dismiss());
         builder.setView(linearLayout);
 
         AlertDialog dialog = builder.create();
