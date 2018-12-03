@@ -344,9 +344,17 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
         builder.setTitle("Save & Submit All Questions?");
         builder.setPositiveButton("OK", (dialog, which) ->
         {
-            progress.setVisibility(View.VISIBLE);
-            questionNumber = 1;
-            presenter.getQuestionsFromSQLite(kratzeeDatabase, pref, progress);
+            if(new_question_layout.getChildCount() < 2) {
+
+                showToast(this, "Please add a minimum of TWO questions");
+
+            }else {
+
+                progress.setVisibility(View.VISIBLE);
+                questionNumber = 1;
+                presenter.getQuestionsFromSQLite(kratzeeDatabase, pref, progress);
+
+            }
 
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
@@ -472,10 +480,6 @@ public class CreateQuestionSetView extends BaseActivity implements CreateQuestio
 
             showToast(this, "Please Save Your Questions or Remove Them Before Leaving!");
             mScrollView.fullScroll(View.FOCUS_DOWN);
-
-        }else if(new_question_layout.getChildCount() < 2) {
-
-            showToast(this, "Please add a minimum of TWO questions");
 
         }else{
 
