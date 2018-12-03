@@ -95,4 +95,14 @@ public class Constants {
     //This is the operation set when adding a new set of questions to the external DB
     public static final String ADD_NEW_TOPIC = "add_new_topic";
 
+    //User has created an account, this hides the register button so the user of this device cannot create multiple accounts on the same device
+    //In order to get around the question-set limit by registering multiple accounts
+    public static final String USER_HAS_NOT_REGISTERED_AN_ACCOUNT = "user_has_not_registered_an_account";
+
+    //The below is the operation used to add an additional question to an existing topic
+    public static final String ADD_NEW_QUESTION = "add_new_question";
+    public static final String ADD_NEW_ANSWER = "add_new_answer";
+    //Below is used to save the selected topic in shared pref if another question is added to the question-set
+    public static final String SELECTED_TOPIC = "selected_topic";
+
 }

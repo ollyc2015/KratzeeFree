@@ -1,9 +1,7 @@
 package uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectedTopicQuestions;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -34,6 +32,7 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
 
     private SelectedTopicContract.View view;
     private OperationAPI apiService  = ApiUtils.getApiService();
+    private boolean messageShown =false;
 
     @Override
     public void attachView(SelectedTopicContract.View view) {
@@ -514,4 +513,150 @@ public class SelectedTopicPresenter implements SelectedTopicContract.Presenter {
     }
 
 
+    public void addNewQuestionToExternalDB(String question, String answer1, String answer2, String answer3, String answer4, CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit, AlertDialog dialog, SharedPreferences pref, ProgressBar progress){
+
+        Question question1 = new Question();
+        question1.setQuestionString(question);
+        question1.setQuestionTopic(pref.getString(Constants.SELECTED_TOPIC, ""));
+        question1.setStudentPin(pref.getString(Constants.PIN_ENTERED, ""));
+        question1.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+
+        final ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.ADD_NEW_QUESTION);
+        //set the values entered for the pin entered
+        request.setQuestion(question1);
+
+        apiService.operation(request).enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+
+                if (resp.getResult().equals(Constants.SUCCESS)) {
+
+                    String question_id = resp.getQuestion().getQuestionID();
+
+                    addNewAnswersToExternalDB(question_id, answer1, answer2, answer3, answer4, cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit, dialog, pref, progress);
+
+
+                } else {
+                    String messageFromServer = resp.getMessage();
+                    BaseActivity.showToast((Context) view, messageFromServer);
+                    progress.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                BaseActivity.showToast((Context) view, t.toString());
+            }
+        });
+    }
+
+
+    public void addNewAnswersToExternalDB(String question_id, String answer1, String answer2, String answer3, String answer4, CheckBox cb_answer1_edit, CheckBox cb_answer2_edit, CheckBox cb_answer3_edit, CheckBox cb_answer4_edit, AlertDialog dialog, SharedPreferences pref, ProgressBar progress){
+
+        List<Answer> answerObjectArray = new ArrayList<>();
+        String isChecked1, isChecked2, isChecked3, isChecked4;
+
+        if (cb_answer1_edit.isChecked()){
+            isChecked1 = "Correct";
+        }else{
+            isChecked1 = "Incorrect";
+        }
+
+        if (cb_answer2_edit.isChecked()){
+            isChecked2 = "Correct";
+        }else{
+            isChecked2 = "Incorrect";
+        }
+
+        if (cb_answer3_edit.isChecked()){
+            isChecked3 = "Correct";
+        }else{
+            isChecked3 = "Incorrect";
+        }
+
+        if (cb_answer4_edit.isChecked()){
+            isChecked4 = "Correct";
+        }else{
+            isChecked4 = "Incorrect";
+        }
+
+        Answer answerObject1= new Answer();
+        answerObject1.setQuestion_id(question_id);
+        answerObject1.setAnswerString(answer1);
+        answerObject1.setIsAnswerCorrect(isChecked1);
+        answerObject1.setStudentPin(pref.getString(Constants.PIN_ENTERED, ""));
+        answerObject1.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+
+        Answer answerObject2 = new Answer();
+        answerObject2.setQuestion_id(question_id);
+        answerObject2.setAnswerString(answer2);
+        answerObject2.setIsAnswerCorrect(isChecked2);
+        answerObject2.setStudentPin(pref.getString(Constants.PIN_ENTERED, ""));
+        answerObject2.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+
+
+        Answer answerObject3 = new Answer();
+        answerObject3.setQuestion_id(question_id);
+        answerObject3.setAnswerString(answer3);
+        answerObject3.setIsAnswerCorrect(isChecked3);
+        answerObject3.setStudentPin(pref.getString(Constants.PIN_ENTERED, ""));
+        answerObject3.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+
+
+        Answer answerObject4 = new Answer();
+        answerObject4.setQuestion_id(question_id);
+        answerObject4.setAnswerString(answer4);
+        answerObject4.setIsAnswerCorrect(isChecked4);
+        answerObject4.setStudentPin(pref.getString(Constants.PIN_ENTERED, ""));
+        answerObject4.setLecturerID(pref.getString(Constants.LECTURER_ID, ""));
+
+
+        answerObjectArray.add(answerObject1);
+        answerObjectArray.add(answerObject2);
+        answerObjectArray.add(answerObject3);
+        answerObjectArray.add(answerObject4);
+
+        for (int i = 0; i < answerObjectArray.size(); i++) {
+
+            final ServerRequest request = new ServerRequest();
+            request.setOperation(Constants.ADD_NEW_ANSWER);
+            //set the values entered for the pin entered
+            request.setAnswer(answerObjectArray.get(i));
+
+            apiService.operation(request).enqueue(new Callback<ServerResponse>() {
+                @Override
+                public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+
+                    ServerResponse resp = response.body();
+
+                    if (resp.getResult().equals(Constants.SUCCESS)) {
+
+                        if(!messageShown) {
+                            messageShown = true;
+
+                            BaseActivity.showToast((Context) view, resp.getMessage());
+                            dialog.dismiss();
+                            view.getQuestions();
+                        }
+
+
+                    } else {
+                        String messageFromServer = resp.getMessage();
+                        BaseActivity.showToast((Context) view, messageFromServer);
+                        progress.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ServerResponse> call, Throwable t) {
+                    BaseActivity.showToast((Context) view, t.toString());
+                }
+            });
+
+        }
+
+    }
 }

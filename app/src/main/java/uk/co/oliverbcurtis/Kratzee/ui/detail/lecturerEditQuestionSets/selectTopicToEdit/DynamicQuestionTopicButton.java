@@ -42,6 +42,7 @@ public class DynamicQuestionTopicButton {
                 btn_question_topic.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 // Sets the text for when the button is first created.
                 btn_question_topic.setText("Topic: "+questionTopicSet.toArray()[i] + " | PIN: " + questionTopicPINSet.toArray()[i]);
+                btn_question_topic.setHint(questionTopicSet.toArray()[i].toString());
                 // Sets the text for when the button is not in the checked state.
                 btn_question_topic.setTypeface(null, Typeface.BOLD);
                 btn_question_topic.setTextColor(Color.WHITE);

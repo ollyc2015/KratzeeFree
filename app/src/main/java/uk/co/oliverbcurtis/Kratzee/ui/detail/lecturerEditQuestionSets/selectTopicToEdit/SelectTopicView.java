@@ -88,6 +88,10 @@ public class SelectTopicView extends BaseActivity implements SelectTopicContract
             Log.i("Clicked", "" + v.getTag());
             String buttonText = (String) btn_question_topic.getText();
             String topicPin = v.getTag().toString();
+            String topic = (String) btn_question_topic.getHint();
+
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString(Constants.SELECTED_TOPIC,topic).apply();
 
             presenter.checkIfActive(topicPin, pref, progress, buttonText);
 

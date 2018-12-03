@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -21,13 +20,14 @@ import uk.co.oliverbcurtis.Kratzee.ui.common.BaseActivity;
 import uk.co.oliverbcurtis.Kratzee.ui.common.RequestQuestionsExternalDB;
 import uk.co.oliverbcurtis.Kratzee.ui.detail.lecturerEditQuestionSets.selectTopicToEdit.SelectTopicView;
 
-public class SelectedTopicView extends BaseActivity implements SelectedTopicContract.View{
+public class SelectedTopicView extends BaseActivity implements SelectedTopicContract.View, View.OnClickListener{
 
     private LinearLayout selectedTopicSelectionLayout;
     private SelectedTopicPresenter presenter;
     private ProgressBar progress;
     private EditText et_edit_question, et_answer1_edit, et_answer2_edit, et_answer3_edit, et_answer4_edit;
     private CheckBox cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit;
+    private Button btn_add_question;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +41,9 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
 
         selectedTopicSelectionLayout = findViewById(R.id.selectedTopicSelectionLayout);
         selectedTopicSelectionLayout.removeAllViews();
+
+        btn_add_question = findViewById(R.id.btn_add_question);
+        btn_add_question.setOnClickListener(this);
 
         presenter = new SelectedTopicPresenter();
         presenter.attachView(this);
@@ -69,6 +72,7 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
             Log.i("Clicked", "" + v.getTag());
             String buttonText = (String) btn_topic_question.getText();
             String questionID = v.getTag().toString();
+
             showQuestionSelectionDialog(buttonText, questionID);
         });
     }
@@ -327,5 +331,71 @@ public class SelectedTopicView extends BaseActivity implements SelectedTopicCont
         Intent intent = new Intent(getApplicationContext(), SelectTopicView.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.btn_add_question:
+                showAddNewQuestionLayout();
+                break;
+        }
+    }
+
+    public void showAddNewQuestionLayout(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view = inflater.inflate(R.layout.lecturer_edit_question, null);
+
+        ProgressBar progress = view.findViewById(R.id.progress);
+
+        et_edit_question = view.findViewById(R.id.et_edit_question);
+
+        et_answer1_edit = view.findViewById(R.id.et_answer1_edit);
+        cb_answer1_edit = view.findViewById(R.id.cb_answer1_edit);
+
+        et_answer2_edit = view.findViewById(R.id.et_answer2_edit);
+        cb_answer2_edit = view.findViewById(R.id.cb_answer2_edit);
+
+        et_answer3_edit = view.findViewById(R.id.et_answer3_edit);
+        cb_answer3_edit = view.findViewById(R.id.cb_answer3_edit);
+
+        et_answer4_edit = view.findViewById(R.id.et_answer4_edit);
+        cb_answer4_edit = view.findViewById(R.id.cb_answer4_edit);
+
+        checkBoxOnClickListeners(cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit);
+
+        builder.setView(view);
+        builder.setTitle("Add Question");
+        builder.setPositiveButton("Add", (dialog, which) -> {
+
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) ->{dialog.dismiss(); progress.setVisibility(View.INVISIBLE);});
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+
+            String question = et_edit_question.getText().toString();
+            String answer1 = et_answer1_edit.getText().toString();
+            String answer2 = et_answer2_edit.getText().toString();
+            String answer3 = et_answer3_edit.getText().toString();
+            String answer4 = et_answer4_edit.getText().toString();
+
+            if(!question.isEmpty() && !answer1.isEmpty() && !answer2.isEmpty() && !answer3.isEmpty() && !answer4.isEmpty() &&
+                    cb_answer1_edit.isChecked() || cb_answer2_edit.isChecked() || cb_answer3_edit.isChecked() || cb_answer4_edit.isChecked()){
+
+                progress.setVisibility(View.VISIBLE);
+                view.findViewById(R.id.editQuestionScrollview).post(() -> ((ScrollView) view.findViewById(R.id.editQuestionScrollview)).fullScroll(View.FOCUS_DOWN));
+
+                presenter.addNewQuestionToExternalDB(question, answer1, answer2, answer3, answer4, cb_answer1_edit, cb_answer2_edit, cb_answer3_edit, cb_answer4_edit, dialog, pref, progress);
+
+            }else {
+
+                showToast(this, "Please Complete all Fields");
+            }
+        });
     }
 }
