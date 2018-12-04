@@ -35,15 +35,8 @@ public class LecturerRegisterView extends BaseActivity implements LecturerRegist
         presenter = new LecturerRegisterPresenter();
         presenter.attachView(this);
 
-        if(pref.getBoolean(Constants.USER_HAS_NOT_REGISTERED_AN_ACCOUNT,true)) {
-            btn_register = findViewById(R.id.btn_register);
-            btn_register.setOnClickListener(this);
-
-        }else{
-
-            btn_register.setVisibility(View.GONE);
-
-        }
+        btn_register = findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(this);
 
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);

@@ -54,8 +54,18 @@ public class LecturerLoginView extends BaseActivity implements LecturerLoginCont
         tv_forgot_password = findViewById(R.id.tv_forgot_password);
         tv_forgot_password.setOnClickListener(this);
 
-        tv_register = findViewById(R.id.tv_register);
-        tv_register.setOnClickListener(this);
+        if(pref.getBoolean(Constants.USER_HAS_NOT_REGISTERED_AN_ACCOUNT,true)) {
+
+            tv_register = findViewById(R.id.tv_register);
+            tv_register.setOnClickListener(this);
+
+        }else{
+
+            tv_register = findViewById(R.id.tv_register);
+            tv_register.setVisibility(View.GONE);
+        }
+
+
 
         progress = findViewById(R.id.progress);
     }

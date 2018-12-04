@@ -55,7 +55,7 @@ public class LecturerRegisterPresenter implements LecturerRegisterContract.Prese
 
 
                     SharedPreferences.Editor editor = pref.edit();
-                    pref.edit().putBoolean(Constants.USER_HAS_NOT_REGISTERED_AN_ACCOUNT, false).apply();
+                    editor.putBoolean(Constants.USER_HAS_NOT_REGISTERED_AN_ACCOUNT, false);
 
                     editor.putBoolean(Constants.LECTURER_IS_LOGGED_IN, true);
                     editor.putString(Constants.LECTURER_ID, resp.getLecturer().getLecturerID());
