@@ -37,6 +37,7 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
     private boolean doubleBackToExitPressedOnce = false;
     private GestureDetector mGesture;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private boolean hasRun = false;
 
 
     @Override
@@ -217,9 +218,10 @@ public class TeamQuizScreenView extends BaseActivity implements TeamQuizScreenCo
 
                     current_page.setOnTouchListener((arg0, arg1) -> true);
 
-
-                    showToast(TeamQuizScreenView.this ,"Scrolling Blocked");
-
+                    if(!hasRun) {
+                        showToast(TeamQuizScreenView.this, "Scrolling Blocked to Allow Better Scratch Experience, Lightly Scroll to Unblock");
+                        hasRun=true;
+                    }
 
                 }else{
 

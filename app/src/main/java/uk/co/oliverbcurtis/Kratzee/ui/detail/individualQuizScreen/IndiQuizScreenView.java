@@ -40,6 +40,7 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
     private Activity individual_quiz;
     private GestureDetector mGesture;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private boolean hasRun = false;
 
 
     @Override
@@ -215,7 +216,10 @@ public class IndiQuizScreenView extends BaseActivity implements IndiQuizScreenCo
 
                     }else{
 
-                        showToast(IndiQuizScreenView.this ,"Scrolling Blocked to Allow Better Scratch Experience");
+                        if(!hasRun) {
+                            showToast(IndiQuizScreenView.this, "Scrolling Blocked to Allow Better Scratch Experience, Lightly Scroll to Unblock");
+                            hasRun=true;
+                        }
 
                     }
 
