@@ -43,6 +43,6 @@ public interface IndiQuizScreenContract {
 
         interface ScratchThreshold{
 
-            void indi_scratch_pads(final android.view.View current_layout, List<String> array1, final SwipeDisabledViewPager pager, IndiQuizScreenContract.View view);
+            void indi_scratch_pads(final android.view.View current_layout, List<String> array1, final SwipeDisabledViewPager pager, View view);
         }
 }

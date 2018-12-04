@@ -50,8 +50,18 @@ public class QuizPinPresenter implements QuizPinContract.Presenter {
                         progress.setVisibility(View.INVISIBLE);
 
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.putString(Constants.LECTURER_ID, resp.getQuestion().getLecturerID());
                         editor.putString(Constants.PIN_ENTERED, pin);
+                        //Log the lecturer out if they were logged-in, but took someone else's quiz as their unique ID will be overwritten in shared pref
+                        if(!pref.getString(Constants.LECTURER_ID, "").equals(resp.getQuestion().getLecturerID())){
+
+                            editor.putBoolean(Constants.LECTURER_IS_LOGGED_IN,false);
+                            editor.putString(Constants.LECTURER_ID, resp.getQuestion().getLecturerID());
+
+                        }else{
+
+                            editor.putString(Constants.LECTURER_ID, resp.getQuestion().getLecturerID());
+                        }
+
                         editor.apply();
 
                         handlePinSuccess();

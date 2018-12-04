@@ -118,7 +118,7 @@ public class LecturerLoginView extends BaseActivity implements LecturerLoginCont
     public void checkLoginStatus(){
 
         //If the user logged in earlier, take them straight to their profile else, take them to the login screen
-        if(pref.getBoolean(Constants.LECTURER_IS_LOGGED_IN,false)){ // get value of last login status
+        if(pref.getBoolean(Constants.LECTURER_IS_LOGGED_IN,true)){ // get value of last login status
 
             Intent intent = new Intent(getApplicationContext(), LecturerProfileView.class);
             startActivity(intent);

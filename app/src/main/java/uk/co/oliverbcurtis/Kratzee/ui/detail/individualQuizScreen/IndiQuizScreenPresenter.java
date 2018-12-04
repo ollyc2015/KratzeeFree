@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,7 @@ import com.rd.PageIndicatorView;
 import com.rd.animation.type.AnimationType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import uk.co.oliverbcurtis.Kratzee.R;
 import uk.co.oliverbcurtis.Kratzee.model.Answer;
@@ -328,9 +330,10 @@ public class IndiQuizScreenPresenter implements IndiQuizScreenContract.Presenter
     @Override
     public void removeScratchFunctionality(SwipeDisabledViewPager pager){
 
-        if (pager.getAdapter().getCount()== array1.size()) {
+        if (Objects.requireNonNull(pager.getAdapter()).getCount()== array1.size()) {
 
             pager.setOffscreenPageLimit(1);
+
         }
     }
 

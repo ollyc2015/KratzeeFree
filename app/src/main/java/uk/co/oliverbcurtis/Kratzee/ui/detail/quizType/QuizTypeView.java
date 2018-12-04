@@ -2,6 +2,8 @@ package uk.co.oliverbcurtis.Kratzee.ui.detail.quizType;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,6 +21,7 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
     private Button btn_indi, btn_team;
     public static boolean indiButtonPressed = false;
     public static boolean teamButtonPressed = false;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
 
     @Override
@@ -43,15 +46,19 @@ public class QuizTypeView extends BaseActivity implements QuizTypeContract.View,
             btn_indi.setAlpha(.5f);
             btn_indi.setClickable(false);
 
-            Animation shake1 = AnimationUtils.loadAnimation(this, R.anim.shake);
-            btn_team.startAnimation(shake1);
+            handler.post(() -> {
+                Animation shake1 = AnimationUtils.loadAnimation(this, R.anim.shake);
+                btn_team.startAnimation(shake1);
+            });
 
         }else {
             btn_team.setAlpha(.5f);
             btn_team.setClickable(false);
 
-            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
-            btn_indi.startAnimation(shake);
+            handler.post(() -> {
+                Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+                btn_indi.startAnimation(shake);
+            });
         }
 
         //If the user has decided to take the tutorial, start the first tutorial

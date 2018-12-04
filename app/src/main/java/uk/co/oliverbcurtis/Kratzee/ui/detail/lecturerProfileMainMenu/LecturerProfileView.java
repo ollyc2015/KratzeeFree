@@ -73,6 +73,11 @@ public class LecturerProfileView extends BaseActivity implements LecturerProfile
         presenter.getAllTopics(progress, pref, tv_question_sets_available, btn_create_questions, tutorialView);
 
 
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean(Constants.LECTURER_IS_LOGGED_IN,true);
+        editor.apply();
+
+
     }
 
 

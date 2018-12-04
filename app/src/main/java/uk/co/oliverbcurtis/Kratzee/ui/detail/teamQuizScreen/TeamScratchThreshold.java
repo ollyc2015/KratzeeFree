@@ -49,11 +49,15 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.increaseScoreByFour();
                         ((TextView) current_layout.findViewById(R.id.tv_current_score)).setText("" + Score.getScore());
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
+
 
                     } else if (!current_layout.findViewById(R.id.star1).isShown() && pager.getCurrentItem() == finalPage - 1 && attemptCount ==1) {
 
                         Score.decreaseScoreByTwo();
                         attemptCount = 2;
+
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
 
                     }else if (!current_layout.findViewById(R.id.star1).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==2) {
@@ -61,11 +65,15 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.decreaseScoreByOne();
                         attemptCount = 3;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
+
 
                     }else if (!current_layout.findViewById(R.id.star1).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==3){
 
                         Score.decreaseScoreByOne();
                         attemptCount =1;
+
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
 
                     }else if (array3.get(answerString).contains("Correct")) {
@@ -119,11 +127,15 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.increaseScoreByFour();
                         ((TextView) current_layout.findViewById(R.id.tv_current_score)).setText("" + Score.getScore());
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
+
 
                     } else if (!current_layout.findViewById(R.id.star2).isShown() && pager.getCurrentItem() == finalPage - 1 && attemptCount ==1) {
 
                         Score.decreaseScoreByTwo();
                         attemptCount = 2;
+
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
 
                     }else if (!current_layout.findViewById(R.id.star2).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==2) {
@@ -131,12 +143,15 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.decreaseScoreByOne();
                         attemptCount = 3;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
+
 
                     }else if (!current_layout.findViewById(R.id.star2).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==3){
 
                         Score.decreaseScoreByOne();
                         attemptCount =1;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
                     }else if (array3.get(answerString+1).contains("Correct")) {
 
@@ -189,11 +204,15 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.increaseScoreByFour();
                         ((TextView) current_layout.findViewById(R.id.tv_current_score)).setText("" + Score.getScore());
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
+
 
                     } else if (!current_layout.findViewById(R.id.star3).isShown() && pager.getCurrentItem() == finalPage - 1 && attemptCount ==1) {
 
                         Score.decreaseScoreByTwo();
                         attemptCount = 2;
+
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
 
                     }else if (!current_layout.findViewById(R.id.star3).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==2) {
@@ -201,12 +220,14 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.decreaseScoreByOne();
                         attemptCount = 3;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
                     }else if (!current_layout.findViewById(R.id.star3).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==3){
 
                         Score.decreaseScoreByOne();
                         attemptCount =1;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
                     }else if (array3.get(answerString+2).contains("Correct")) {
 
@@ -257,17 +278,22 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.increaseScoreByFour();
                         ((TextView) current_layout.findViewById(R.id.tv_current_score)).setText("" + Score.getScore());
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
+
 
                     } else if (!current_layout.findViewById(R.id.star4).isShown() && pager.getCurrentItem() == finalPage - 1 && attemptCount ==1) {
 
                         Score.decreaseScoreByTwo();
                         attemptCount = 2;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
                     }else if (!current_layout.findViewById(R.id.star4).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==2) {
 
                         Score.decreaseScoreByOne();
                         attemptCount = 3;
+
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
 
                     }else if (!current_layout.findViewById(R.id.star4).isShown() && pager.getCurrentItem() == finalPage-1 && attemptCount ==3){
@@ -275,6 +301,7 @@ public class TeamScratchThreshold implements TeamQuizScreenContract.ScratchThres
                         Score.decreaseScoreByOne();
                         attemptCount =1;
 
+                        BaseActivity.showToast((Context) view, "Please Stop Scratching - You've Found the Star!, Scroll Down and Submit.");
 
                     }else if (array3.get(answerString+3).contains("Correct")) {
 
