@@ -73,6 +73,8 @@ public class StartScreenView extends BaseActivity implements StartScreenContract
             case R.id.btn_lecturer:
                 lecturerButtonPressed = true;
                 studentButtonPressed = false;
+                QuizTypeView.indiButtonPressed = false;
+                QuizTypeView.teamButtonPressed = false;
                 goSelectedScreen();
                 break;
         }
