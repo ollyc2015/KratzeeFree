@@ -52,5 +52,5 @@ Feel free to download this lite version here
 
 # Download
 
-The version stored here is a lite version with access to the Trivia based version only.
+The version stored here is a lite version with access to the Trivia based version only. The lite version can also be downloaded from the app store here: https://play.google.com/store/apps/details?id=uk.co.oliverbcurtis.kratzee
 
