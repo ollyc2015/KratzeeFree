@@ -48,9 +48,9 @@ I have created a paid version of the app (yet to be released) that integrates wi
 
 # Use
 
-Feel free to download this lite version here
+Feel free to download this lite version here: https://play.google.com/store/apps/details?id=uk.co.oliverbcurtis.kratzee
 
 # Download
 
-The version stored here is a lite version with access to the Trivia based version only. The lite version can also be downloaded from the app store here: https://play.google.com/store/apps/details?id=uk.co.oliverbcurtis.kratzee
+The version stored here is a lite version with access to the Trivia based version only. 
 
